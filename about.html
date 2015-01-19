@@ -5,13 +5,19 @@
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
         <link rel="stylesheet" href="style.css">
+        
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
     </head>
 
     <body>
@@ -24,11 +30,11 @@
    <nav class="navbar navbar-inverse">
   <div class="container-fluid text-uppercase">
     <div class="navbar-header">
-      <a class="navbar-brand" href="about.html">Reporting app</a>
+      <a class="navbar-brand" href="about.html" style="color:white;">Reporting app</a>
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">2014 Reports
           <span class="caret"></span></a>
@@ -50,9 +56,46 @@
   </div>
 </nav>
 <!-- nav ends -->
-<div class="jumbotron">
-    <h1>this is the jumbotron</h1>
-    <p>You comply to the rules or you will be kicked out</p><br /><blockquote class="text-uppercase">this is awesome</blockquote>
+<!-- jumbotron begins -->
+<div class="jumbotron" >
+    <h1><i class="fa fa-camera-retro"></i> Application Information</h1>
+    <p>The Graphical Reporting Application was developed by <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a> (Website Designer/Engineer) of PNG LOOP. The purpose of designing and building this application is to make reporting interesting with the help of graphs.</p>
+    <p>It was built using Open Source Resources namely <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome Icons</a> and <a href="http://d3js.org/">D3.js</a>. The main CSS base of the application is Bootstrap 3.0. A mixture of a number of icons are used including Font Awesome Icons and Bootstrap's Glyphicons.</p>
+    <p>D3.js is a JavaScript Library used to display data stored in a json (JavaScript Object Notation) file.</p>
 </div>
+<!-- jumbotron ends -->
+<!-- Widget areas -->
+<div class="container">
+    <div id="quick-links" class="col-md-4 modal-body">
+        <a href="#quick-links" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-search btn-lg"></span> QUICK LINKS
+        </a>
+        <p>
+            Get to a report fast:
+            <ul class="pagination">
+                <li><a href="reports/jan-02.html" title="january week 2 report">January Week Two Report</a></li>
+                <li><a href="reports/jan-01.html" title="january week 1 report">January Week One Report</a></li>
+                <li><a href="reports/dec-04.html" title="december week 4 report">December Week Four</a></li>
+            </ul>
+        </p>
+    </div>
+    <div class="col-md-4 modal-body">
+        <p>This is some text.</p>
+        <p>This is another text.</p>
+    </div>
+    <div class="col-md-4 modal-body">
+        <p>This is some text.</p>
+        <p>This is another text.</p>
+    </div>
+</div>
+<!-- end of widget areas -->
+<!-- footer  -->
+<hr /><div>
+    <footer class="modal-body text-center">
+        <h2>Copyright PNG LOOP 2014</h2>
+        <p>This reporting tool remains the property of PNG Loop</p>
+    </footer>
+</div>
+<!-- end of footer -->
     </body>
 </html>

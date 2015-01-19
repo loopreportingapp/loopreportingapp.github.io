@@ -9,6 +9,10 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
+
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -42,7 +46,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">2015 Reports
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">January</a></li>
+            <li><a href="reports/jan-00.html">January</a></li>
           </ul>
         </li>
       </ul>
@@ -57,32 +61,37 @@
   <p>To use this app, simply select a report from the main menu. There are 2014 Reports and 2015 Reports which can be located as sub menu's</p>
   <p>For more information regarding this app <a href="about.html">Click Here</a>.</p>
 </div>
+<!-- jumbotron ends -->
+<!-- Widget areas -->
 <div class="container">
-    <div id="quick-links" class="col-md-4 modal-body">
-        <a href="#quick-links" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-search btn-lg"></span> QUICK LINKS
-        </a>
+    <div id="quick-links" class="col-md-4">
+        <h3 class="list-group-item"><i class="fa fa-search fa-x5"></i> QUICK LINKS</h3>
         <p>
-            Get to a report fast:
-            <ul class="pagination">
-                <li><a href="reports/jan-02.html" title="january week 2 report">January Week Two Report</a></li>
-                <li><a href="reports/jan-01.html" title="january week 1 report">January Week One Report</a></li>
-                <li><a href="reports/dec-04.html" title="december week 4 report">December Week Four</a></li>
-            </ul>
+            <div class="list-group">
+                <a class="list-group-item" href="reports/jan-02.html" title="january week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; January Week Two Report</a></li>
+                <a class="list-group-item" href="reports/jan-01.html" title="january week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; January Week One Report</a></li>
+                <a class="list-group-item" href="reports/dec-04.html" title="december week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week Four</a></li>
+            </div>
         </p>
     </div>
-    <div class="col-md-4 modal-body">
-        <p>This is some text.</p>
-        <p>This is another text.</p>
-    </div>
-    <div class="col-md-4 modal-body">
-        <p>This is some text.</p>
-        <p>This is another text.</p>
+    <div class="col-md-4">
+      <h3 class="list-group-item"><i class="fa fa-pencil"></i> How to use</h3>
+      <ol class="modal-body">
+        <li>Navigate to the Main Menu</li>
+        <li>Click on a year: 2014/2015</li>
+        <li>Select a report on the drop down</li>
+        <li>And you should get there</li>
+      </ol>
     </div>
 </div>
-<!-- jumbotron ends -->
-<footer class="footer">
-    <h1>footer</h1><p>this is the footer</p>
-</footer>
+<!-- end of widget areas -->
+<!-- footer  -->
+<hr /><div>
+    <footer class="modal-body text-center">
+        <h2>Copyright PNG LOOP 2014</h2>
+        <p>This reporting tool remains the property of PNG Loop</p>
+    </footer>
+</div>
+<!-- end of footer -->
     </body>
 </html>
