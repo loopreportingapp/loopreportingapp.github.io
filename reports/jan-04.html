@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
-        <script src="../d3.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -54,13 +53,13 @@
 <!-- nav ends -->
         <div class="container" id="chart2">
             <div class="col-md-8 col-lg-8">
-                <h1 class="text-uppercase">january week three</h1>
+                <h1 class="text-uppercase">january week four (progressive)</h1>
                 <div class="text-warning">
-                    <p>Below is a bar chart showing the contribution of each Reporter for the <strong>Third</strong> week of January (15th to 21st). Beside the name of the reporter is the total number of stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
+                    <p>Below is a bar chart showing the contribution of each Reporter for the <strong>Fourth</strong> week of January (22nd to 28th). Beside the name of the reporter is the total number of stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
                 </div>
                 <hr />
 <script>
-            d3.json("../data/jan-03.json", function (data) {
+            d3.json("../data/jan-04.json", function (data) {
                 
                 var width=800;
                 var height=500;
@@ -71,7 +70,7 @@
                 // }
 
                 // var highestValueInDataRange = d3.max(bardata);
-                var highestValueInDataRange = 55;
+                var highestValueInDataRange = 40;
                 // var highestValueInDataRange = d3.max(d.count);
                 // var highestValueInDataRange = function (d) { return d3.max(d.count);};
 
