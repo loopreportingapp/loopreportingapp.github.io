@@ -3,6 +3,8 @@
     <head>
         <title>PNG LOOP | Reporting App | Monthly Report</title>
         <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="../jquery.js"></script>
+        <script src="../d3.min.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="../style.css">
@@ -21,36 +23,7 @@
             <a href="../index.html" ><img src="../img/logo21.png" /></a>
             <a href="../index.html" ><h1 id="site-title">reporting application</h1></a>
         </header>
-       <nav class="navbar navbar-default">
-   <nav class="navbar navbar-inverse">
-  <div class="container-fluid text-uppercase">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="../about.html">Reporting app</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav">
-        <li><a href="../index.html">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">2014 Reports
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="dec-00.html">December</a></li>
-            <li><a href="nov-00.html">November</a></li>
-            <li><a href="oct-00.html">October</a></li>
-          </ul>
-        </li>
-        <li class="active dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">2015 Reports
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="jan-00.html">January</a></li>
-            <li class="active"><a href="feb-00.html">February</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div id="insert-menu"></div>
 <!-- nav ends -->
 <div class="container" id="chart2">
     <div class="col-md-9">
@@ -60,10 +33,10 @@
             <p>Below is a bar chart showing the contribution of each Reporter for the month. Beside the name of the reporter is the total stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
         </div>
         <hr />
-<script>
+        <script>
             d3.json("../data/feb-00.json", function (data) {
                 
-                var width=800;
+                var width=750;
                 var height=500;
 
                 // var bardata = [];
@@ -117,7 +90,7 @@
                         .attr("height",45)
                         .attr("y", function (d,i) {return i * 50;});
                         //.attr("fill", function(d){return color(d);} );  
-  
+
                 canvas.selectAll("text")
                     .data(data)
                     .enter()
@@ -135,32 +108,15 @@
             });        
         </script>
     </div>
-    <div id="quick-links" class="col-md-3 modal-body">
-        <a href="#quick-links" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-search btn-lg"></span> QUICK REPORTS
-        </a>
-        <p><ul class="pagination"><span class="text-uppercase;">DECEMBER REPORTS</span>
-                <li><a href="feb-01.html" title="february week 1 report">February Week One Report</a></li>
-                <li><a href="feb-02.html" title="february week 2 report">February Week Two Report</a></li>
-                <li><a href="jan-03.html" title="january week 3 report">January Week Three Report</a></li>
-                <li><a href="jan-04.html" title="january week 4 report">January Week Four Report</a></li>
-            </ul>
-        </p>
-        <p>
-            <ul class="pagination"><span>VIEW OTHER REPORTS</span>
-                <li><a href="jan-00.html">View January Reports</a></li>
-                <li><a href="dec-00.html">View December Reports</a></li>
-                <li><a href="nov-00.html">View November Reports</a></li>
-                <li><a href="oct-00.html">View October Reports</a></li>
-            </ul>
-        </p>
-    </div>
+    <div id="insert-sidebar"></div>
+    <script>
+      $(function(){
+        $("#insert-menu").load("../menu-reports.html");
+        $("#insert-sidebar").load("../sidebar.html");
+        $("#insert-footer").load("../footer.html");
+      })
+    </script>
 </div>
-<div>
-    <footer class="modal-body text-center">
-        <h2>Copyright PNG LOOP 2015</h2>
-        <p>This reporting tool remains the property of PNG Loop</p>
-    </footer>
-</div>
+<div id="insert-footer"></div>
 </body>
 </html>
