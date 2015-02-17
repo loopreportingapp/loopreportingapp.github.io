@@ -3,6 +3,9 @@
     <head>
         <title>PNG LOOP | Reporting App | Monthly Report</title>
         <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="../jquery.js"></script>
+        <script src="../d3.min.js"></script>
+        <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="../style.css">
@@ -21,36 +24,7 @@
             <a href="../index.html" ><img src="../img/logo21.png" /></a>
             <a href="../index.html" ><h1 id="site-title">reporting application</h1></a>
         </header>
-       <nav class="navbar navbar-default">
-           <nav class="navbar navbar-inverse">
-              <div class="container-fluid text-uppercase">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="../about.html">Reporting app</a>
-                </div>
-                <div>
-                  <ul class="nav navbar-nav">
-                    <li><a href="../index.html">Home</a></li>
-                    <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">2014 Reports
-                      <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="dec-00.html">December</a></li>
-                        <li><a href="#">November</a></li>
-                        <li><a href="#">October</a></li>
-                      </ul>
-                    </li>
-                    <li class="active dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">2015 Reports
-                      <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li class="active"><a href="jan-00.html">January</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
-        </nav>
+       <div id="insert-menu"></div>
 <!-- nav ends -->
         <div class="container" id="chart2">
             <div class="col-md-8 col-lg-8">
@@ -62,7 +36,7 @@
                 <script>
                     d3.json("../data/jan-02.json", function (data) {
                         
-                        var width=800;
+                        var width=750;
                         var height=500;
                         var highestValueInDataRange=50;
 
@@ -110,31 +84,15 @@
                     });        
                 </script>
             </div>
-            <div id="quick-links" class="col-md-3 modal-body">
-                <a href="#quick-links" class="btn btn-info btn-lg">
-                    <span class="glyphicon glyphicon-search btn-lg"></span> QUICK REPORTS
-                </a>
-                <p><ul class="pagination"><span class="text-uppercase;">DECEMBER REPORTS</span>
-                        <li><a href="jan-01.html" title="january week 1 report">January Week One Report</a></li>
-                        <li><a href="jan-02.html" title="january week 2 report">January Week Two Report</a></li>
-                        <li><a href="jan-03.html" title="january week 3 report">January Week Three Report</a></li>
-                        <li><a href="dec-04.html" title="december week 4 report">December Week Four Report</a></li>
-                    </ul>
-                </p>
-                <p>
-                    <ul class="pagination"><span>VIEW OTHER REPORTS</span>
-                        <li><a href="dec-00.html">View December Reports</a></li>
-                        <li><a href="nov-00.html">View November Reports</a></li>
-                        <li><a href="oct-00.html">View October Reports</a></li>
-                    </ul>
-                </p>
-            </div>
+            <div id="insert-sidebar"></div>
         </div>
-        <div>
-            <footer class="modal-body text-center">
-                <h2>Copyright PNG LOOP 2014</h2>
-                <p>This reporting tool remains the property of PNG Loop</p>
-            </footer>
-        </div>
+        <div id="insert-footer"></div>
+        <script>
+          $(function(){
+            $("#insert-menu").load("../menu-reports.html");
+            $("#insert-sidebar").load("../sidebar.html");
+            $("#insert-footer").load("../footer.html");
+          })
+        </script>
     </body>
 </html>
