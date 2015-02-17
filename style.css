@@ -30,3 +30,7 @@ h3 .list-group-item {
 h1 {
 	font-family: Tangerine;
 }
+#insert-footer{
+	background-color: #EFEFEF;
+	line-height: 3;
+}
