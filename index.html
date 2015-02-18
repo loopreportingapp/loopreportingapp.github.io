@@ -36,7 +36,7 @@
 </div>
 <!-- jumbotron ends -->
 <!-- Widget areas -->
-<div class="container">
+<div id="insert-widget-01" class="container">
     <div id="quick-links" class="col-md-4">
         <h3 class="list-group-item"><i class="fa fa-search fa-x5"></i> QUICK LINKS</h3>
         <p>
@@ -50,8 +50,8 @@
     <div class="col-md-4">
       <h3 class="list-group-item"><i class="fa fa-pencil"></i> How to use</h3>
       <ol class="modal-body">
-        <li>Navigate to the Main Menu</li>
-        <li>Click on a year: 2014/2015</li>
+        <li>Go to the Main Navigation Menu</li>
+        <li>Click on the type of report you want to see</li>
         <li>Select a report on the drop down</li>
         <li>And you should get there</li>
       </ol>
@@ -65,6 +65,7 @@
   $(function(){
     $("#insert-menu").load("menu-front.html");
     $("#insert-footer").load("footer.html");
+    // $("#insert-widget-01").load("widget-01");
   });
 </script>
     </body>
