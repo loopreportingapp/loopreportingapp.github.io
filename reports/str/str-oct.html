@@ -50,7 +50,7 @@
 
                 var widthScale = d3.scale.linear()
                                     .domain([0,highestValueInDataRange])
-                                    .range([0,width]);
+                                    .range([10,(width-20)]);
 
                 var colors = d3.scale.linear()
                         .domain([0, highestValueInDataRange])
@@ -103,6 +103,7 @@
                 canvas.append("g")
                     .attr("transform","translate(0,450)")
                     .attr("fill", "maroon")
+                    .attr("class","axis")
                     .call(axis);
             });        
         </script>

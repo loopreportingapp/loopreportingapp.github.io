@@ -34,3 +34,19 @@ h1 {
 	background-color: #EFEFEF;
 	line-height: 3;
 }
+.axis path{
+	fill:none;
+}
+.axis line {
+	background-color: black;
+	fill: black;
+	opacity: 1;
+	color: black;
+	width: 4px;
+}
+.axis tick {
+	background-color: black;
+	fill: black;
+	opacity: 1;
+	color: black;	
+}
