@@ -26,39 +26,33 @@
        <div id="insert-menu"></div>
 <!-- nav ends -->
         <div class="container" id="chart2">
-            <div class="col-md-8 col-lg-8">
+            <div id="inner-width" class="col-md-8"> <!-- copy this -->
                 <h1 class="text-uppercase">january week four (progressive)</h1>
                 <div class="text-warning">
                     <p>Below is a bar chart showing the contribution of each Reporter for the <strong>Fourth</strong> week of January (22nd to 28th). Beside the name of the reporter is the total number of stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
                 </div>
                 <hr />
+            </div>
         <script>
+            var width=$(document).width(); 
+                    if (width>=1180) { // width here is the document width
+                      width=750;
+                    } else {
+                      width= $("#inner-width").width(); 
+                    }
+
+            var height=500;
+
             d3.json("../data/jan-04.json", function (data) {
-                
-                var width=750;
-                var height=500;
-
-                // var bardata = [];
-                // for (key in data) {
-                //     bardata.push(data[key].COUNT);
-                // }
-
-                // var highestValueInDataRange = d3.max(bardata);
                 var highestValueInDataRange = 65;
-                // var highestValueInDataRange = d3.max(d.count);
-                // var highestValueInDataRange = function (d) { return d3.max(d.count);};
 
                 var widthScale = d3.scale.linear()
                                     .domain([0,highestValueInDataRange])
                                     .range([0,width]);
 
-                var colors = d3.scale.linear()
+                var color = d3.scale.linear()
                         .domain([0, highestValueInDataRange])
                         .range(['#AA1616', '#FFC00C']);
-
-                // var color = d3.scale.linear()
-                //                 .domain([0,60])
-                //                 .range(["red","yellow"]);
 
                 var tooltip = d3.select('body').append('div')
                         .style('position', 'absolute')
@@ -74,27 +68,21 @@
                 var canvas = d3.select("#chart2").append("svg")
                     .attr("width",width)
                     .attr("height",height);
-                    // .attr('background-color','#feace5');
-                    // .append("g")
-                    // .append("transform","translate(0,25)");
-
+                    
                 var bars = canvas.selectAll("rect")
                     .data(data)
                     .enter()
                         .append("rect")
-                        .style("fill", function (d){
-                            return colors(d.COUNT);
-                        })
                         .attr("width", function (d){ return widthScale(d.COUNT); }) //function(d){return widthScale(d);})
                         .attr("height",45)
-                        .attr("y", function (d,i) {return i * 50;});
-                        //.attr("fill", function(d){return color(d);} );  
+                        .attr("y", function (d,i) {return i * 50;})
+                        .attr("fill", function(d){return color(d.COUNT);} );  
   
                 canvas.selectAll("text")
                     .data(data)
                     .enter()
                         .append("text")
-                        .attr("fill",function(d,i){ return colors(i*125);})
+                        .attr("fill","black")
                         .attr("y", function (d,i) {return i * 50 + 30;})
                         .text(function (d){return d.AUTHOR + " - " + d.COUNT;})
                         .attr("x", function (d,i) {return i + 5;})
@@ -106,16 +94,25 @@
                     .call(axis);
             });        
         </script>
-            </div>
-            <div id="insert-sidebar"></div>
+<!-- start copy here -->
+            <div id="insert-sidebar-01"></div><!-- <div><h3>sidebar used to be here</h3></div> --> </div>
+          </div>
+          <div id="insert-sidebar-02"></div>
         </div>
         <div id="insert-footer"></div>
         <script>
-          $(function(){
-            $("#insert-menu").load("../menu-reports.html");
-            $("#insert-sidebar").load("../sidebar.html");
-            $("#insert-footer").load("../footer.html");
-          })
+              $(function(){
+                $("#insert-menu").load("../menu-reports.html");
+                $("#insert-footer").load("../footer.html");
+
+                var width=$(document).width(); 
+                if (width>=1080) { // width here is the document width
+                  $("#insert-sidebar-01").load("../sidebar.html");
+                } else {
+                  $("#insert-sidebar-02").load("../sidebar.html");
+                }
+              })
         </script>
+        <!-- end copy here -->
     </body>
 </html>

@@ -20,104 +20,103 @@
 
     <body>
         <div id="wrapper" class="container">
-        <header class="container">
-            <a href="../index.html" ><img src="../img/logo21.png" /></a>
-            <a href="../index.html" ><h1 id="site-title">reporting application</h1></a>
-        </header>
-<div id="insert-menu"></div>
-<!-- nav ends -->
-<div class="container" id="chart2">
-    <div class="col-md-8">
-        <h1 class="text-uppercase">february summary report</h1>
-        <p class="text-danger text-uppercase">1st to 15th of February progressive report</p>
-        <div class="text-warning">
-            <p>Below is a bar chart showing the contribution of each Reporter for the month. Beside the name of the reporter is the total stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
+          <header class="container">
+              <a href="../index.html" ><img src="../img/logo21.png" /></a>
+              <a href="../index.html" ><h1 id="site-title">reporting application</h1></a>
+          </header>
+          <div id="insert-menu"></div>
+          <!-- nav ends -->
+          <div class="container" id="chart2">
+            <div id="inner-width" class="col-md-8"> <!-- copy this -->
+              <h1 class="text-uppercase">february summary report</h1>
+              <p class="text-danger text-uppercase">1st to 15th of February progressive report</p>
+              <div class="text-warning">
+                  <p>Below is a bar chart showing the contribution of each Reporter for the month. Beside the name of the reporter is the total stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
+              </div>
+              <hr />
+            </div>
+            <script>
+                var width=$(document).width(); 
+                    if (width>=1180) { // width here is the document width
+                      width=750;
+                    } else {
+                      width= $("#inner-width").width(); 
+                    }
+
+                    var height=500;
+                    
+                    d3.json("../data/feb-00.json", function (data) {
+                    var highestValueInDataRange = 90;
+                    
+                    var widthScale = d3.scale.linear()
+                                        .domain([0,highestValueInDataRange])
+                                        .range([0,width]);
+
+                    var colors = d3.scale.linear()
+                            .domain([0, highestValueInDataRange])
+                            .range(['#AA1616', '#FFC00C']);
+
+                    var tooltip = d3.select('body').append('div')
+                            .style('position', 'absolute')
+                            .style('padding', '0 10px')
+                            .style('background', 'black')
+                            .style('color', 'white')
+                            .style('opacity', 0);
+
+                    var axis = d3.svg.axis()
+                                .ticks(10)
+                                .scale(widthScale);
+
+                    var canvas = d3.select("#chart2").append("svg")
+                        .attr("width",width)
+                        .attr("height",height);
+
+                    var bars = canvas.selectAll("rect")
+                        .data(data)
+                        .enter()
+                            .append("rect")
+                            .style("fill", function (d){
+                                return colors(d.COUNT);
+                            })
+                            .attr("width", function (d){ return widthScale(d.COUNT); }) //function(d){return widthScale(d);})
+                            .attr("height",45)
+                            .attr("y", function (d,i) {return i * 50;});
+                            
+                    canvas.selectAll("text")
+                        .data(data)
+                        .enter()
+                            .append("text")
+                            .attr("fill",'black')
+                            .attr("y", function (d,i) {return i * 50 + 30;})
+                            .text(function (d){return d.AUTHOR + " - " + d.COUNT;})
+                            .attr("x", function (d,i) {return i + 5;})
+                            .style('font-family','Oswald');
+
+                    canvas.append("g")
+                        .attr("transform","translate(0,450)")
+                        .attr("fill", "maroon")
+                        .call(axis);
+                });        
+            </script>
+            <!-- start copy here -->
+            <div id="insert-sidebar-01"></div><!-- <div><h3>sidebar used to be here</h3></div> --> </div>
+          </div>
+          <div id="insert-sidebar-02"></div>
         </div>
-        <hr />
+        <div id="insert-footer"></div>
         <script>
-            d3.json("../data/feb-00.json", function (data) {
-                
-                var width=750;
-                var height=500;
+          $(function(){
+            $("#insert-menu").load("../menu-reports.html");
+            $("#insert-footer").load("../footer.html");
 
-                // var bardata = [];
-                // for (key in data) {
-                //     bardata.push(data[key].COUNT);
-                // }
-
-                // var highestValueInDataRange = d3.max(bardata);
-                var highestValueInDataRange = 90;
-                // var highestValueInDataRange = d3.max(d.count);
-                // var highestValueInDataRange = function (d) { return d3.max(d.count);};
-
-                var widthScale = d3.scale.linear()
-                                    .domain([0,highestValueInDataRange])
-                                    .range([0,width]);
-
-                var colors = d3.scale.linear()
-                        .domain([0, highestValueInDataRange])
-                        .range(['#AA1616', '#FFC00C']);
-
-                // var color = d3.scale.linear()
-                //                 .domain([0,60])
-                //                 .range(["red","yellow"]);
-
-                var tooltip = d3.select('body').append('div')
-                        .style('position', 'absolute')
-                        .style('padding', '0 10px')
-                        .style('background', 'black')
-                        .style('color', 'white')
-                        .style('opacity', 0);
-
-                var axis = d3.svg.axis()
-                            .ticks(10)
-                            .scale(widthScale);
-
-                var canvas = d3.select("#chart2").append("svg")
-                    .attr("width",width)
-                    .attr("height",height);
-                    // .attr('background-color','#feace5');
-                    // .append("g")
-                    // .append("transform","translate(0,25)");
-
-                var bars = canvas.selectAll("rect")
-                    .data(data)
-                    .enter()
-                        .append("rect")
-                        .style("fill", function (d){
-                            return colors(d.COUNT);
-                        })
-                        .attr("width", function (d){ return widthScale(d.COUNT); }) //function(d){return widthScale(d);})
-                        .attr("height",45)
-                        .attr("y", function (d,i) {return i * 50;});
-                        //.attr("fill", function(d){return color(d);} );  
-
-                canvas.selectAll("text")
-                    .data(data)
-                    .enter()
-                        .append("text")
-                        .attr("fill",'#550000')
-                        .attr("y", function (d,i) {return i * 50 + 30;})
-                        .text(function (d){return d.AUTHOR + " - " + d.COUNT;})
-                        .attr("x", function (d,i) {return i + 5;})
-                        .style('font-family','Oswald');
-
-                canvas.append("g")
-                    .attr("transform","translate(0,450)")
-                    .attr("fill", "maroon")
-                    .call(axis);
-            });        
+            var width=$(document).width(); 
+            if (width>=1080) { // width here is the document width
+              $("#insert-sidebar-01").load("../sidebar.html");
+            } else {
+              $("#insert-sidebar-02").load("../sidebar.html");
+            }
+          })
         </script>
-    </div>
-    <div id="insert-sidebar"></div>
-    <script>
-      $(function(){
-        $("#insert-menu").load("../menu-reports.html");
-        $("#insert-sidebar").load("../sidebar.html");
-        $("#insert-footer").load("../footer.html");
-      })
-    </script>
-</div>
-<div id="insert-footer"></div>
-</body>
+        <!-- end copy here -->
+    </body>
 </html>
