@@ -1,16 +1,17 @@
 <div id="sidebar">
   <div id="quick-links" class="col-md-4">
-    <h3 class="list-group-item"><i class="fa fa-star fa-x5"></i>  February Reports</h3>
+    <h3 id="feb-sidebar" class="list-group-item"><i class="fa fa-star fa-x5"></i>  February Reports</h3>
     <p>
       <div id="feb-reports" class="list-group">
+        <a class="list-group-item" href="feb-03.html" title="february week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Three Report</a></li>
         <a class="list-group-item" href="feb-02.html" title="february week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Two Report</a></li>
         <a class="list-group-item" href="feb-01.html" title="February week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week One Report</a></li>
         <a class="list-group-item" href="feb-00.html" title="February Progressive Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; February Progressive Summary Report</a></li>
       </div>
     </p>
-    <h3 class="list-group-item"><i class="fa fa-star"></i>  January Reports</h3>
+    <h3 id="jan-sidebar" class="list-group-item"><i class="fa fa-star"></i>  January Reports</h3></a>
     <p>
-      <div id="jan-reports" class="list-group">
+      <div id="jan-reports" class="list-group collapse">
         <a class="list-group-item" href="jan-04.html" title="january week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; January Week Four Report</a></li>
         <a class="list-group-item" href="jan-03.html" title="january week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; January Week Three Report</a></li>
         <a class="list-group-item" href="jan-02.html" title="january week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; January Week Two Report</a></li>
@@ -18,9 +19,9 @@
         <a class="list-group-item" href="jan-00.html" title="January Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; January Summary Report</a></li>
       </div>
     </p>
-    <h3 class="list-group-item"><i class="fa fa-star"></i>  December Reports</h3>
+    <h3 id="dec-sidebar" class="list-group-item"><i class="fa fa-star"></i>  December Reports</h3></a>
     <p>
-      <div id="dec-reports" class="list-group">
+      <div id="dec-reports" class="list-group collapse">
         <a class="list-group-item" href="dec-04.html" title="december week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week Four Report</a></li>
         <a class="list-group-item" href="dec-03.html" title="december week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week Three Report</a></li>
         <a class="list-group-item" href="dec-02.html" title="december week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week Two Report</a></li>
@@ -29,13 +30,14 @@
       </div>
     </p>
   </div>
-  <!-- <div class="col-md-4 modal-body">
-    <p>
-      <ul class="pagination"><span>VIEW OTHER MONTHLY REPORTS</span>
-        <li><a href="jan-00.html">View January Reports</a></li>
-        <li><a href="nov-00.html">View November Reports</a></li>
-        <li><a href="oct-00.html">View October Reports</a></li>
-      </ul>
-    </p>
-  </div> -->
-</div>
+<script>
+$("#feb-sidebar").click( function() {
+  $("#feb-reports").toggleClass("collapse");
+});
+$("#jan-sidebar").click( function() {
+  $("#jan-reports").toggleClass("collapse");
+});
+$("#dec-sidebar").click( function() {
+  $("#dec-reports").toggleClass("collapse");
+});
+</script>
