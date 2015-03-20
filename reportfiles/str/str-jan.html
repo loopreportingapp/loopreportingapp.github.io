@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>PNG LOOP | Reporting App | Monthly Report</title>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="../../../../jquery.js"></script>
+        <script src="../../d3.min.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../../style.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
+        <script src="../../d3.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    </head>
+
+    <body>
+        <div id="wrapper" class="container">
+        <header class="container">
+            <a href="../../index.html" ><img src="../../img/logo21.png" /></a>
+            <a href="../../index.html" ><h1 id="site-title">reporting application</h1></a>
+        </header>
+<div id="insert-menu"></div>
+<!-- nav ends -->
+<div class="container" id="chart2">
+    <div class="col-md-8">
+        <h1 class="text-uppercase">January summary report</h1>
+        <div class="text-warning">
+            <p>Below is a bar chart showing the contribution of each STRINGER for the month. Beside the name of the correspondent is the total stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
+        </div>
+        <hr />
+<script>
+            d3.json("../../data/str/str-jan.json", function (data) {
+                
+                var width=750;
+                var height=500;
+
+                // var bardata = [];
+                // for (key in data) {
+                //     bardata.push(data[key].COUNT);
+                // }
+
+                // var highestValueInDataRange = d3.max(bardata);
+                var highestValueInDataRange = 80;
+                // var highestValueInDataRange = d3.max(d.count);
+                // var highestValueInDataRange = function (d) { return d3.max(d.count);};
+
+                var widthScale = d3.scale.linear()
+                                    .domain([0,highestValueInDataRange])
+                                    .range([0,width]);
+
+                var colors = d3.scale.linear()
+                        .domain([0, highestValueInDataRange])
+                        .range(['#AA1616', '#FFC00C']);
+
+                // var color = d3.scale.linear()
+                //                 .domain([0,60])
+                //                 .range(["red","yellow"]);
+
+                var tooltip = d3.select('body').append('div')
+                        .style('position', 'absolute')
+                        .style('padding', '0 10px')
+                        .style('background', 'black')
+                        .style('color', 'white')
+                        .style('opacity', 0);
+
+                var axis = d3.svg.axis()
+                            .ticks(10)
+                            .scale(widthScale);
+
+                var canvas = d3.select("#chart2").append("svg")
+                    .attr("width",width)
+                    .attr("height",height);
+                    // .attr('background-color','#feace5');
+                    // .append("g")
+                    // .append("transform","translate(0,25)");
+
+                var bars = canvas.selectAll("rect")
+                    .data(data)
+                    .enter()
+                        .append("rect")
+                        .style("fill", function (d){
+                            return colors(d.COUNT);
+                        })
+                        .attr("width", function (d){ return widthScale(d.COUNT); }) //function(d){return widthScale(d);})
+                        .attr("height",45)
+                        .attr("y", function (d,i) {return i * 50;});
+                        //.attr("fill", function(d){return color(d);} );  
+  
+                canvas.selectAll("text")
+                    .data(data)
+                    .enter()
+                        .append("text")
+                        .attr("fill",'#550000')
+                        .attr("y", function (d,i) {return i * 50 + 30;})
+                        .text(function (d){return d.AUTHOR + " - " + d.COUNT;})
+                        .attr("x", function (d,i) {return i + 5;})
+                        .style('font-family','Oswald');
+
+                canvas.append("g")
+                    .attr("transform","translate(0,450)")
+                    .attr("fill", "maroon")
+                    .call(axis);
+            });        
+        </script>
+    </div>
+    <div id="insert-sidebar"></div>
+</div>
+<div id="insert-footer"></div>
+<script>
+  $(function(){
+    $("#insert-menu").load("../../menu-reports.html");
+    $("#insert-sidebar").load("../../sidebar.html");
+    $("#insert-footer").load("../../footer.html");
+  })
+</script>
+</body>
+</html>
