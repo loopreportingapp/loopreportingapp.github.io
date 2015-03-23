@@ -44,8 +44,10 @@
           
                     d3.json("../data/mar-03.json", function (data) {
                         var highestValueInDataRange= function (d) {
-                            return d3.max(d.COUNT)
-                        };
+                            return d3.max(d.COUNT);
+                        } // the highest should be 8 by Julianna Waeda
+                        // an alternative solution:
+                        // var highestValueInDataRange = d3.max(data.COUNT);
 
                         var widthScale = d3.scale.linear()
                                             .domain([0,highestValueInDataRange])
