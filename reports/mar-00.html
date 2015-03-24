@@ -46,7 +46,7 @@
                     var height=500;
                     
                     d3.json("../data/mar-00.json", function (data) {
-                    var highestValueInDataRange = 92;
+                    var highestValueInDataRange = d3.max(data, function(d) { return d.COUNT; });
                     
                     var widthScale = d3.scale.linear()
                                         .domain([0,highestValueInDataRange])

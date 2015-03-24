@@ -36,7 +36,7 @@
             d3.json("../../data/str/str-feb.json", function (data) {
                 
                 var width=750;
-                var height=500;
+                var height=data.length*55;
 
                 // var bardata = [];
                 // for (key in data) {
@@ -101,7 +101,7 @@
                         .style('font-family','Oswald');
 
                 canvas.append("g")
-                    .attr("transform","translate(0,450)")
+                    .attr("transform","translate(0,\"height-50\")")
                     .attr("fill", "maroon")
                     .call(axis);
             });        

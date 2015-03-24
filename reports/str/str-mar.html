@@ -27,26 +27,23 @@
 <!-- nav ends -->
 <div class="container" id="chart2">
     <div class="col-md-8">
-        <h1 class="text-uppercase">January summary report</h1>
+        <h1 class="text-uppercase">march summary report</h1>
         <div class="text-warning">
             <p>Below is a bar chart showing the contribution of each STRINGER for the month. Beside the name of the correspondent is the total stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
         </div>
         <hr />
 <script>
+        var width=$(document).width(); 
+        if (width>=1180) { // width here is the document width
+          width=750;
+        } else {
+          width= $("#inner-width").width(); 
+        }
             d3.json("../../data/str/str-mar.json", function (data) {
                 
-                var width=750;
-                var height=500;
+                var height=data.length*50;
 
-                // var bardata = [];
-                // for (key in data) {
-                //     bardata.push(data[key].COUNT);
-                // }
-
-                // var highestValueInDataRange = d3.max(bardata);
-                 var highestValueInDataRange = d3.max(data, function(d) { return d.COUNT; });
-                // var highestValueInDataRange = d3.max(d.count);
-                // var highestValueInDataRange = function (d) { return d3.max(d.count);};
+                var highestValueInDataRange = d3.max(data, function (d) { return parseInt(d.COUNT); }); //highest is 53
 
                 var widthScale = d3.scale.linear()
                                     .domain([0,highestValueInDataRange])
