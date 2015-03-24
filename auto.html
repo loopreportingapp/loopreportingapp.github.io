@@ -76,7 +76,7 @@
 
       // margin dimensions taken from ==> https://gist.github.com/mbostock/3019563
       var margin = {top: 20, right: 10, bottom: 20, left: 10};
-      var width = $("#inner-width").width() - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+      var width = $("#inner-width").width() - margin.left - margin.right, height = $("#inner-width").height() - margin.top - margin.bottom;
 
       var color = d3.scale.ordinal()
         .range(["#A901BB", "#410A71", "#FF43A6", "#A901BB", "#38003E", "#DB0073", "#FFA6CE"]);
