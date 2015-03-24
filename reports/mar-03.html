@@ -40,17 +40,9 @@
                       width= $("#inner-width").width(); 
                     }
 
-                    var height=500;
-          
                     d3.json("../data/mar-03.json", function (data) {
-                        // var highestValueInDataRange = 8;
-                        // the highest should be 8 by Julianna Waeda
-                        // an alternative solution:
-                        // console.log() tests
-
-                        // console.log(data);
-                        // console.log(data.COUNT);
-
+                        var height = data.length*55;
+                        
                         var highestValueInDataRange = d3.max(data, function(d) { return d.COUNT; });
 
                         var widthScale = d3.scale.linear()
@@ -88,10 +80,10 @@
                                 .attr("y", function (d,i) {return i * 50 + 25;})
                                 .text(function (d){return d.AUTHOR + " - " + d.COUNT;})
                                 .attr("x", function (d,i) {return i + 15;});
-
+                        var axisHeight = height - 50;
                         canvas.append("g")
-                            .attr("transform","translate(0,450)")
-                            .attr("fill", "maroon")
+                            .attr("transform","translate(0,axisHeight")
+                            .attr("fill", "black")
                             .call(axis);
                     });        
                 </script>
