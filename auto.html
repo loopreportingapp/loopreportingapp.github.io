@@ -66,9 +66,17 @@
 <div class="container col-md-12" ><p class="text-warning text-right">slyvestery <a href="http://www.twitter.com/sudodez">@sudodez</a></p></div>
     </body>
     <script>
+      // determining the width and the height of the screen before resizing everything
+      // var width=$(document).width(); 
+      // if (width>=1180) { // width here is the document width
+      //   width=750;
+      // } else {
+      //   width= $("#inner-width").width(); 
+      // }
+
       // margin dimensions taken from ==> https://gist.github.com/mbostock/3019563
       var margin = {top: 20, right: 10, bottom: 20, left: 10};
-      var width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+      var width = $("#inner-width").width() - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
       var color = d3.scale.ordinal()
         .range(["#A901BB", "#410A71", "#FF43A6", "#A901BB", "#38003E", "#DB0073", "#FFA6CE"]);
