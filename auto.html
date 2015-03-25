@@ -108,9 +108,13 @@
           .data(pie(data))
           .enter().append("g")
           .attr("class","arc");
-        g.append("path")
-          .attr("d",arc)
-          .style("fill", function(d) { return color(d.data.AUTHOR); });
+        g.append("path").transition()
+          .each("start", function () { d3.select(this).style("fill", "black") })
+          .delay(1000)
+          .ease("bounce")
+          .duration(1000)
+          .style("fill", function(d) { return color(d.data.AUTHOR); })
+          .attr("d",arc);
           // .style("fill", function(d) { return color(d.data.country); });
 
         var sum = d3.sum(data, function (d) { return d.COUNT; });
