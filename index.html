@@ -28,7 +28,7 @@
         <div id="insert-menu"></div>
 <!-- nav ends -->
 <!-- jumbotron begins -->
-<div class="jumbotron">
+<div class="jumbotron" style="background-image:url(img/jumbotron-01.jpg);">
   <h1>Application Brief</h1>
   <p>This reporting application was developed to display data taken directly from the main <a href="http://www.pngloop.com">PNG LOOP</a> Website.</p>
   <p>To use this app, simply select a report from the main navigation menu above. There are 2014 Reports and 2015 Reports which can be located as sub menu items. I've tried to make accessibility to weekly reports easier by placing them on the right sidebar of monthly summary reports. Check them out now.</p>
@@ -41,20 +41,32 @@
         <h3 class="list-group-item"><i class="fa fa-search fa-x5"></i> QUICK LINKS</h3>
         <p>
             <div class="list-group">
-                <a class="list-group-item" href="reports/mar-03.html" title="january week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Three Report</a></li>
-                <a class="list-group-item" href="reports/mar-02.html" title="january week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Two Report</a></li>
-                <a class="list-group-item" href="reports/mar-01.html" title="december week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week One Report</a></li>
+                <a class="list-group-item" href="reports/mar-03.html" title="march week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Three Report</a></li>
+                <a class="list-group-item" href="reports/mar-02.html" title="march week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Two Report</a></li>
+                <a class="list-group-item" href="reports/mar-01.html" title="march week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week One Report</a></li><hr />
+                <a class="list-group-item" href="reports/feb-04.html" title="february week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>February Summary Report</strong></a></li>
+                <a class="list-group-item" href="reports/feb-04.html" title="february week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Four Report</a></li>
+                <a class="list-group-item" href="reports/feb-03.html" title="february week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Three Report</a></li>
+                <a class="list-group-item" href="reports/feb-02.html" title="february week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Two Report</a></li>
+                <a class="list-group-item" href="reports/feb-01.html" title="february week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week one Report</a></li>
             </div>
         </p>
     </div>
     <div class="col-md-4">
       <h3 class="list-group-item"><i class="fa fa-pencil"></i> How to use</h3>
       <ol class="modal-body">
-        <li>Go to the Main Navigation Menu</li>
-        <li>Click on the type of report you want to see</li>
-        <li>Select a report on the drop down</li>
-        <li>And you should get there</li>
+        <li>Go to the <a href="#insert-menu">Main Navigation Menu</a> (above)</li>
+        <li>Click on the type of report you want to see: 2014 | 2015 | Stringer</li>
+        <li>On the drop down menu, pick a specific menu that you would like to see</li>
+        <li>When you're there, at a report page, on the right hand side and at the bottom are links to other specific weekly reports. Click on any one of them to get there</li>
+        <li>notice that there is a pie chart on the right hand side, it displays the summary of March stories.</li>
       </ol>
+    </div>
+    <div class="col-md-4">
+      <h3 class="list-group-item"><i class="fa fa-cloud"></i> MARCH SUMMARY</h3>
+      <p>This is a summary of the story contribution by each reporter.</p>
+      <div id="summary-pie">
+      </div>
     </div>
 </div>
 <!-- end of widget areas -->
@@ -67,6 +79,66 @@
     $("#insert-footer").load("footer.html");
     // $("#insert-widget-01").load("widget-01");
   });
+</script>
+<script>
+  // determining the width and the height of the screen before resizing everything
+  // var width=$(document).width(); 
+  //               if (width>=1180) { // width here is the document width
+  //                 width=750;
+  //               } else {
+  //                 width= $("#inner-width").width(); 
+  //               }
+  // margin dimensions taken from ==> https://gist.github.com/mbostock/3019563
+  var margin = {top: 20, right: 10, bottom: 20, left: 10};
+  var width = 350 - margin.left - margin.right, height = 350 - margin.top - margin.bottom;
+  var color = d3.scale.ordinal()
+    .range(["#A901BB", "#410A71", "#FF43A6", "#A901BB", "#38003E", "#DB0073", "#FFA6CE"]);
+  var r = 150;
+  var arc = d3.svg.arc()
+    .outerRadius(r)
+    .innerRadius(r-(3*r/5));
+  var pie = d3.layout.pie()
+    .sort(null)
+    .value(function (d) { return d.COUNT; });
+    // .value(function (d) { return d.income; });
+  var svg = d3.select("#summary-pie").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
+  // d3.csv("data_04.csv", function(error, data){
+    d3.json("data/mar-00.json", function (error, data) {
+    data.forEach(function(d) {
+      d.COUNT = +d.COUNT;
+      // d.income = +d.income;
+    });
+    var g = svg.selectAll(".arc")
+      .data(pie(data))
+      .enter().append("g")
+      .attr("class","arc");
+    g.append("g")
+      .append("path")
+      .attr("d",20)
+      .transition()
+      .ease("elastic")
+      .duration(1750)
+      .attr("d",arc)
+      .style("fill", function(d) { return color(d.data.AUTHOR); });
+      // .style("fill", function(d) { return color(d.data.country); });
+    var sum = d3.sum(data, function (d) { return d.COUNT; });
+    g.append("text")
+      .attr("transform", function (d) {
+        return "translate(" + arc.centroid(d) + ")";
+      })
+      .style("text-anchor", "middle")
+      .style("fill","white")
+      .text(function (d) {
+        var fullName = d.data.AUTHOR;
+        var firstLetter = fullName.charAt(0);
+        var secLetter = fullName.charAt((fullName.indexOf(" ")+1));
+        return firstLetter + secLetter + " " + Math.round((d.data.COUNT / sum * 100),0) + "%";
+      });
+  }); 
 </script>
     </body>
 </html>
