@@ -148,7 +148,15 @@
               .attr("class","list-group-item")
               .style("fill", "black")
               .style("padding","0.5em 1em")
+              .style("text-align","right")
               .text(function (d) { return d.AUTHOR + " - " + d.COUNT; });
+          table.select("a")
+            .data(data)
+            .style("padding","1em 0")
+            .style("text-align","center")
+            .style("font-weight","bold")
+            .style("font-size","1.25em")
+            .text("TOTAL " + d3.sum(data, function (d) { return d.COUNT; }))
           }); 
         </script>
         <!-- end copy here -->
