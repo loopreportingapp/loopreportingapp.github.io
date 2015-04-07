@@ -50,3 +50,16 @@ h1 {
 	opacity: 1;
 	color: black;	
 }
+
+/* stringer pages css rules */
+
+#chart .axis>path.domain {
+  opacity: 1;
+  fill: none;
+  stroke: maroon;
+}
+#chart g.tick {
+  fill:none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}

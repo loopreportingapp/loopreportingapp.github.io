@@ -1,1 +1,9 @@
+/**
+ Export to JSON plugin for PHPMyAdmin
+ @version 0.1
+ */
+
+// Database 'test'
+// test.wp_users
+
 [{"AUTHOR": "Freddy Mou","COUNT": 137}, {"AUTHOR": "Joy Kisselpar","COUNT": 88}, {"AUTHOR": "Julianna Waeda","COUNT": 174}, {"AUTHOR": "Noel Pascoe","COUNT": 6}, {"AUTHOR": "Quintina Naime","COUNT": 139}, {"AUTHOR": "Sally Pokiton","COUNT": 80}, {"AUTHOR": "Troy Taule","COUNT": 113}]
