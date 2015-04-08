@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>PNG LOOP | Reporting App | Monthly Report</title>
+        <script src="/jquery.js"></script>
+        <script src="/d3.min.js"></script>
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    </head>
+
+<body>
+        <div id="wrapper" class="container">
+        <header class="container">
+            <a href="/index.html" ><img src="/img/logo21.png" /></a>
+            <a href="/index.html" ><h1 id="site-title">reporting application</h1></a>
+        </header>
+       <div id="insert-menu"></div>
+<!-- nav ends -->
+        <div class="container" id="chart2">
+            <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
+                    <h1 class="text-uppercase">March week four</h1>
+                    <p class="text-danger">Below is a BAR chart showing the number of stories published for the month as contributed by each reporter.</p>
+                <hr />
+                </div>
+<script>
+  d3.json("/data/2015/mar-04.json", function (data) {
+    
+    var padding = {top: 10, right: 20, bottom: 40, left: 20};
+    var width = 760, widthDataTable = 190;
+    var widthDataChart = width - widthDataTable - padding.left - padding.right;
+    
+    var height=data.length*20;
+    var highestValueInDataRange = d3.max(data, function (d) { return +d.COUNT; });
+    
+    var widthScaleDataChart = d3.scale.linear()
+      .domain([0,highestValueInDataRange])
+      .range([0,widthDataChart]);
+
+    var heightScaleDataChart = d3.scale.linear()
+      .domain([0,highestValueInDataRange])
+      .range([0,(height-padding.bottom)]);
+
+    var yAxisScale = d3.scale.linear()
+      .domain([0,highestValueInDataRange])
+      .range([(height-padding.bottom),0]);
+
+    var colors = d3.scale.linear()
+      .domain([0, highestValueInDataRange])
+      .range(['#AA1616', '#FFC00C']);
+
+    var authorScale = d3.scale.linear()
+      .domain([01,data.length])
+      .range([01,(widthDataChart - (widthDataChart/data.length))]);
+
+    var xaxis = d3.svg.axis()
+      .ticks(data.length)
+      .orient("bottom")
+      // .attr("width",widthDataChart)
+      .scale(authorScale);
+
+    var yaxis = d3.svg.axis()
+      .ticks(3)
+      .orient("right")
+      .scale(yAxisScale);
+
+    var canvas = d3.select("#chart2").append("svg")
+      .attr("width",width)
+      .attr("height",height)
+      .attr('background-color','#feace5');
+      
+    canvas.selectAll("text")
+      .data(data)
+      .enter()
+        .append("g")
+        .attr("class","block")
+        .append("text")
+        .attr("max-width",widthDataTable)
+        .attr("class","text-uppercase")
+        .attr("y", function (d,i) {return i * 20;})
+        .attr("x",0)
+        .style('font-family','Courier New')
+        .text(function (d,i){
+          var sum = d3.sum(data, function (d) { return d.COUNT; });
+          var fullName = d.AUTHOR;
+          var stringIndexPosition = fullName.indexOf(" ")+1;
+          var firstLetter = fullName.charAt(0); 
+          var surNameLetters = fullName.slice(stringIndexPosition,(stringIndexPosition+3));
+          if (i<9) {
+            return "0"+ (i + 1) + " " + firstLetter + "." +  surNameLetters + " " + d.COUNT;
+          } else {
+            return i + 1 + " " + firstLetter + "." + surNameLetters + " " + d.COUNT;
+          }
+        })
+        .attr("transform","translate("+ padding.bottom +",10)");
+
+    var bars = canvas.selectAll("rect")
+      .data(data)
+      .enter()
+        .append("rect")
+        .attr("width",function (d) { return (widthDataChart) / data.length; })
+        .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
+        .attr("x",function (d,i) { 
+          var spacing = (widthDataChart) / data.length;
+          return i*spacing; })
+        .attr("y",function (d) {
+          return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
+        })
+        .style("fill", function (d){
+          return colors(d.COUNT);
+        })
+        .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
+
+    canvas.append("g")
+      .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
+      .attr("fill", "maroon")
+      .attr("class","x axis")
+      .call(xaxis);
+
+    canvas.append("g")
+      .attr("transform","translate("+ (width - padding.left - padding.right) +","+ 10 +")")
+      .attr("class","x axis")
+      .call(yaxis);
+  });        
+</script>
+<!-- start copy here -->
+            <div id="insert-sidebar-01" style="padding-top: 3em;">
+              <div id="quick-links" class="col-md-4">
+              <div id="mar-reports" class="list-group">
+                <a class="list-group-item" href="/reports/2015/mar-03.html" title="March week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Four Report</a></li>
+                <a class="list-group-item" href="/reports/2015/mar-03.html" title="March week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Three Report</a></li>
+                <a class="list-group-item" href="/reports/2015/mar-02.html" title="March week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Two Report</a></li>
+                <a class="list-group-item" href="/reports/2015/mar-01.html" title="March week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week One Report</a></li>
+                <a class="list-group-item" href="/reports/2015/mar-00.html" title="March Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; March Summary Report</a></li>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div id="insert-footer"></div>
+      <script>
+        $(function(){
+          $("#insert-menu").load("/menu.html");
+          $("#insert-footer").load("/footer.html");
+        })
+      </script>
+      <!-- end copy here -->
+    </body>
+</html>

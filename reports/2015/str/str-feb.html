@@ -1,39 +1,32 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>PNG LOOP | Reporting App | Monthly Report</title>
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script src="../../../../jquery.js"></script>
-        <script src="../../d3.min.js"></script>
+        <title>PNG LOOP | Reporting App | Monthly Correspondent Report</title>
+        <script src="/jquery.js"></script>
+        <script src="/d3.min.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="../../style.css">
+        <link rel="stylesheet" href="/style.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
-        <script src="../../d3.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
     </head>
 
     <body>
         <div id="wrapper" class="container">
         <header class="container">
-            <a href="../../index.html" ><img src="../../img/logo21.png" /></a>
-            <a href="../../index.html" ><h1 id="site-title">reporting application</h1></a>
+            <a href="/index.html" ><img src="/img/logo21.png" /></a>
+            <a href="/index.html" ><h1 id="site-title">reporting application</h1></a>
         </header>
 <div id="insert-menu"></div>
 <!-- nav ends -->
 <div class="container" id="chart">
-    <div class="col-md-12">
-        <h1 class="text-uppercase">January summary report</h1>
-        <div class="text-warning">
-            <p>Below is a bar chart showing the contribution of each STRINGER for the month. Beside the name of the correspondent is the total stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
-        </div>
+    <div class="col-md-12 text-center">
+        <h1 class="text-uppercase">february stringer summary report</h1>
+        <p class="text-danger">Below is a bar chart showing the contribution of each STRINGER for the month. Beside the SHORT NAME of the correspondent is the total stories published.</p>
         <hr />
 <script>
-      d3.json("../../data/str/str-jan.json", function (data) {
+      d3.json("/data/2015/str/str-feb.json", function (data) {
         
         var padding = {top: 10, right: 20, bottom: 40, left: 20};
         var width = 1140, widthDataTable = 190;
@@ -58,13 +51,6 @@
           .domain([0, highestValueInDataRange])
           .range(['#AA1616', '#FFC00C']);
 
-        // var tooltip = d3.select('body').append('div')
-        //         .style('position', 'absolute')
-        //         .style('padding', '0 10px')
-        //         .style('background', 'black')
-        //         .style('color', 'white')
-        //         .style('opacity', 0);
-
         var authorScale = d3.scale.linear()
           .domain([01,data.length])
           .range([01,(widthDataChart - (widthDataChart/data.length))]);
@@ -84,9 +70,7 @@
           .attr("width",width)
           .attr("height",height)
           .attr('background-color','#feace5');
-          // .append("g")
-          // .append("transform","translate(0,25)");
-
+          
         canvas.selectAll("text")
           .data(data)
           .enter()
@@ -95,8 +79,6 @@
             .append("text")
             .attr("max-width",widthDataTable)
             .attr("class","text-uppercase")
-            // .append("p")
-            // .attr("fill",'#550000')
             .attr("y", function (d,i) {return i * 20;})
             .attr("x",0)
             .style('font-family','Courier New')
@@ -111,7 +93,6 @@
               } else {
                 return i + 1 + " " + firstLetter + "." + surNameLetters + " " + d.COUNT;
               }
-              // Math.round((d.COUNT / sum *100),0) + "%";
             })
             .attr("transform","translate("+ padding.bottom +",10)");
 
@@ -127,7 +108,6 @@
             .attr("y",function (d) {
               return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
             })
-            // .style("fill","skyblue")
             .style("fill", function (d){
               return colors(d.COUNT);
             })
@@ -146,14 +126,12 @@
       });        
       </script>
     </div>
-    
 </div>
 <div id="insert-footer"></div>
 <script>
   $(function(){
-    $("#insert-menu").load("../../menu-reports.html");
-    $("#insert-sidebar").load("../../sidebar.html");
-    $("#insert-footer").load("../../footer.html");
+    $("#insert-menu").load("/menu.html");
+    $("#insert-footer").load("/footer.html");
   })
 </script>
 </body>

@@ -53,12 +53,12 @@ h1 {
 
 /* stringer pages css rules */
 
-#chart .axis>path.domain {
+.axis>path.domain {
   opacity: 1;
   fill: none;
   stroke: maroon;
 }
-#chart g.tick {
+g.tick {
   fill:none;
   stroke: black;
   shape-rendering: crispEdges;
