@@ -1,14 +1,13 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>PNG LOOP | Reporting App | Home Page</title>
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script src="../d3.min.js"></script>
-        <script src="../jquery.js"></script>
-        <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+        <title>PNG LOOP | Reporting App | Monthly Report</title>
+        <script src="/jquery.js"></script>
+        <script src="/d3.min.js"></script>
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="/style.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
@@ -17,94 +16,142 @@
 
     </head>
 
-    <body>
+<body>
         <div id="wrapper" class="container">
-            <header class="container">
-                <a href="../index.html" ><img src="../img/logo21.png" /></a>
-                <a href="../index.html" ><h1 id="site-title">reporting application</h1></a>
-            </header>
-            <div id="insert-menu"></div>
-    <!-- nav ends -->
-            <div class="container" id="chart2">
-                <div id="inner-width" class="col-md-8">
-                    <h1 class="text-uppercase">DECEMBER week four</h1>
-                    <div class="text-warning">
-                        <p>Below is a bar chart showing the contribution of each Reporter for the Fourth week of December (22nd to 31st). Beside the name of the reporter is the total number of stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
-                    </div>
-                </div><hr />
-                <script>
-                    var width=$(document).width(); 
-                  if (width>=1180) { // width here is the document width
-                    width=750;
-                  } else {
-                    width= $("#inner-width").width(); 
-                  }
-                  var height = 500;
+        <header class="container">
+            <a href="/index.html" ><img src="/img/logo21.png" /></a>
+            <a href="/index.html" ><h1 id="site-title">reporting application</h1></a>
+        </header>
+       <div id="insert-menu"></div>
+<!-- nav ends -->
+        <div class="container" id="chart2">
+            <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
+                    <h1 class="text-uppercase">December week four</h1>
+                    <p class="text-danger">Below is a BAR chart showing the number of stories published for the month as contributed by each reporter.</p>
+                <hr />
+                </div>
+<script>
+  d3.json("/data/2014/dec-04.json", function (data) {
+    
+    var padding = {top: 10, right: 20, bottom: 40, left: 20};
+    var width = 760, widthDataTable = 190;
+    var widthDataChart = width - widthDataTable - padding.left - padding.right;
+    
+    var height=data.length*20;
+    var highestValueInDataRange = d3.max(data, function (d) { return +d.COUNT; });
+    
+    var widthScaleDataChart = d3.scale.linear()
+      .domain([0,highestValueInDataRange])
+      .range([0,widthDataChart]);
 
-                    d3.json("../data/dec-04.json", function (data) {
-                        var highestValueInDataRange = 75;
-                        //var highestValueInDataRange = d3.max(d.count);
+    var heightScaleDataChart = d3.scale.linear()
+      .domain([0,highestValueInDataRange])
+      .range([0,(height-padding.bottom)]);
 
-                        var widthScale = d3.scale.linear()
-                                            .domain([0,highestValueInDataRange])
-                                            .range([0,width]);
+    var yAxisScale = d3.scale.linear()
+      .domain([0,highestValueInDataRange])
+      .range([(height-padding.bottom),0]);
 
-                        var color = d3.scale.linear()
-                                        .domain([0,60])
-                                        .range(["red","yellow"]);
+    var colors = d3.scale.linear()
+      .domain([0, highestValueInDataRange])
+      .range(['#AA1616', '#FFC00C']);
 
-                        var axis = d3.svg.axis()
-                                    .ticks(10)
-                                    .scale(widthScale);
+    var authorScale = d3.scale.linear()
+      .domain([01,data.length])
+      .range([01,(widthDataChart - (widthDataChart/data.length))]);
 
-                        var canvas = d3.select("#chart2").append("svg")
-                            .attr("width",width)
-                            .attr("height",height);
-                            // .append("g")
-                            // .append("transform","translate(0,25)");
+    var xaxis = d3.svg.axis()
+      .ticks(data.length)
+      .orient("bottom")
+      // .attr("width",widthDataChart)
+      .scale(authorScale);
 
-                        var bars = canvas.selectAll("rect")
-                            .data(data)
-                            .enter()
-                                .append("rect")
-                                .attr("width", function (d){ return widthScale(d.COUNT); }) //function(d){return widthScale(d);})
-                                .attr("height",40)
-                                .attr("y", function (d,i) {return i * 50;})
-                                // .attr("fill", "#ccc");
-                                .attr("fill", function(d){return color(d.COUNT);} );  
-                        
-                        canvas.selectAll("text")
-                            .data(data)
-                            .enter()
-                                .append("text")
-                                .attr("fill","black")
-                                .attr("y", function (d,i) {return i * 50 + 25;})
-                                .text(function (d){return d.AUTHOR + " - " + d.COUNT;})
-                                .attr("x", function (d,i) {return i + 15;});
+    var yaxis = d3.svg.axis()
+      .ticks(3)
+      .orient("right")
+      .scale(yAxisScale);
 
-                        canvas.append("g")
-                            .attr("transform","translate(0,350)")
-                            .attr("fill", "maroon")
-                            .call(axis);
-                    });        
-                </script>
-                <div id="insert-sidebar-01"></div><!-- <div><h3>sidebar used to be here</h3></div> -->
+    var canvas = d3.select("#chart2").append("svg")
+      .attr("width",width)
+      .attr("height",height)
+      .attr('background-color','#feace5');
+      
+    canvas.selectAll("text")
+      .data(data)
+      .enter()
+        .append("g")
+        .attr("class","block")
+        .append("text")
+        .attr("max-width",widthDataTable)
+        .attr("class","text-uppercase")
+        .attr("y", function (d,i) {return i * 20;})
+        .attr("x",0)
+        .style('font-family','Courier New')
+        .text(function (d,i){
+          var sum = d3.sum(data, function (d) { return d.COUNT; });
+          var fullName = d.AUTHOR;
+          var stringIndexPosition = fullName.indexOf(" ")+1;
+          var firstLetter = fullName.charAt(0); 
+          var surNameLetters = fullName.slice(stringIndexPosition,(stringIndexPosition+3));
+          if (i<9) {
+            return "0"+ (i + 1) + " " + firstLetter + "." +  surNameLetters + " " + d.COUNT;
+          } else {
+            return i + 1 + " " + firstLetter + "." + surNameLetters + " " + d.COUNT;
+          }
+        })
+        .attr("transform","translate("+ padding.bottom +",10)");
+
+    var bars = canvas.selectAll("rect")
+      .data(data)
+      .enter()
+        .append("rect")
+        .attr("width",function (d) { return (widthDataChart) / data.length; })
+        .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
+        .attr("x",function (d,i) { 
+          var spacing = (widthDataChart) / data.length;
+          return i*spacing; })
+        .attr("y",function (d) {
+          return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
+        })
+        .style("fill", function (d){
+          return colors(d.COUNT);
+        })
+        .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
+
+    canvas.append("g")
+      .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
+      .attr("fill", "maroon")
+      .attr("class","x axis")
+      .call(xaxis);
+
+    canvas.append("g")
+      .attr("transform","translate("+ (width - padding.left - padding.right) +","+ 10 +")")
+      .attr("class","x axis")
+      .call(yaxis);
+  });        
+</script>
+<!-- start copy here -->
+            <div id="insert-sidebar-01" style="padding-top: 4em;">
+              <div id="quick-links" class="col-md-4">
+              <div id="mar-reports" class="list-group">
+                <a class="active list-group-item" href="/reports/2014/dec-04.html" title="December week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week Four Report</a></li>
+                <a class="list-group-item" href="/reports/2014/dec-03.html" title="December week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week Three Report</a></li>
+                <a class="list-group-item" href="/reports/2014/dec-02.html" title="December week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week Two Report</a></li>
+                <a class="list-group-item" href="/reports/2014/dec-01.html" title="December week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; December Week One Report</a></li>
+                <a class="list-group-item" href="/reports/2014/dec-00.html" title="December Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; December Summary Report</a></li>
+              </div>
             </div>
-            <div id="insert-sidebar-02"></div>
+          </div>
+          </div>
         </div>
-        <div id="insert-footer"></div>
-        <script>
-          $(function(){
-            $("#insert-menu").load("../menu-reports.html");
-            $("#insert-footer").load("../footer.html");
-
-            var width=$(document).width(); 
-            if (width>=1180) { // width here is the document width
-              $("#insert-sidebar-01").load("../sidebar.html");
-            } else {
-              $("#insert-sidebar-02").load("../sidebar.html");
-            }
-          })
-        </script>
+      </div>
+      <div id="insert-footer"></div>
+      <script>
+        $(function(){
+          $("#insert-menu").load("/menu.html");
+          $("#insert-footer").load("/footer.html");
+        })
+      </script>
+      <!-- end copy here -->
     </body>
 </html>
