@@ -21,51 +21,47 @@
 
     <body class="front-page">
     <div id="wrapper" class="container">
-        <header class="container">
-            <a href="index.html" ><img src="img/logo21.png" /></a>
-            <span><a href="index.html" ><h1 id="site-title">reporting application</h1></a></span>
-        </header>
+        <!-- <header class="container">
+            <span><a href="index.html" ><h3 id="site-title">png loop's reporting application</h3></a></span>
+        </header> -->
         <div id="insert-menu"></div>
 <!-- nav ends -->
 <!-- jumbotron begins -->
 <div class="jumbotron" style="background-image:url(img/jumbotron-01.jpg);">
-  <h1>Application Brief</h1>
-  <p>This reporting application was developed to display data taken directly from the main <a href="http://www.pngloop.com">PNG LOOP</a> Website.</p>
-  <p>To use this app, simply select a report from the main navigation menu above. There are 2014 Reports and 2015 Reports which can be located as sub menu items. I've tried to make accessibility to weekly reports easier by placing them on the right sidebar of monthly summary reports. Check them out now.</p>
-  <p>For more information regarding this application, the tools used and the resources sought in building it, visit the <a href="about.html">About Page</a>.</p>
+  <h2 class="headline">Application Brief</h2>
+  <div class="app-description">
+    <h5>This reporting application was developed to display data taken directly from the main <a href="http://www.pngloop.com">PNG LOOP</a> Website.<br /><br />To use this app, simply select a report from the main navigation menu above. There are 2014 Reports and 2015 Reports which can be located as sub menu items. I've tried to make accessibility to weekly reports easier by placing them on the right sidebar of monthly summary reports. Check them out now.<br /><br />For more information regarding this application, the tools used and the resources sought in building it, visit the <a href="about.html">About Page</a>.</h5>
+    </div>
 </div>
 <!-- jumbotron ends -->
 <!-- Widget areas -->
 <div id="insert-widget-01" class="container">
     <div id="quick-links" class="col-md-4">
-        <h3 class="list-group-item"><i class="fa fa-search fa-x5"></i> QUICK LINKS</h3>
+        <h3 class="headline list-group-item"><i class="fa fa-search fa-x5"></i> Quick Links</h3>
         <p>
-            <div class="list-group">
+            <div class="list-group description">
+                <a class="list-group-item" href="reports/mar-00.html" title="march summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>March Summary Report</strong></a></li>
+                <a class="list-group-item" href="reports/mar-04.html" title="march week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Four Report</a></li>
                 <a class="list-group-item" href="reports/mar-03.html" title="march week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Three Report</a></li>
                 <a class="list-group-item" href="reports/mar-02.html" title="march week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Two Report</a></li>
                 <a class="list-group-item" href="reports/mar-01.html" title="march week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week One Report</a></li><hr />
-                <a class="list-group-item" href="reports/feb-04.html" title="february week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>February Summary Report</strong></a></li>
-                <a class="list-group-item" href="reports/feb-04.html" title="february week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Four Report</a></li>
-                <a class="list-group-item" href="reports/feb-03.html" title="february week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Three Report</a></li>
-                <a class="list-group-item" href="reports/feb-02.html" title="february week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week Two Report</a></li>
-                <a class="list-group-item" href="reports/feb-01.html" title="february week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; February Week one Report</a></li>
+                <a class="list-group-item" href="reports/feb-00.html" title="february summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>February Summary Report</strong></a></li>
             </div>
         </p>
     </div>
     <div class="col-md-4">
-      <h3 class="list-group-item"><i class="fa fa-pencil"></i> How to use</h3>
-      <ol class="modal-body">
-        <li>Go to the <a href="#insert-menu">Main Navigation Menu</a> (above)</li>
-        <li>Click on the type of report you want to see: 2014 | 2015 | Stringer</li>
-        <li>On the drop down menu, pick a specific menu that you would like to see</li>
+      <h3 class="headline list-group-item"><i class="fa fa-pencil"></i> How to use</h3>
+      <ol class="modal-body description">
+        <li>Go to the <a href="#insert-menu">Main Navigation Menu</a> (above).</li>
+        <li>Click on the type of report you want to see: 2014 | 2015 | Stringer.</li>
+        <li>On the drop down menu, pick a date on the menu of which you would like to see the report of.</li>
         <li>When you're there, at a report page, on the right hand side and at the bottom are links to other specific weekly reports. Click on any one of them to get there</li>
         <li>notice that there is a pie chart on the right hand side, it displays the summary of March stories.</li>
       </ol>
     </div>
     <div class="col-md-4">
-      <h3 class="list-group-item"><i class="fa fa-cloud"></i> MARCH SUMMARY</h3>
-      <p>This is a summary of the story contribution by each reporter.</p>
-      <div id="summary-pie">
+      <h3 class="headline list-group-item"><i class="fa fa-cloud"></i> April Progressive</h3>
+      <div class="description" id="summary-pie">
       </div>
     </div>
 </div>
@@ -75,7 +71,7 @@
 <!-- end of footer -->
 <script>
   $(function(){
-    $("#insert-menu").load("menu-front.html");
+    $("#insert-menu").load("menu.html");
     $("#insert-footer").load("footer.html");
     // $("#insert-widget-01").load("widget-01");
   });
@@ -107,7 +103,7 @@
     .append("g")
     .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
   // d3.csv("data_04.csv", function(error, data){
-    d3.json("data/mar-00.json", function (error, data) {
+    d3.json("data/2015/apr-00.json", function (error, data) {
     data.forEach(function(d) {
       d.COUNT = +d.COUNT;
       // d.income = +d.income;

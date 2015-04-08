@@ -1,78 +1,62 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>PNG LOOP | Reporting App | Monthly Report</title>
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script src="../jquery.js"></script>
-        <script src="../d3.min.js"></script>
-        <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="../style.css">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
-        <script src="../d3.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    </head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PNG LOOP | Reporting App | Monthly Summary Report</title>
+    <script src="/jquery.js"></script>
+    <script src="/d3.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </head>
 
     <body>
-        <div id="wrapper" class="container">
-          <header class="container">
-              <a href="../index.html" ><img src="../img/logo21.png" /></a>
-              <a href="../index.html" ><h1 id="site-title">reporting application</h1></a>
-          </header>
-          <div id="insert-menu"></div>
-          <!-- nav ends -->
+      <div id="wrapper" class="container">
+        <!-- header replaced with this comment -->
+        <div id="insert-menu"></div>
+<!-- nav ends -->
+        <div id="content">
           <div class="container" id="chart2">
-            <div id="inner-width" class="col-md-8"> <!-- copy this -->
-              <h1 class="text-uppercase">March summary report</h1>
-              <p class="text-danger text-uppercase">1st to 7th of April progressive report</p>
-              <div class="text-warning">
-                  <p>Below is a bar chart showing the contribution of each Reporter for the month. Beside the name of the reporter is the total stories published. If you have any Queries please contact <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi</a></p>
-              </div>
-              <div>
+            <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
+              <h3 class="text-capitalize headline">march summary report</h3>
+              <p class="text-danger description">Below is a pie chart showing the number of stories published for the month as contributed by each reporter.</p>
+              <div class="description" > <!-- the pie chart will be embedded here -->
                     <span id="summary-pie" style="float: left; max-width: 350px;"></span>
                     <h5 id="data-table" style="margin-top: 2.5em;"></h5>
               </div>
             </div>
             <!-- start copy here -->
-            <div id="insert-sidebar-01"></div><!-- <div><h3>sidebar used to be here</h3></div> --> </div>
+            <div id="insert-sidebar-01"></div>
           </div>
           <div id="insert-sidebar-02"></div>
         </div>
         <div id="insert-footer"></div>
-
         <script>
           $(function(){
-            $("#insert-menu").load("../menu-reports.html");
-            $("#insert-footer").load("../footer.html");
+            $("#insert-menu").load("/menu.html");
+            $("#insert-footer").load("/footer.html");
 
             var width=$(document).width(); 
-            if (width>=1080) { // width here is the document width
-              $("#insert-sidebar-01").load("../sidebar.html");
+            if (width>=1180) {
+              $("#insert-sidebar-01").load("/sidebar.html");
             } else {
-              $("#insert-sidebar-02").load("../sidebar.html");
+              $("#insert-sidebar-02").load("/sidebar.html");
             }
           })
         </script>
         <script>
-          // determining the width and the height of the screen before resizing everything
-          // var width=$(document).width(); 
-          //               if (width>=1180) { // width here is the document width
-          //                 width=750;
-          //               } else {
-          //                 width= $("#inner-width").width(); 
-          //               }
-          // margin dimensions taken from ==> https://gist.github.com/mbostock/3019563
-          // var maxNum = d3.max(data, function (d) { return d.COUNT; });
           var margin = {top: 20, right: 10, bottom: 20, left: 10};
           var width = 350 - margin.left - margin.right, height = 350 - margin.top - margin.bottom;
-          var  color = d3.scale.linear()
-            .domain([0,200])
-            .range(["red","yellow"]);
+          // var  color = d3.scale.linear()
+          //   .domain([0,200])
+          //   .range(["red","yellow"]);
+          var color = d3.scale.ordinal()
+            .range(["#9a0000", "#9d3e2c", "#e0b43f", "#d36332", "#b4803b", "#d99131", "#b78341"]);
           var r = 150;
           var arc = d3.svg.arc()
             .outerRadius(r)
@@ -80,17 +64,16 @@
           var pie = d3.layout.pie()
             .sort(null)
             .value(function (d) { return d.COUNT; });
-            // .value(function (d) { return d.income; });
+
           var svg = d3.select("#summary-pie").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
-          // d3.csv("data_04.csv", function(error, data){
-            d3.json("../data/apr-00.json", function (error, data) {
+          
+            d3.json("/data/2015/apr-00.json", function (error, data) {
             data.forEach(function(d) {
               d.COUNT = +d.COUNT;
-              // d.income = +d.income;
             });
             var g = svg.selectAll(".arc")
               .data(pie(data))
@@ -104,21 +87,15 @@
               .on("mouseover",function (d) {
                 d3.select(this)
                   .transition()
-                  .ease("cubic")
+                  .ease("bounce")
                   .duration(1000)
-                  .style("fill","#32004a");
-                // var flyID = function (d) { return "\"#" + idGenerator + "\""; };
-                // $(flyID).toggle();
-                // d3.select(flyID)
-                //   .attr("class","show");
+                  .style("fill","#32004a")
               })
-              // d3.select("#" + function (d) { return d.COUNT; } + " ")
-              //   .attr("class","show"))
               .on("mouseout", function (d) {
                 d3.select(this)
                   .transition()
                   .ease("sin")
-                  .duration(1000)
+                  .duration(500)
                   .style("fill", function(d) { return color(d.data.COUNT); })
               });
               
@@ -126,22 +103,17 @@
             // is there a way we can move them up so that it watches for user activity and loads
             // the details of the sector on mouseover???
             var sum = d3.sum(data, function (d) { return d.COUNT; });
-            var idGenerator = function (d) { return d.data.COUNT; };
             g.append("text")
               .attr("transform", function (d) {
                 return "translate(" + arc.centroid(d) + ")";
               })
               .style("text-anchor", "middle")
               .style("fill","white")
-              .attr("id", idGenerator)
               .text(function (d) {
                 var fullName = d.data.AUTHOR;
                 var firstLetter = fullName.charAt(0);
                 var secLetter = fullName.charAt((fullName.indexOf(" ")+1));
                 return firstLetter + secLetter + " " + Math.round((d.data.COUNT / sum * 100),0) + "%";
-              })
-              .on("mouseover", function (d) {
-
               });
               // .attr("class","hide")
               // .on("click", function (d) {
@@ -172,11 +144,6 @@
             .text("TOTAL " + d3.sum(data, function (d) { return d.COUNT; }))
           }); 
         </script>
-        <script>
-        $(document).ready(function () {
-          $("#")
-        })
-        </script>
-        <!-- end copy here -->
+      <!-- end copy here -->
     </body>
 </html>

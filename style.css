@@ -5,20 +5,37 @@ body {
 #site-title {
 	display: inline;
 	text-transform: capitalize;
-	font-family: Oswald;
-	font-size: 4em;
-	color: black;
-}
-#site-title a:hover, #site-title a {
-	text-decoration: none;
+	font-family: Lobster;
+	font-size: 2em;
+	color: #ccc;
 }
 .lighten {
 	color: white;
 }
-#site-description {
-	font-family: tangerine;
-	font-size: small;
+
+/* fonts begins */
+.app-description {
+	font-family: "Droid Serif";
+	font-size: 0.75em;
 }
+.headline {
+	font-family: Lobster;
+}
+.sub-description {
+	font-family: tangerine;
+}
+.description {
+	font-family: "Droid Serif";
+}
+/* fonts ends */
+
+/* padding begins*/
+ol li {
+	padding:0.5em 0;
+	border-bottom: solid #ccc 2px;
+}
+/* padding ends*/
+
 #chart2 #quick-links {
 	float: right;
 }

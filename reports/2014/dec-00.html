@@ -9,6 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -16,17 +17,14 @@
 
     <body>
       <div id="wrapper" class="container">
-        <header class="container">
-          <a href="/index.html" ><img src="/img/logo21.png" /></a>
-          <a href="/index.html" ><h1 id="site-title">reporting application</h1></a>
-        </header>
+        <!-- header replaced with this comment -->
         <div id="insert-menu"></div>
 <!-- nav ends -->
         <div id="content">
           <div class="container" id="chart2">
             <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
-              <h3 class="text-uppercase">DECEMBER summary report</h3>
-              <p class="text-danger">Below is a pie chart showing the number of stories published for the month as contributed by each reporter.</p>
+              <h3 class="text-capitalize headline">december summary report</h3>
+              <p class="text-danger description">Below is a pie chart showing the number of stories published for the month as contributed by each reporter.</p>
               <div> <!-- the pie chart will be embedded here -->
                     <span id="summary-pie" style="float: left; max-width: 350px;"></span>
                     <h5 id="data-table" style="margin-top: 2.5em;"></h5>
@@ -109,6 +107,7 @@
               })
               .style("text-anchor", "middle")
               .style("fill","white")
+              .attr("class","description")
               .text(function (d) {
                 var fullName = d.data.AUTHOR;
                 var firstLetter = fullName.charAt(0);
@@ -122,7 +121,7 @@
           var table = d3.select("#data-table").append("div")
             .style("list-style","none")
             .style("float","left")
-            .attr("class","list-group")
+            .attr("class","list-group description")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom);
             // .append("g")
