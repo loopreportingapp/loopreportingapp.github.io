@@ -8,6 +8,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/style.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
@@ -18,24 +19,24 @@
 
 <body>
         <div id="wrapper" class="container">
-        <header class="container">
-            <a href="/index.html" ><img src="/img/logo21.png" /></a>
-            <a href="/index.html" ><h1 id="site-title">reporting application</h1></a>
-        </header>
+        <!-- content replaced -->
        <div id="insert-menu"></div>
 <!-- nav ends -->
         <div class="container" id="chart2">
             <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
-                    <h1 class="text-uppercase">January week four</h1>
-                    <p class="text-danger">Below is a BAR chart showing the number of stories published for the month as contributed by each reporter.</p>
-                <hr />
-                </div>
+              <h1 class="text-capitalize headline">January week four</h1>
+              <p class="text-danger description">Below is a BAR chart showing the number of stories published for the month as contributed by each reporter.</p>
+              <hr />
+            </div>
+            <div id="statistics-table" class="col-md-8"></div>
 <script>
   d3.json("/data/2015/jan-04.json", function (data) {
     
     var padding = {top: 10, right: 20, bottom: 40, left: 20};
     var width = 760, widthDataTable = 190;
     var widthDataChart = width - widthDataTable - padding.left - padding.right;
+
+    var sum = d3.sum(data, function (d) { return d.COUNT; });
     
     var height=data.length*20;
     var highestValueInDataRange = d3.max(data, function (d) { return +d.COUNT; });
@@ -76,19 +77,18 @@
       .attr("height",height)
       .attr('background-color','#feace5');
       
-    canvas.selectAll("text")
+    var dataTable = canvas.selectAll("text")
       .data(data)
       .enter()
         .append("g")
         .attr("class","block")
         .append("text")
         .attr("max-width",widthDataTable)
-        .attr("class","text-uppercase")
+        .attr("class","text-uppercase description")
         .attr("y", function (d,i) {return i * 20;})
         .attr("x",0)
         .style('font-family','Courier New')
         .text(function (d,i){
-          var sum = d3.sum(data, function (d) { return d.COUNT; });
           var fullName = d.AUTHOR;
           var stringIndexPosition = fullName.indexOf(" ")+1;
           var firstLetter = fullName.charAt(0); 
