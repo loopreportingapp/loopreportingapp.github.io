@@ -9,8 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/style.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -18,18 +17,14 @@
 
 <body>
         <div id="wrapper" class="container">
-        <header class="container">
-            <a href="/index.html" ><img src="/img/logo21.png" /></a>
-            <a href="/index.html" ><h1 id="site-title">reporting application</h1></a>
-        </header>
        <div id="insert-menu"></div>
 <!-- nav ends -->
         <div class="container" id="chart2">
-            <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
-                    <h1 class="text-uppercase">January week one</h1>
-                    <p class="text-danger">Below is a BAR chart showing the number of stories published for the month as contributed by each reporter.</p>
-                <hr />
-                </div>
+          <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
+            <h3 class="text-capitalize headline">january week one</h3>
+            <p class="text-danger description">Below is a BAR chart showing the number of stories published for the week as contributed by each reporter.</p>
+            <hr />
+          </div>
 <script>
   d3.json("/data/2015/jan-01.json", function (data) {
     

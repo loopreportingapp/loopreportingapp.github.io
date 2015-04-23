@@ -8,8 +8,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/style.css">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -19,14 +19,14 @@
         <div id="wrapper" class="container">
        <div id="insert-menu"></div>
 <!-- nav ends -->
-         <div class="container" id="chart2">
-          <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
-            <h3 class="text-capitalize headline">march week four</h3>
-            <p class="text-danger description">Below is a BAR chart showing the number of stories published for the week as contributed by each reporter.</p>
-            <hr />
-          </div>
+        <div class="container" id="chart2">
+            <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
+                    <h3 class="text-capitalize headline">April week four</h3>
+                    <p class="text-danger description">Below is a BAR chart showing the number of stories published for the month as contributed by each reporter.</p>
+                <hr />
+                </div>
 <script>
-  d3.json("/data/2015/mar-04.json", function (data) {
+  d3.json("/data/2015/apr-04.json", function (data) {
     
     var padding = {top: 10, right: 20, bottom: 40, left: 20};
     var width = 760, widthDataTable = 190;
@@ -100,30 +100,6 @@
       .data(data)
       .enter()
         .append("rect")
-        // .attr("width",0)
-        .attr("height",10)
-        .attr("x",450)
-        .attr("y",100)
-        .style("fill","none")
-        .attr("transform","translate("+0+","+0+")")
-        .on("mouseover", function (d) {
-          d3.select(this)
-            .transition()
-            .ease("sin")
-            .duration(1000)
-            .style("fill","#ccc")
-        })
-        .on("mouseout", function (d) {
-          d3.select(this)
-            .transition()
-            .ease("cubic")
-            .duration(500)
-            .style("fill", function (d) { return colors(d.COUNT); })
-        })
-        .transition()
-        .ease("elastic")
-        .delay(750)
-        .duration(2500)
         .attr("width",function (d) { return (widthDataChart) / data.length; })
         .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
         .attr("x",function (d,i) { 
@@ -153,11 +129,11 @@
             <div id="insert-sidebar-01" style="padding-top: 3em;">
               <div id="quick-links" class="col-md-4">
               <div id="mar-reports" class="list-group">
-                <a class="list-group-item active" href="/reports/2015/mar-04.html" title="March week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Four Report</a></li>
-                <a class="list-group-item" href="/reports/2015/mar-03.html" title="March week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Three Report</a></li>
-                <a class="list-group-item" href="/reports/2015/mar-02.html" title="March week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Two Report</a></li>
-                <a class="list-group-item" href="/reports/2015/mar-01.html" title="March week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week One Report</a></li>
-                <a class="list-group-item" href="/reports/2015/mar-00.html" title="March Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; March Summary Report</a></li>
+                <a class="list-group-item active" href="/reports/2015/apr-04.html" title="April week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Four Report</a></li>
+                <a class="list-group-item" href="/reports/2015/apr-03.html" title="April week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Three Report</a></li>
+                <a class="list-group-item" href="/reports/2015/apr-02.html" title="April week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Two Report</a></li>
+                <a class="list-group-item" href="/reports/2015/apr-01.html" title="April week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week One Report</a></li>
+                <a class="list-group-item" href="/reports/2015/apr-00.html" title="April Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; April Summary Report</a></li>
               </div>
             </div>
           </div>

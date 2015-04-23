@@ -1,3 +1,5 @@
+@import url("/fonts.css");
+
 body {
 	font-family: Roboto;
 }
@@ -14,19 +16,7 @@ body {
 }
 
 /* fonts begins */
-.app-description {
-	font-family: "Droid Serif";
-	font-size: 0.75em;
-}
-.headline {
-	font-family: Lobster;
-}
-.sub-description {
-	font-family: tangerine;
-}
-.description {
-	font-family: "Droid Serif";
-}
+
 /* fonts ends */
 
 /* padding begins*/

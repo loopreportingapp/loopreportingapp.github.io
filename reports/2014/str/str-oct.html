@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -14,16 +15,12 @@
 
     <body>
         <div id="wrapper" class="container">
-        <header class="container">
-            <a href="/index.html" ><img src="/img/logo21.png" /></a>
-            <a href="/index.html" ><h1 id="site-title">reporting application</h1></a>
-        </header>
 <div id="insert-menu"></div>
 <!-- nav ends -->
 <div class="container" id="chart">
     <div class="col-md-12 text-center">
-        <h1 class="text-uppercase">october stringer summary report</h1>
-        <p class="text-danger">Below is a bar chart showing the contribution of each STRINGER for the month. Beside the SHORT NAME of the correspondent is the total stories published.</p>
+        <h3 class="text-capitalize headline">october stringer summary report</h3>
+        <p class="text-danger description">Below is a bar chart showing the contribution of each STRINGER for the month. Beside the SHORT NAME of the correspondent is the total stories published.</p>
         <hr />
 <script>
       d3.json("/data/2014/str/str-oct.json", function (data) {

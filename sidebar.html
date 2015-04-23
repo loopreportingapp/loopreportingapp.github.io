@@ -1,7 +1,27 @@
 <div id="sidebar">
   <div id="quick-links" class="col-md-4">
     <h4 class="headline text-danger text-center text-capitalize">click on a tab below to expand it</h4>
-    <h3 id="mar-sidebar" class="sub-description list-group-item uncollapse"><i class="fa fa-star fa-x5"></i>  March Reports</h3>
+    <a href="#" data-toggle="popover" data-target="apr-reps"><h3 class="popover-title headline text-capitalize">april reports</h3></a>
+    <div class="popover" role="tooltip">
+      <div class="arrow"></div>
+      <div id="apr-reps" class="popover-content description list-group">
+        <a class="list-group-item" href="/reports/2015/apr-04.html" title="April week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Four Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-03.html" title="April week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Three Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-02.html" title="April week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Two Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-01.html" title="April week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week One Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-00.html" title="April Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; April Summary Report</a></li>
+      </div>
+    </div>
+    <h3 id="apr-sidebar" class="sub-description list-group-item uncollapse"><i class="fa fa-star fa-x5"></i>  April Reports</h3>
+    <p>
+      <div id="apr-reports" class="description list-group collapse">
+        <a class="list-group-item" href="/reports/2015/apr-04.html" title="April week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Four Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-03.html" title="April week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Three Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-02.html" title="April week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Two Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-01.html" title="April week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week One Report</a></li>
+        <a class="list-group-item" href="/reports/2015/apr-00.html" title="April Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; April Summary Report</a></li>
+      </div>
+    </p><h3 id="mar-sidebar" class="sub-description list-group-item uncollapse"><i class="fa fa-star fa-x5"></i>  March Reports</h3>
     <p>
       <div id="mar-reports" class="description list-group collapse">
         <a class="list-group-item" href="/reports/2015/mar-04.html" title="March week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; March Week Four Report</a></li>
@@ -44,6 +64,10 @@
   </div>
 <script>
   $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    $("#apr-sidebar").click( function() {
+      $("#apr-reports").toggleClass("collapse");
+    });
     $("#mar-sidebar").click( function() {
       $("#mar-reports").toggleClass("collapse");
     });

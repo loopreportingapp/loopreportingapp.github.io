@@ -19,11 +19,11 @@
 <!-- nav ends -->
 <div class="container" id="chart">
     <div class="col-md-12 text-center">
-        <h3 class="text-capitalize headline">december stringer summary report</h3>
+        <h3 class="text-capitalize headline">april stringer summary report</h3>
         <p class="text-danger description">Below is a bar chart showing the contribution of each STRINGER for the month. Beside the SHORT NAME of the correspondent is the total stories published.</p>
         <hr />
-<script>
-      d3.json("/data/2014/str/str-dec.json", function (data) {
+    <script>
+      d3.json("/data/2015/str/str-apr.json", function (data) {
         
         var padding = {top: 10, right: 20, bottom: 40, left: 20};
         var width = 1140, widthDataTable = 190;
@@ -121,7 +121,7 @@
           .attr("class","x axis")
           .call(yaxis);
       });        
-      </script>
+    </script>
     </div>
 </div>
 <div id="insert-footer"></div>
