@@ -96,19 +96,45 @@
         var bars = canvas.selectAll("rect")
           .data(data)
           .enter()
+            .append("g")
             .append("rect")
-            .attr("width",function (d) { return (widthDataChart) / data.length; })
-            .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
-            .attr("x",function (d,i) { 
-              var spacing = (widthDataChart) / data.length;
-              return i*spacing; })
-            .attr("y",function (d) {
-              return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
+            // .attr("width",0)
+            .attr("height",-50)
+            .attr("x",450)
+            .attr("y", height)
+            .style("fill","lavender")
+            .attr("transform","translate("+0+","+0+")")
+            .on("mouseover", function (d) {
+              d3.select(this)
+                .transition()
+                .ease("bounce")
+                .duration(750)
+                .style("fill","lavender")
             })
-            .style("fill", function (d){
-              return colors(d.COUNT);
+            .on("mouseout", function (d) {
+              d3.select(this)
+                .transition()
+                .ease("cubic")
+                .duration(450)
+                .style("fill", function (d) { return colors(d.COUNT); })
             })
-            .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
+            .transition()
+              .duration(function (d) { return data.length * 100; })
+              .ease("elastic")
+              .delay(1000)
+              .attr("width",function (d) { return (widthDataChart) / data.length; })
+              .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
+              .attr("x",function (d,i) { 
+                var spacing = (widthDataChart) / data.length;
+                return i*spacing;
+              })
+              .attr("y",function (d) {
+                return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
+              })
+              .style("fill", function (d){
+                return colors(d.COUNT);
+              })
+              .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
 
         canvas.append("g")
           .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
