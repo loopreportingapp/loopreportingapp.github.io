@@ -13,149 +13,148 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </head>
 
-    <body>
+    <body data-page-type="stringer" data-year="2015" data-month="april">
         <div id="wrapper" class="container">
-<div id="insert-menu"></div>
-<!-- nav ends -->
-<div class="container" id="chart">
-    <div class="col-md-12 text-center">
-        <h3 class="text-capitalize headline">april stringer summary report</h3>
-        <p class="text-danger description">Below is a bar chart showing the contribution of each STRINGER for the month. Beside the SHORT NAME of the correspondent is the total stories published.</p>
-        <hr />
-    <script>
-      d3.json("/data/2015/str/str-apr.json", function (data) {
-        
-        var padding = {top: 10, right: 20, bottom: 40, left: 20};
-        var width = 1140, widthDataTable = 190;
-        var widthDataChart = width - widthDataTable - padding.left - padding.right;
-        
-        var height=data.length*20;
-        var highestValueInDataRange = d3.max(data, function (d) { return +d.COUNT; });
-        
-        var widthScaleDataChart = d3.scale.linear()
-          .domain([0,highestValueInDataRange])
-          .range([0,widthDataChart]);
+          <div id="insert-menu"></div>
+          <!-- nav ends -->
+          <div class="container" id="chart">
+            <div class="col-md-12 text-center">
+              <h3 class="text-capitalize headline">april stringer summary report</h3>
+              <p class="text-danger description">Below is a bar chart showing the contribution of each STRINGER for the month. Beside the SHORT NAME of the correspondent is the total stories published.</p>
+              <hr />
+            </div>
+          </div>
+          <div id="insert-menu-bottom"></div>
+          <div id="insert-footer"></div>
+          <script>
+            d3.json("/data/2015/str/str-apr.json", function (data) {
+              
+              var padding = {top: 10, right: 20, bottom: 40, left: 20};
+              var width = 1140, widthDataTable = 190;
+              var widthDataChart = width - widthDataTable - padding.left - padding.right;
+              
+              var height=data.length*20;
+              var highestValueInDataRange = d3.max(data, function (d) { return +d.COUNT; });
+              
+              var widthScaleDataChart = d3.scale.linear()
+                .domain([0,highestValueInDataRange])
+                .range([0,widthDataChart]);
 
-        var heightScaleDataChart = d3.scale.linear()
-          .domain([0,highestValueInDataRange])
-          .range([0,(height-padding.bottom)]);
+              var heightScaleDataChart = d3.scale.linear()
+                .domain([0,highestValueInDataRange])
+                .range([0,(height-padding.bottom)]);
 
-        var yAxisScale = d3.scale.linear()
-          .domain([0,highestValueInDataRange])
-          .range([(height-padding.bottom),0]);
+              var yAxisScale = d3.scale.linear()
+                .domain([0,highestValueInDataRange])
+                .range([(height-padding.bottom),0]);
 
-        var colors = d3.scale.linear()
-          .domain([0, highestValueInDataRange])
-          .range(['#AA1616', '#FFC00C']);
+              var colors = d3.scale.linear()
+                .domain([0, highestValueInDataRange])
+                .range(['#AA1616', '#FFC00C']);
 
-        var authorScale = d3.scale.linear()
-          .domain([01,data.length])
-          .range([01,(widthDataChart - (widthDataChart/data.length))]);
+              var authorScale = d3.scale.linear()
+                .domain([01,data.length])
+                .range([01,(widthDataChart - (widthDataChart/data.length))]);
 
-        var xaxis = d3.svg.axis()
-          .ticks(data.length)
-          .orient("bottom")
-          // .attr("width",widthDataChart)
-          .scale(authorScale);
+              var xaxis = d3.svg.axis()
+                .ticks(data.length)
+                .orient("bottom")
+                // .attr("width",widthDataChart)
+                .scale(authorScale);
 
-        var yaxis = d3.svg.axis()
-          .ticks(3)
-          .orient("right")
-          .scale(yAxisScale);
+              var yaxis = d3.svg.axis()
+                .ticks(3)
+                .orient("right")
+                .scale(yAxisScale);
 
-        var canvas = d3.select("#chart").append("svg")
-          .attr("width",width)
-          .attr("height",height)
-          .attr('background-color','#feace5');
-          
-        canvas.selectAll("text")
-          .data(data)
-          .enter()
-            .append("g")
-            .attr("class","block")
-            .append("text")
-            .attr("max-width",widthDataTable)
-            .attr("class","text-uppercase")
-            .attr("y", function (d,i) {return i * 20;})
-            .attr("x",0)
-            .style('font-family','Courier New')
-            .text(function (d,i){
-              var sum = d3.sum(data, function (d) { return d.COUNT; });
-              var fullName = d.AUTHOR;
-              var stringIndexPosition = fullName.indexOf(" ")+1;
-              var firstLetter = fullName.charAt(0); 
-              var surNameLetters = fullName.slice(stringIndexPosition,(stringIndexPosition+3));
-              if (i<9) {
-                return "0"+ (i + 1) + " " + firstLetter + "." +  surNameLetters + " " + d.COUNT;
-              } else {
-                return i + 1 + " " + firstLetter + "." + surNameLetters + " " + d.COUNT;
-              }
-            })
-            .attr("transform","translate("+ padding.bottom +",10)");
+              var canvas = d3.select("#chart").append("svg")
+                .attr("width",width)
+                .attr("height",height)
+                .attr('background-color','#feace5');
+                
+              canvas.selectAll("text")
+                .data(data)
+                .enter()
+                  .append("g")
+                  .attr("class","block")
+                  .append("text")
+                  .attr("max-width",widthDataTable)
+                  .attr("class","text-uppercase")
+                  .attr("y", function (d,i) {return i * 20;})
+                  .attr("x",0)
+                  .style('font-family','Courier New')
+                  .text(function (d,i){
+                    var sum = d3.sum(data, function (d) { return d.COUNT; });
+                    var fullName = d.AUTHOR;
+                    var stringIndexPosition = fullName.indexOf(" ")+1;
+                    var firstLetter = fullName.charAt(0); 
+                    var surNameLetters = fullName.slice(stringIndexPosition,(stringIndexPosition+3));
+                    if (i<9) {
+                      return "0"+ (i + 1) + " " + firstLetter + "." +  surNameLetters + " " + d.COUNT;
+                    } else {
+                      return i + 1 + " " + firstLetter + "." + surNameLetters + " " + d.COUNT;
+                    }
+                  })
+                  .attr("transform","translate("+ padding.bottom +",10)");
 
-        var bars = canvas.selectAll("rect")
-          .data(data)
-          .enter()
-            .append("g")
-            .append("rect")
-            // .attr("width",0)
-            .attr("height",-50)
-            .attr("x",450)
-            .attr("y", height)
-            .style("fill","lavender")
-            .attr("transform","translate("+0+","+0+")")
-            .on("mouseover", function (d) {
-              d3.select(this)
-                .transition()
-                .ease("bounce")
-                .duration(750)
-                .style("fill","lavender")
-            })
-            .on("mouseout", function (d) {
-              d3.select(this)
-                .transition()
-                .ease("cubic")
-                .duration(450)
-                .style("fill", function (d) { return colors(d.COUNT); })
-            })
-            .transition()
-              .duration(function (d) { return data.length * 100; })
-              .ease("elastic")
-              .delay(1000)
-              .attr("width",function (d) { return (widthDataChart) / data.length; })
-              .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
-              .attr("x",function (d,i) { 
-                var spacing = (widthDataChart) / data.length;
-                return i*spacing;
-              })
-              .attr("y",function (d) {
-                return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
-              })
-              .style("fill", function (d){
-                return colors(d.COUNT);
-              })
-              .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
+              var bars = canvas.selectAll("rect")
+                .data(data)
+                .enter()
+                  .append("g")
+                  .append("rect")
+                  // .attr("width",0)
+                  .attr("height",0)
+                  .attr("x",450)
+                  .attr("y", height)
+                  .style("fill","lavender")
+                  .attr("transform","translate("+0+","+0+")")
+                  .on("mouseover", function (d) {
+                    d3.select(this)
+                      .transition()
+                      .ease("bounce")
+                      .duration(750)
+                      .style("fill","lavender")
+                  })
+                  .on("mouseout", function (d) {
+                    d3.select(this)
+                      .transition()
+                      .ease("cubic")
+                      .duration(450)
+                      .style("fill", function (d) { return colors(d.COUNT); })
+                  })
+                  .transition()
+                    .duration(function (d) { return data.length * 100; })
+                    .ease("elastic")
+                    .delay(1000)
+                    .attr("width",function (d) { return (widthDataChart) / data.length; })
+                    .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
+                    .attr("x",function (d,i) { 
+                      var spacing = (widthDataChart) / data.length;
+                      return i*spacing;
+                    })
+                    .attr("y",function (d) {
+                      return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
+                    })
+                    .style("fill", function (d){
+                      return colors(d.COUNT);
+                    })
+                    .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
 
-        canvas.append("g")
-          .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
-          .attr("fill", "maroon")
-          .attr("class","x axis")
-          .call(xaxis);
+              canvas.append("g")
+                .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
+                .attr("fill", "maroon")
+                .attr("class","x axis")
+                .call(xaxis);
 
-        canvas.append("g")
-          .attr("transform","translate("+ (width - padding.left - padding.right) +","+ 10 +")")
-          .attr("class","x axis")
-          .call(yaxis);
-      });        
-    </script>
-    </div>
-</div>
-<div id="insert-footer"></div>
-<script>
-  $(function(){
-    $("#insert-menu").load("/menu.html");
-    $("#insert-footer").load("/footer.html");
-  })
-</script>
+              canvas.append("g")
+                .attr("transform","translate("+ (width - padding.left - padding.right) +","+ 10 +")")
+                .attr("class","x axis")
+                .call(yaxis);
+            });        
+          </script>
+          <script>
+            
+          </script>
+          <script src="/script.js"></script>
 </body>
 </html>

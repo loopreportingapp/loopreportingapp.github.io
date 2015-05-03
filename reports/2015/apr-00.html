@@ -16,7 +16,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
 
-    <body>
+    <body data-page-type="reporter" data-year="2015" data-month="april">
       <div id="wrapper" class="container">
         <!-- header replaced with this comment -->
         <div id="insert-menu"></div>
@@ -24,7 +24,7 @@
         <div id="content">
           <div class="container" id="chart2">
             <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
-              <h3 class="text-capitalize headline"><a href="#" data-toggle="popover" data-trigger="hover" data-target="#apr-reports" data-placement="left"  title="POP TITLE" data-content="#apr-reports">april summary report</a></h3>
+              <h3 class="text-capitalize headline">april summary report</h3>
               <p class="text-danger description">Below is a pie chart showing the number of stories published for the month as contributed by each reporter.</p>
               <div class="description" > <!-- the pie chart will be embedded here -->
                     <span id="summary-pie" style="float: left; max-width: 350px;"></span>
@@ -41,21 +41,10 @@
     </body>
   <script>
     $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();   
-        $("#insert-menu").load("/menu.html");
-        $("#insert-footer").load("/footer.html");
-    });
-    $(function(){
-      var width=$(document).width(); 
-      if (width>=1180) {
-        $("#insert-sidebar-01").load("/sidebar.html");
-      } else {
-        $("#insert-sidebar-02").load("/sidebar.html");
-      }
-    })
-  </script>
-  <script>
-    var margin = {top: 20, right: 10, bottom: 20, left: 10};
+      // $('[data-toggle="popover"]').popover();   
+      $("#insert-menu").load("/menu.html");
+      $("#insert-footer").load("/footer.html");
+      var margin = {top: 20, right: 10, bottom: 20, left: 10};
     var width = 350 - margin.left - margin.right, height = 350 - margin.top - margin.bottom;
     var  color = d3.scale.linear()
       .domain([0,200])
@@ -148,5 +137,14 @@
       .style("font-size","1.25em")
       .text("TOTAL " + d3.sum(data, function (d) { return d.COUNT; }))
     }); 
-  </script>
+    });
+    $(function(){
+      var width=$(document).width(); 
+      if (width>=1180) {
+        $("#insert-sidebar-01").load("/sidebar.html");
+      } else {
+        $("#insert-sidebar-02").load("/sidebar.html");
+      }
+    });
+      </script>
 </html>
