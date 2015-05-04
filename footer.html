@@ -1,6 +1,6 @@
 <hr />
 <footer class="modal-body text-center">
-	<h2 style="text-shadow: 1px -2px 1px white;" class="headline">Copyright PNG LOOP 2015</h2>
+	<h2 style="text-shadow: 1px -2px 1px white;" class="headline">Copyright PNG LOOP 2013-2015</h2>
 	<p class="sub description text-danger">This reporting tool remains the property of PNG Loop created (designer and developed) by <a href="mailto:Sylver.Yagi@loopnewsgroup.com">Sylver Yagi | Website Designer/Engineer</a></p>
 </footer>
 <script>
@@ -10,23 +10,32 @@
   var month = $("body").attr("data-month");
   console.log("This is the " + pageType + " of " + month + ", " + year);
   if (pageType == 'stringer') {
-    console.log("its working but why is it not showing??" + pageType);
     $("#menu-home").removeClass("active");
     $("#menu-stringer-reports").addClass("active");
     } else {
-      if (pageType == "reporter" && year == "2015") {
-        console.log("program execution came thru here!");
-        $("#menu-home").removeClass("active");
-		    $("#menu-2015-reports").addClass("active");
-      } else {
-        console.log("program execution came thru here!");
-      	if (pageType == "reporter" && year == "2014") {
-      		$("#menu-home").removeClass("active");
-			    $("#menu-2014-reports").addClass("active");
-      	} else {
-	        console.log("program execution came thru here!");
-      		$("#menu-home").removeClass("active");
-      	}
+      if (pageType == "reporter") {
+        if (year == "2015") {
+          $("#menu-home").removeClass("active");
+  		    $("#menu-2015-reports").addClass("active");
+          if (month == "january") {
+            $("#jan-15").addClass("active");
+          } else {
+            if (month == "february") {
+              $("#feb-15").addClass("active");
+            } else {
+              if (month == "march") {
+                $("#mar-15").addClass("active");
+              } else {
+                if (month == "april") {
+                  $("#apr-15").addClass("active");
+                }
+              }
+            }
+          }
+        } else {
+          if (year == "2014") {
+          } else { $("#menu-home").addClass("active"); }
+        }
       }
     };
   });

@@ -12,6 +12,20 @@
         <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
         <script src="/jquery.js"></script>
         <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <style type="text/css">
+          g.tooltip {   
+            position: absolute;           
+            text-align: center;           
+            width: 60px;                  
+            height: 28px;                 
+            padding: 2px;             
+            font: 12px sans-serif;        
+            background: lightsteelblue;   
+            border: 0px;      
+            border-radius: 8px;           
+            pointer-events: none;         
+          }
+        </style>
 
     </head>
 
@@ -66,16 +80,29 @@
       .orient("right")
       .scale(yAxisScale);
 
+  // tooltip on circles
+    var formatTime = d3.time.format("%e %B");
+
+    var div = d3.select("#chart2").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
+
+
     var canvas = d3.select("#chart2").append("svg")
       .attr("width",width)
       .attr("height",height)
       .attr('background-color','#feace5');
+
+    canvas.append("g").attr("class","container").attr("id","counter");
       
     canvas.selectAll("text")
       .data(data)
       .enter()
         .append("g")
         .attr("class","block")
+        .attr("id", function (d,i) {
+          return "text-label-" + i;
+        })
         .append("text")
         .attr("max-width",widthDataTable)
         .attr("class","text-uppercase")
@@ -88,6 +115,8 @@
         })
         .attr("transform","translate("+ padding.bottom +",10)");
 
+    var textID = function (d,i) { return "\"#text-label-" + i + "\""; };
+
     var bars = canvas.selectAll("circle")
       .data(data)
       .enter()
@@ -99,16 +128,10 @@
         .style("fill", function (d){ return colors(d.COUNT); })
         .attr("transform","translate("+ (widthDataTable+padding.left-10) +","+ padding.top +")")
         .on("mouseover", function() {
-          d3.select(this)
-          canvas.append("g").attr("class","tooltip").append("text")
-          .attr("x", function () { return widthDataChart/2; } )
-          .attr("y", function () { return heightScaleDataChart(30)/2*3; } )
-          .attr("class", "iverse-circle")
-          .text(function (d) { return d.COUNT; })
+          d3.select(this).text(function (d) {return d.COUNT; });
         })
         .on("mouseout", function () {
-          d3.select(this)
-            // .remove("tecxt");
+          
         });
 
     canvas.append("g")
