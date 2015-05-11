@@ -3,7 +3,7 @@
     <head>
         <title>PNG LOOP | Reporting App | Monthly Report</title>
         <script src="/jquery.js"></script>
-        <script src="/d3.min.js"></script>
+        <script src="/d3/d3.js"></script>
         <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,161 +13,137 @@
         <script src="/jquery.js"></script>
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <style type="text/css">
-          g.tooltip {   
-            position: absolute;           
-            text-align: center;           
-            width: 60px;                  
-            height: 28px;                 
-            padding: 2px;             
-            font: 12px sans-serif;        
-            background: lightsteelblue;   
-            border: 0px;      
-            border-radius: 8px;           
-            pointer-events: none;         
-          }
+          .line { fill: none; stroke: crimson; stroke-width:0.5px; }
+          .chart { }
+          .label-axis { font-size: large; color: maroon; }
+          text.headline.label-axis.y { -webkit-transform: rotate(90deg); text-anchor: end; transform: rotate(270deg); }
         </style>
-
     </head>
 
-<body>
-        <div id="wrapper" class="container">
-       <div id="insert-menu"></div>
+    <body data-page-type="Publisher" data-year="2015" data-month="April">
+      <div id="wrapper" class="container">
+        <div id="insert-menu"></div>
 <!-- nav ends -->
-        <div class="container" id="chart2">
-            <div id="inner-width" class="col-md-8 text-center"> <!-- copy this -->
-                    <h3 class="text-capitalize headline">April publication comparisons</h3>
-                    <p class="text-danger description">Below is a LINE graph showing the summary with comparisons of stories published for the month. Each day's publication is compared with views/sessions/engagements data extracted from Google Analytics and Facebook.</p>
-                <hr />
-                </div>
+        <div id="inner-width" class="col-md-12 text-center"> <!-- copy this -->
+          <h3 class="text-capitalize headline">April publication comparisons</h3>
+          <p class="text-danger description">Below is a LINE graph showing the summary with comparisons of stories published for the month. Each day's publication is compared with views/sessions/engagements data extracted from Google Analytics and Facebook.</p>
+          <hr />
+        </div>
+        <div class="container" id="chart"></div>
+      </div>
+      <div id="insert-footer"></div>
 <script>
-  d3.json("/data/2015/apr-pub.json", function (data) {
+  var margin = {top: 30, right: 20, bottom: 30, left: 50};
+  var width = $("#chart").width() - margin.left - margin.right;
+  var height = $(document).height() - $(document).height()/3;
+  console.log("width " + width + " | height " + height);
+
+  d3.json("/data/2015/apr-pub.json", function (error, data) {
+    var format = d3.time.format("%d-%m");
+    data.forEach( function (d) {
+      d.PUB_DATE = format.parse(d.PUB_DATE);
+      d.COUNT = +d.COUNT;
+    });
+  
+    var x = d3.time.scale()
+      .domain(d3.extent(data, function (d) { return d.PUB_DATE; }))
+      .range([0, width-margin.left]);
+    var y = d3.scale.linear()
+      .domain([0, d3.max(data, function (d) { return d.COUNT; })])
+      .range([height, 0]);
+
+    var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5);
+    var yAxis = d3.svg.axis().scale(y).orient("right").ticks(5);
+
+    var color = d3.scale.linear()
+      .domain(d3.extent(data, function (d) { return d.COUNT; }))
+      .range(["maroon","gold"]);
+
+    var valueline = d3.svg.line()
+      .x(function (d) { return x(d.PUB_DATE); })
+      .y(function (d) { return y(d.COUNT); });
     
-    var padding = {top: 10, right: 20, bottom: 40, left: 20};
-    var width = 760, widthDataTable = 110;
-    var widthDataChart = width - widthDataTable - padding.left - padding.right;
-    
-    var height=data.length*20;
-    var highestValueInDataRange = d3.max(data, function (d) { return +d.COUNT; });
-    
-    var widthScaleDataChart = d3.scale.linear()
-      .domain([0,highestValueInDataRange])
-      .range([0,widthDataChart]);
+    var svg = d3.select("#chart")
+      .append("svg")
+      .attr("width", (width+margin.left+margin.right))
+      .attr("height",(height+margin.top+margin.bottom))
+      // .append("g")
+      //   .attr("translate","transform(" + margin.left + ", " + margin.top + ")");
 
-    var heightScaleDataChart = d3.scale.linear()
-      .domain([0,highestValueInDataRange])
-      .range([0,(height-padding.bottom)]);
+    svg.append("path")
+      .attr("translate","transform(380, 0)")
+      .attr("d", valueline(data))
+      .attr("class","line chart");
 
-    var yAxisScale = d3.scale.linear()
-      .domain([0,highestValueInDataRange])
-      .range([(height-padding.bottom),0]);
-
-    var colors = d3.scale.linear()
-      .domain([0, highestValueInDataRange])
-      .range(['#AA1616', '#FFC00C']);
-
-    var authorScale = d3.scale.linear()
-      .domain([01,data.length])
-      .range([01,(widthDataChart - (widthDataChart/data.length))]);
-
-    var xaxis = d3.svg.axis()
-      .ticks(data.length)
-      .orient("bottom")
-      // .attr("width",widthDataChart)
-      .scale(authorScale);
-
-    var yaxis = d3.svg.axis()
-      .ticks(3)
-      .orient("right")
-      .scale(yAxisScale);
-
-  // tooltip on circles
-    var formatTime = d3.time.format("%e %B");
-
-    var div = d3.select("#chart2").append("div")   
-    .attr("class", "tooltip")               
-    .style("opacity", 0);
-
-
-    var canvas = d3.select("#chart2").append("svg")
-      .attr("width",width)
-      .attr("height",height)
-      .attr('background-color','#feace5');
-
-    canvas.append("g").attr("class","container").attr("id","counter");
-      
-    canvas.selectAll("text")
+    svg.selectAll("g>text")
       .data(data)
       .enter()
         .append("g")
-        .attr("class","block")
-        .attr("id", function (d,i) {
-          return "text-label-" + i;
-        })
         .append("text")
-        .attr("max-width",widthDataTable)
-        .attr("class","text-uppercase")
-        .attr("y", function (d,i) {return i * 20;})
-        .attr("x",0)
-        .style('font-family','Tahoma')
-        .text(function (d,i){
-          var fullName = d.PUB_DATE;
-          return fullName.charAt(0) + fullName.charAt(1) + " - " + d.COUNT;
-        })
-        .attr("transform","translate("+ padding.bottom +",10)");
+        .attr("x", function (d) { return x(d.PUB_DATE); })
+        .attr("y", function (d) { return y(d.COUNT) + 15; })
+        .text(function (d) { return d.COUNT; })
+        .style("font-size","0.75em")
+        .attr("text-anchor","end")
+        .attr("class", "description")
+        .attr("fill", "black");
 
-    var textID = function (d,i) { return "\"#text-label-" + i + "\""; };
-
-    var bars = canvas.selectAll("circle")
+    svg.selectAll("circle")
       .data(data)
       .enter()
         .append("circle")
-        .attr("r", function (d) { return parseInt(d.COUNT)/5; })
-        .attr("cx",function (d,i) { return i*(widthDataChart / data.length); })
-        .attr("id",function (d,i) { return i; })
-        .attr("cy",function (d) { return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT))); })
-        .style("fill", function (d){ return colors(d.COUNT); })
-        .attr("transform","translate("+ (widthDataTable+padding.left-10) +","+ padding.top +")")
-        .on("mouseover", function() {
-          d3.select(this).text(function (d) {return d.COUNT; });
+        .attr("translate","transform("+ 50 +", "+ 0 +")")
+        .attr("cx", function (d) { return x(d.PUB_DATE); })
+        .attr("cy", function (d) { return y(d.COUNT); })
+        .attr("r",3)
+        .attr("fill", function (d) { return color(d.COUNT); })
+        .on("mouseover", function(d,i) {
+          d3.select(this)
+            .transition().ease("elastic").duration(1500).delay(250)
+            .attr("r",8)
+            .attr("fill","gold");
+          d3.select("text")
+            .attr("z-index",1000);
         })
-        .on("mouseout", function () {
-          
+        .on("mouseout", function() {
+          d3.select(this)
+            .transition().ease("bounce").duration(1250).delay(750)
+            .attr("r",3)
+            .attr("fill", function (d) { return color(d.COUNT); });
         });
 
-    canvas.append("g")
-      .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
-      .attr("fill", "maroon")
-      .attr("class","x axis")
-      .call(xaxis);
 
-    canvas.append("g")
-      .attr("transform","translate("+ (width - padding.left - padding.right) +","+ 10 +")")
-      .attr("class","y axis")
-      .call(yaxis);
-  });        
+    svg.append("text")
+      .attr("x", width/3)
+      .attr("y", height+margin.top)
+      .attr("class", "headline label-axis")
+      .text("Date");
+    
+    svg.append("text")
+      .attr("x", -10)
+      .attr("y", width)
+      .attr("class", "headline label-axis y")
+      .text("Total Stories Published");
+
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform","translate("+ 0 +","+ height +")")
+      .call(xAxis);
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .attr("transform","translate("+ (width - margin.left) +","+ 0 +")")
+      .call(yAxis);
+
+    console.log("data execution came thru");
+  });
 </script>
-<!-- start copy here -->
-            <div id="insert-sidebar-01" style="padding-top: 3em;">
-              <div id="quick-links" class="col-md-4">
-              <div id="mar-reports" class="list-group">
-                <a class="list-group-item" href="/reports/2015/apr-04.html" title="April week 4 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Four Report</a></li>
-                <a class="list-group-item" href="/reports/2015/apr-03.html" title="April week 3 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Three Report</a></li>
-                <a class="list-group-item" href="/reports/2015/apr-02.html" title="April week 2 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week Two Report</a></li>
-                <a class="list-group-item active" href="/reports/2015/apr-01.html" title="April week 1 report"><i class="fa fa-check fa-fw"></i>&nbsp; April Week One Report</a></li>
-                <a class="list-group-item" href="/reports/2015/apr-00.html" title="April Summary Report"><i class="fa fa-check fa-fw"></i>&nbsp; April Summary Report</a></li>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-      <div id="insert-footer"></div>
-      <script>
-        $(function(){
-          $("#insert-menu").load("/menu.html");
-          $("#insert-footer").load("/footer.html");
-        })
-      </script>
+<script>
+  $(function(){
+    $("#insert-menu").load("/menu.html");
+    $("#insert-footer").load("/footer.html");
+  })
+</script>
       <!-- end copy here -->
     </body>
 </html>
