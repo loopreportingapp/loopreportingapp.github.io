@@ -139,6 +139,12 @@
   });
 </script>
 <script>
+  var dataset = [12, 14, 24, 15, 10];
+
+  var myscale = d3.scale.linear().domain([0,24]).range([0,500]);
+  var svg = d3.select("#insert-footer").append("svg").attr("width", 500).attr("height", 300);
+
+  svg.selectAll("rect")
   $(function(){
     $("#insert-menu").load("/menu.html");
     $("#insert-footer").load("/footer.html");

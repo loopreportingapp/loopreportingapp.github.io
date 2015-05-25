@@ -82,3 +82,8 @@ text.iverse-circle {
   /*background-color: black;*/
   margin-top: 3em;
 }
+
+/*Table styles*/
+table, tr, .table, .table > tr {
+  border: 1px solid black;
+}

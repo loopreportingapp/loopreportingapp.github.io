@@ -21,18 +21,36 @@
           g.tick { shape-rendering: none; stroke-width: 0.5px; }
           svg.overlay-graph { margin-top: -385px; position: absolute; float: left; margin-left: 0; }
           svg>path.overlay-path { stroke: black;}
+/* coloring the tables using pseudo selectors */
           #graph-01 tr:nth-child(2n+1) {
             background-color: rgba(229, 188, 188, 0.67);
           }
           #graph-01 tr:nth-child(2n) {
             background-color: rgba(192, 75, 75, 1);
-            color: white;
+            /*color: white;*/
           }
           #graph-01 th {
             padding: 1em 2em;
             text-align: center;
             color: white;
             text-shadow: 1px 1px 3px black;
+          }
+/* coloring the graphs using pseudo selectors */
+          circle.hourly-dots:nth-child(2n+1) {
+            fill: yellow;
+          }
+          circle.hourly-dots:nth-child(2n) {
+            fill: green;
+          }
+          button#overlay a, button#overlay a:hover, button#overlay a:focus{
+            color: black;
+            text-decoration: none;
+          }
+          button#overlay a:hover {
+            color: red;
+          }
+          button#overlay {
+            border-radius: 0.75em;
           }
         </style>
     </head>
@@ -45,8 +63,12 @@
           <h3 class="text-capitalize headline">April publication comparisons</h3>
           <p class="text-danger description">Below is a LINE graph showing the summary with comparisons of stories published for the month. Each day's publication is compared with views/sessions/engagements data extracted from Google Analytics and Facebook.</p>
           <hr />
+          <button id="overlay" class="btn btn-danger">SHOW OVERLAY</button>
         </div>
-        <div class="container" id="chart"></div>
+        <div class="container" id="chart">
+          <span id="graph" class=""></span>
+          <span id="overlay-graph" class=""></span>
+        </div>
         <div class="container" id="datatable">
           <div id="graph-01" class="col-md-2 text-center text-uppercase"></div>
           <div id="graph-02" class="col-md-8"></div>
@@ -54,6 +76,7 @@
       </div>
       <div id="insert-footer"></div>
 <script>
+// first graph
   var margin = {top: 30, right: 20, bottom: 30, left: 50};
   var width = $("#chart").width() - margin.left - margin.right;
   var height = 320;
@@ -84,7 +107,7 @@
       .x(function (d) { return x(d.HourOfDay); })
       .y(function (d) { return y(d.Pageviews); });
     
-    var svg = d3.select("#chart")
+    var svg = d3.select("#chart>span#graph")
       .append("svg")
       .attr("width", (width+margin.left+margin.right))
       .attr("height",(height+margin.top+margin.bottom));
@@ -92,7 +115,8 @@
     svg.append("path")
       .attr("translate","transform(380, 0)")
       .attr("d", valueline(data))
-      .attr("class","line chart");
+      .attr("class","line chart")
+      .attr("fill", function (d) { return color(d); });
 
     svg.selectAll("circle")
       .data(data)
@@ -102,21 +126,22 @@
         .attr("cx", function (d) { return x(d.HourOfDay); })
         .attr("cy", function (d) { return y(d.Pageviews); })
         .attr("r",1)
-        .attr("fill", function (d) { return color(d.HourOfDay); })
-        .on("mouseover", function(d,i) {
-          d3.select(this)
-            .transition().ease("elastic").duration(1500).delay(250)
-            .attr("r",8)
-            .attr("fill","gold");
-          d3.select("text")
-            .attr("z-index",1000);
-        })
-        .on("mouseout", function() {
-          d3.select(this)
-            .transition().ease("bounce").duration(1250).delay(750)
-            .attr("r",1)
-            .attr("fill", function (d) { return color(d.Pageviews); });
-        });
+        .attr("fill", "#06f")
+        .attr("class","hourly-dots");
+        // .on("mouseover", function(d,i) {
+        //   d3.select(this)
+        //     .transition().ease("elastic").duration(1500).delay(250)
+        //     .attr("r",8)
+        //     .attr("fill","gold");
+        //   d3.select("text")
+        //     .attr("z-index",1000);
+        // })
+        // .on("mouseout", function() {
+        //   d3.select(this)
+        //     .transition().ease("bounce").duration(1250).delay(750)
+        //     .attr("r",1)
+        //     .attr("fill", function (d) { return color(d.Pageviews); });
+        // });
 
 
     svg.append("text")
@@ -126,11 +151,11 @@
       .text("Date");
     
     svg.append("text")
-      .attr("x", -(height - height/3 * 2 + margin.top))
-      .attr("y", 35)
+      .attr("x", -10)
+      .attr("y", width)
       // .attr("opacity","0.5")
       .attr("class", "headline label-axis y")
-      .text("Total Stories Published");
+      .text("Hourly Pageviews For The Month");
 
     svg.append("g")
       .attr("class", "x axis")
@@ -171,6 +196,11 @@
     //       .text(function (d) { return d.Pageviews; });
 
   });
+
+
+        /* second chart */
+
+
   d3.json("/data/2015/apr-pub.json", function (error, data) {
     var format = d3.time.format("%d-%m");
     data.forEach( function (d) {
@@ -196,8 +226,9 @@
       .x(function (d) { return x(d.PUB_DATE); })
       .y(function (d) { return y(d.COUNT); });
     
-    var svg = d3.select("#chart")
+    var svg = d3.select("#chart span#overlay-graph")
       .append("svg")
+      // .attr("id","overlay-graph")
       .attr("class","overlay-graph")
       .attr("width", (width+margin.left+margin.right))
       .attr("height",(height+margin.top+margin.bottom))
@@ -254,10 +285,10 @@
       .text("Date");
     
     svg.append("text")
-      .attr("x", -10)
-      .attr("y", width)
+      .attr("x", -(height - height/3 * 2 + margin.top))
+      .attr("y", 35)
       .attr("class", "headline label-axis y")
-      .text("Hourly Pageviews For The Month");
+      .text("Total Stories Published");
 
     // svg.append("g")
     //   .attr("class", "x axis")
@@ -287,6 +318,14 @@
     tablebody.append("td").text(function (d) { return tablebodyDate(d.PUB_DATE); });
     tablebody.append("td").text(function (d) { return d.COUNT});
 
+    d3.selectAll("rect")
+    .data(data)
+    .enter()
+      .attr("fill", function (d) { return color(d.COUNT); })
+      .attr("width", 5)
+      .attr("height", "auto")
+      .attr("style", "opacity: 0.5");
+
     // console.log("progressive here");
     //     datatable.selectAll("td")
     //     .data(data)
@@ -302,7 +341,12 @@
   $(function(){
     $("#insert-menu").load("/menu.html");
     $("#insert-footer").load("/footer.html");
-  })
+  });
+  $(document).ready( function () {
+    $("button#overlay").click(function () {
+      $("span#overlay-graph").toggleClass("hide");
+    });
+  });
 </script>
       <!-- end copy here -->
     </body>
