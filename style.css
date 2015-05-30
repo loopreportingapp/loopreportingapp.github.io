@@ -87,3 +87,14 @@ text.iverse-circle {
 table, tr, .table, .table > tr {
   border: 1px solid black;
 }
+
+/* custom buttons */
+button.btn-warning.btn-round {
+  height: 100px;
+  width: 100px;
+  border-radius: 6em;
+  float: left;
+  position: absolute;
+  left: 9.25em;
+  top: 15.45em;
+}

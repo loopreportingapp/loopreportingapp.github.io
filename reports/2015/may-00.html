@@ -16,7 +16,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
 
-    <body data-page-type="reporter" data-year="2015" data-month="april">
+    <body data-page-type="reporter" data-year="2015" data-month="may">
       <div id="wrapper" class="container">
         <!-- header replaced with this comment -->
         <div id="insert-menu"></div>
@@ -24,11 +24,13 @@
         <div id="content">
           <div class="container" id="chart2">
             <div id="inner-width" class="col-md-9 text-center"> <!-- copy this -->
-              <h3 class="text-capitalize headline">april summary report</h3>
+              <h3 class="text-capitalize headline">may summary report</h3>
               <p class="text-danger description">Below is a pie chart showing the number of stories published for the month as contributed by each reporter.</p>
               <div class="description" > <!-- the pie chart will be embedded here -->
-                    <span id="summary-pie" style="float: left; max-width: 350px;"></span>
-                    <h5 id="data-table" style="margin-top: 2.5em;"></h5>
+                <span id="summary-pie" style="float: left; max-width: 350px;">
+                  <button id="show_data_table" class="btn-warning btn-round">show data table</button>
+                </span>
+                <h5 id="data-table" style="margin-top: 2.5em;"></h5>
               </div>
             </div>
             <!-- start copy here -->
@@ -70,7 +72,7 @@
             .append("g")
             .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
           
-            d3.json("/data/2015/apr-00.json", function (error, data) {
+            d3.json("/data/2015/may-00.json", function (error, data) {
             data.forEach(function(d) {
               d.COUNT = +d.COUNT;
             });
@@ -121,7 +123,7 @@
           var table = d3.select("#data-table").append("div")
             .style("list-style","none")
             .style("float","left")
-            .attr("class","list-group")
+            .attr("class","list-group hide")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom);
             // .append("g")

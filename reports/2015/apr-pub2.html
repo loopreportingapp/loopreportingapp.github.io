@@ -300,23 +300,25 @@
       .attr("transform","translate("+ 1 +","+ 0 +")")
       .call(yAxis);
 
-    var datatable = d3.select("#datatable>#graph-01")
-      // .attr("class","fullwidth full-width table text-success")
-      .append("table")
-      .attr("class","table")
-      .attr("style","max-height: 500px;");
 
-    var tablehead = datatable.append("tr"); // table head thead
-        tablehead.append("th").text("DAY");
-        tablehead.append("th").text("COUNT");
+// data table
 
-    var tablebody = datatable.selectAll("td")
-        .data(data)
-        .enter()
-          .append("tr");
-    var tablebodyDate = d3.time.format("%d");
-    tablebody.append("td").text(function (d) { return tablebodyDate(d.PUB_DATE); });
-    tablebody.append("td").text(function (d) { return d.COUNT});
+                // var datatable = d3.select("#datatable>#graph-01")
+                //   .append("table")
+                //   .attr("class","table")
+                //   .attr("style","max-height: 500px;");
+
+                // var tablehead = datatable.append("tr"); // table head thead
+                //     tablehead.append("th").text("DAY");
+                //     tablehead.append("th").text("COUNT");
+
+                // var tablebody = datatable.selectAll("td")
+                //     .data(data)
+                //     .enter()
+                //       .append("tr");
+                // var tablebodyDate = d3.time.format("%d");
+                // tablebody.append("td").text(function (d) { return tablebodyDate(d.PUB_DATE); });
+                // tablebody.append("td").text(function (d) { return d.COUNT});
 
     d3.selectAll("rect")
     .data(data)
@@ -325,16 +327,6 @@
       .attr("width", 5)
       .attr("height", "auto")
       .attr("style", "opacity: 0.5");
-
-    // console.log("progressive here");
-    //     datatable.selectAll("td")
-    //     .data(data)
-    //     .enter()
-    //       .append("tr")
-    //       .append("td")
-    //       .text(function (d) { return d.COUNT; });
-
-    // console.log("data execution came thru");
   });
 </script>
 <script>
