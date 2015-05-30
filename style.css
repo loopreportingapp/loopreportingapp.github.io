@@ -89,12 +89,25 @@ table, tr, .table, .table > tr {
 }
 
 /* custom buttons */
-button.btn-warning.btn-round {
-  height: 100px;
-  width: 100px;
-  border-radius: 6em;
-  float: left;
-  position: absolute;
-  left: 9.25em;
-  top: 15.45em;
+@media (min-width: 768px) {
+	button.btn-warning.btn-round {
+	  height: 100px;
+	  width: 100px;
+	  border-radius: 6em;
+	  float: left;
+	  position: absolute;
+	  left: 9.25em;
+	  top: 15.45em;
+	}
+}
+@media (min-width: 992px) {
+	button.btn-warning.btn-round {
+	  height: 100px;
+	  width: 100px;
+	  border-radius: 6em;
+	  float: left;
+	  position: absolute;
+	  left: 9.25em;
+	  top: 15.45em;
+	}
 }

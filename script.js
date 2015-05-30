@@ -53,7 +53,5 @@ $(document).ready(function () {
         }
       }
     };
-  $("#show_data_table").click( function () {
-    $("h5#data_table>div").toggleClass("hide");
-  })
+      
 });
