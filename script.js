@@ -53,5 +53,7 @@ $(document).ready(function () {
         }
       }
     };
-      
+  if (($(document).width()) < 992) {
+    $("#insert-menu>nav>div").add("text","MENU").attr("class","btn");
+  }
 });

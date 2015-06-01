@@ -88,6 +88,16 @@ table, tr, .table, .table > tr {
   border: 1px solid black;
 }
 
+#data-table>.list-group {
+  margin-top: 2.5em;
+}
+
+@media (max-width: 696px) {
+	#insert-menu div>ul.navbar-nav {
+		display: none;
+	}
+}
+
 /* custom buttons */
 @media (min-width: 768px) {
 	button.btn-warning.btn-round {
@@ -96,8 +106,16 @@ table, tr, .table, .table > tr {
 	  border-radius: 6em;
 	  float: left;
 	  position: absolute;
-	  left: 9.25em;
-	  top: 15.45em;
+	  left: 9.35em;
+	  top: 14.95em;
+	}
+
+/*	#insert-menu div>ul.navbar-nav {
+		display: none;
+	}*/
+	
+	span#summary-bar-chart {
+		position: absolute;
 	}
 }
 @media (min-width: 992px) {
@@ -107,7 +125,15 @@ table, tr, .table, .table > tr {
 	  border-radius: 6em;
 	  float: left;
 	  position: absolute;
-	  left: 9.25em;
-	  top: 15.45em;
+	  left: 9.35em;
+	  top: 14.95em;
+	}
+
+/*	#insert-menu div>ul.navbar-nav {
+		display: none;
+	}*/
+
+	span#summary-bar-chart {
+		position: absolute;
 	}
 }
