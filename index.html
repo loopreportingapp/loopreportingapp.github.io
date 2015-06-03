@@ -113,7 +113,8 @@
       .ease("elastic")
       .duration(750)
       .attr("d", arc)
-      .style("fill", function(d) { return color(d.data.AUTHOR); });
+      .style("fill", function(d) { return color(d.data.AUTHOR); })
+      .style("stroke","2px solid black");
     var sum = d3.sum(data, function (d) { return d.COUNT; });
     g.append("text")
       .attr("transform", function (d) {

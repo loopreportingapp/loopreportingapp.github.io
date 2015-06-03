@@ -147,11 +147,27 @@
               console.log("sum: " + total_story_count);
 
               canvas.append("text")
-                .attr("x",100)
-                .attr("y",100)
+                .attr("x", widthDataChart)
+                .attr("y", 50)
                 .attr("style","font-size: 2em; color: black;")
-                .attr("class","text-capitalize hide headline")
-                .text("total: ", total_story_count);
+                .attr("class","text-capitalize headline")
+                .text("total: " + total_story_count);
+
+              canvas.append("text")
+                .attr("x", widthDataChart + 20)
+                .attr("y", 75)
+                .attr("style","font-size: 1em; color: darkgrey;")
+                .attr("class","text-capitalize description")
+                .text("highest: " + d3.max(data, function (d) { return +d.COUNT; }));
+
+              canvas.append("text")
+                .attr("x", widthDataChart + 20)
+                .attr("y", 100)
+                .attr("style","font-size: 1em; color: darkgrey;")
+                .attr("class","text-capitalize description")
+                .text("lowest: " + d3.min(data, function (d) { return +d.COUNT; }));
+
+console.log(d3.min(data, function (d) { return +d.COUNT; }));
 
               canvas.append("g")
                 .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")

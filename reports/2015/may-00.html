@@ -31,7 +31,7 @@
                   <button id="show_data_table" class="btn-warning btn-round" title="click to show or hide the data table">show/hide data table</button>
                 </span>
                 <span id="summary-bar-chart" style="max-width: 350px;"></span>
-                <h5 id="data-table" style="margin-top: 2em;"></h5>
+                <h5 id="data-table" style="margin-top: 2em;" class="col-md-6"></h5>
               </div>
             </div>
             <!-- start copy here -->
@@ -90,7 +90,7 @@
             .transition()
               .ease("exp")
               .duration(250)
-              .delay(500)
+              .delay(750)
               .attr("d",arc)
               .style("fill", function(d) { return color(d.data.COUNT); });
           g.on("mouseover",function (d) {
@@ -131,10 +131,10 @@
             // });
         var table = d3.select("#data-table").append("div")
           .style("list-style","none")
-          .attr("class","list-group hide text-center")
-          .attr("width", width + margin.left + margin.right)
+          .attr("class","list-group col-md-12 text-center")
+          // .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
-          .attr("style","float: right; width: 49%; max-width: 350px;")
+          .style("float","right")
           .append("ul")
           .attr("style","float: right; width: 100%;");
           // .append("g")
@@ -254,7 +254,7 @@
         })
         .transition()
         .ease("elastic")
-        .delay(500)
+        .delay(1000)
         .duration(2000)
         .attr("width",function (d) { return (widthDataChart) / data.length; })
         .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })

@@ -88,10 +88,10 @@ table, tr, .table, .table > tr {
   border: 1px solid black;
 }
 
-#data-table>.list-group {
+/*#data-table>.list-group {
   margin-top: 2.5em;
 }
-
+*/
 @media (max-width: 696px) {
 	#insert-menu div>ul.navbar-nav {
 		display: none;
@@ -107,7 +107,7 @@ table, tr, .table, .table > tr {
 	  float: left;
 	  position: absolute;
 	  left: 9.35em;
-	  top: 14.95em;
+	  top: 13.69em;
 	}
 
 /*	#insert-menu div>ul.navbar-nav {
@@ -126,7 +126,7 @@ table, tr, .table, .table > tr {
 	  float: left;
 	  position: absolute;
 	  left: 9.35em;
-	  top: 14.95em;
+	  top: 13.69em;
 	}
 
 /*	#insert-menu div>ul.navbar-nav {
@@ -136,4 +136,8 @@ table, tr, .table, .table > tr {
 	span#summary-bar-chart {
 		position: absolute;
 	}
+}
+
+#summary-pie g.arc>path {
+  stroke: rgb(186, 162, 189);
 }
