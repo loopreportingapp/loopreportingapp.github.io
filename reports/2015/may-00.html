@@ -10,6 +10,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/bootstrapmin.css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -19,10 +21,10 @@
     <body data-page-type="reporter" data-year="2015" data-month="may">
       <div id="wrapper" class="container">
         <!-- header replaced with this comment -->
-        <div id="insert-menu"></div>
+        <div id="insert-menu" class="nav navbar-fixed-top"></div>
 <!-- nav ends -->
-        <div id="content">
-          <div class="container" id="chart2">
+        <div id="content" class="" style="margin-top: 5em;">
+          <div class="row" id="chart2">
             <div id="inner-width" class="col-md-9 text-center"> <!-- copy this -->
               <h3 class="text-capitalize headline">may summary report</h3>
               <p class="text-danger description">Below is a pie chart showing the number of stories published for the month as contributed by each reporter.</p>
@@ -88,9 +90,10 @@
             .append("path")
             .attr("d",0)
             .transition()
+              .each("start", function () { d3.select(this).attr("fill","white"); })
               .ease("exp")
-              .duration(250)
-              .delay(750)
+              .duration(1250)
+              .delay(50)
               .attr("d",arc)
               .style("fill", function(d) { return color(d.data.COUNT); });
           g.on("mouseover",function (d) {
@@ -129,31 +132,31 @@
             // .on("click", function (d) {
             //   d3.select(this).attr("class","show")
             // });
-        var table = d3.select("#data-table").append("div")
-          .style("list-style","none")
-          .attr("class","list-group col-md-12 text-center")
-          // .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .style("float","right")
-          .append("ul")
-          .attr("style","float: right; width: 100%;");
-          // .append("g")
-          // .attr("transform", "translate(" + width*2 + "," + height/2 + ")");
-        table.selectAll("li")//.append("g")
-          .data(data)
-          .enter().append("li")
-            .attr("class","list-group-item")
-            .style("fill", "black")
-            .style("padding","0.5em 1em")
-            // .style("text-align","right")
-            .text(function (d) { return d.AUTHOR + " - " + d.COUNT; });
-        table.select("li")
-          .data(data)
-          .style("padding","1em 0")
-          .style("text-align","center")
-          .style("font-weight","bold")
-          .style("font-size","1.25em")
-          .text("TOTAL " + d3.sum(data, function (d) { return d.COUNT; }))
+          var table = d3.select("#data-table").append("div")
+            .style("list-style","none")
+            .attr("class","list-group col-md-12 text-center")
+            // .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .style("float","right")
+            .append("ul")
+            .attr("style","float: right; width: 100%;");
+            // .append("g")
+            // .attr("transform", "translate(" + width*2 + "," + height/2 + ")");
+          table.selectAll("li")//.append("g")
+            .data(data)
+            .enter().append("li")
+              .attr("class","list-group-item")
+              .style("fill", "black")
+              .style("padding","0.5em 1em")
+              // .style("text-align","right")
+              .text(function (d) { return d.AUTHOR + " - " + d.COUNT; });
+          table.select("li")
+            .data(data)
+            .style("padding","1em 0")
+            .style("text-align","center")
+            .style("font-weight","bold")
+            .style("font-size","1.25em")
+            .text("TOTAL " + d3.sum(data, function (d) { return d.COUNT; }))
         }); 
       </script>
       <script>
@@ -228,46 +231,40 @@
               .attr("transform","translate("+ padding.bottom +",10)");
 
           var bars = canvas.selectAll("rect")
-      .data(data)
-      .enter()
-        .append("g")
-        .append("rect")
-        // .attr("width",0)
-        .attr("height",-50)
-        .attr("x",450)
-        .attr("y",100)
-        .style("fill","lavender")
-        .attr("transform","translate("+0+","+0+")")
-        .on("mouseover", function (d) {
-          d3.select(this)
-            .transition()
-            .ease("bounce")
-            .duration(750)
-            .style("fill","lavender")
-        })
-        .on("mouseout", function (d) {
-          d3.select(this)
-            .transition()
-            .ease("cubic")
-            .duration(450)
-            .style("fill", function (d) { return colors(d.COUNT); })
-        })
-        .transition()
-        .ease("elastic")
-        .delay(1000)
-        .duration(2000)
-        .attr("width",function (d) { return (widthDataChart) / data.length; })
-        .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
-        .attr("x",function (d,i) { 
-          var spacing = (widthDataChart) / data.length;
-          return i*spacing; })
-        .attr("y",function (d) {
-          return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
-        })
-        .style("fill", function (d){
-          return colors(d.COUNT);
-        })
-        .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
+            .data(data)
+            .enter()
+              .append("g")
+              .append("rect")
+              // .attr("width",0)
+              .attr("height",-50)
+              .attr("x",450)
+              .attr("y",100)
+              .style("fill","lavender")
+              .attr("transform","translate("+0+","+0+")")
+              .on("mouseover", function (d) {
+                d3.select(this)
+                  .transition()
+                  .ease("bounce")
+                  .duration(750)
+                  .style("fill","lavender")
+              })
+              .on("mouseout", function (d) {
+                d3.select(this)
+                  .transition()
+                  .ease("cubic")
+                  .duration(450)
+                  .style("fill", function (d) { return colors(d.COUNT); })
+              })
+              .transition()
+              .ease("elastic")
+              .delay(1000)
+              .duration(2000)
+              .attr("width",function (d) { return (widthDataChart) / data.length; })
+              .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
+              .attr("x",function (d,i) { var spacing = (widthDataChart) / data.length; return i*spacing; })
+              .attr("y",function (d) { return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT))); })
+              .style("fill", function (d){ return colors(d.COUNT); })
+              .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
 
           canvas.append("g")
             .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
