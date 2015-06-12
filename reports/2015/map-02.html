@@ -30,6 +30,7 @@
     path.places {
       fill: none;
       stroke: blue;
+      stroke-width: 0.5px;
     }
     text.place-label {
       fill: black;
@@ -96,11 +97,11 @@
           var png_adm = png.objects.png_adm;
           var png_places = png.objects.png_adm2;
 
-          // svg.append("path")
-          //   .datum(topojson.feature(png, png_adm))
-          //   // .attr("d", d3.geo.path().projection(d3.geo.mercator()));
-          //   .attr("d", path)
-          //   .attr("style", "fill: none;"); // stroke: black; stroke-width: 0.5px; 
+          svg.append("path")
+            .datum(topojson.feature(png, png_adm))
+            // .attr("d", d3.geo.path().projection(d3.geo.mercator()));
+            .attr("d", path)
+            .attr("style", "fill: none;"); // stroke: black; stroke-width: 0.5px; 
 
           // svg.selectAll("png_adm")
           //   .data(topojson.feature(png, png_adm).features)
