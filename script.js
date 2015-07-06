@@ -2,7 +2,6 @@ $(document).ready(function () {
 	$("#insert-menu").load("/menu.html");
 	$("#insert-footer").load("/footer.html");
 	$("#insert-menu-bottom").load("/menu-bottom.html");
-
 	var pageType = $("body").attr("data-page-type");
   var year = $("body").attr("data-year");
   var month = $("body").attr("data-month");
@@ -49,7 +48,7 @@ $(document).ready(function () {
 	              }
 	            }
 	          } 
-          } else { $("#menu-home").addClass("active"); }
+          }
         }
       }
     };
@@ -57,3 +56,4 @@ $(document).ready(function () {
     $("#insert-menu>nav>div").add("text","MENU").attr("class","btn");
   }
 });
+  $("body").addClass('offset-4em');

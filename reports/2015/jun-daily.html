@@ -23,15 +23,14 @@
         <p class="text-danger description">Below is a BAR chart showing the number of stories published for the week as contributed by each reporter.</p><hr />
       </div>
 <script>
-  d3.json("/data/2015/jun-daily.json", function (data) {
-    
-    var padding = {top: 10, right: 20, bottom: 40, left: 20};
-    var width = 760, widthDataTable = 190;
-    var widthDataChart = width - widthDataTable - padding.left - padding.right;
-    
+
+  d3.json("/data/2015/jun-daily-pub.json", function (data) {
+    console.log(JSON.stringify(data));
+    var padding = {top: 10, right: 20, bottom: 40, left: 30};
+    var width = 760, widthDataTable = 10;
+    var widthDataChart = width - widthDataTable - padding.left; // - padding.right;
     var height=data.length*20;
     var highestValueInDataRange = d3.max(data, function (d) { return +d.COUNT; });
-    
     var widthScaleDataChart = d3.scale.linear()
       .domain([0,highestValueInDataRange])
       .range([0,widthDataChart]);
@@ -52,10 +51,13 @@
       .domain([01,data.length])
       .range([01,(widthDataChart - (widthDataChart/data.length))]);
 
+    var radiusScale = d3.scale.linear()
+      .domain([10,highestValueInDataRange])
+      .range([4,9]);
+
     var xaxis = d3.svg.axis()
       .ticks(data.length)
       .orient("bottom")
-      // .attr("width",widthDataChart)
       .scale(authorScale);
 
     var yaxis = d3.svg.axis()
@@ -66,50 +68,43 @@
     var canvas = d3.select("#chart2").append("svg")
       .attr("width",width)
       .attr("height",height)
-      .attr('background-color','#feace5');
-      
-    canvas.selectAll("text")
+      .attr('background-color','#feace5')
+      .attr("transform","translate("+ padding.left +","+0+")");
+    var text = canvas.append("g").append("text").attr("class","text-capitalize text-info count_text");
+    var spacing = (widthDataChart) / data.length;
+    var bars = canvas.selectAll("circle")
       .data(data)
       .enter()
-        .append("g")
-        .attr("class","block")
-        .append("text")
-        .attr("max-width",widthDataTable)
-        .attr("class","text-uppercase")
-        .attr("y", function (d,i) {return i * 20;})
-        .attr("x",0)
-        .style('font-family','Courier New')
-        .text(function (d,i){
-          var sum = d3.sum(data, function (d) { return d.COUNT; });
-          var fullName = d.AUTHOR;
-          var stringIndexPosition = fullName.indexOf(" ")+1;
-          var firstLetter = fullName.charAt(0); 
-          var surNameLetters = fullName.slice(stringIndexPosition,(stringIndexPosition+3));
-          if (i<9) {
-            return "0"+ (i + 1) + " " + firstLetter + "." +  surNameLetters + " " + d.COUNT;
-          } else {
-            return i + 1 + " " + firstLetter + "." + surNameLetters + " " + d.COUNT;
-          }
-        })
-        .attr("transform","translate("+ padding.bottom +",10)");
-
-    var bars = canvas.selectAll("rect")
-      .data(data)
-      .enter()
-        .append("rect")
+        .append("g").append("circle")
         .attr("width",function (d) { return (widthDataChart) / data.length; })
-        .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); })
-        .attr("x",function (d,i) { 
-          var spacing = (widthDataChart) / data.length;
-          return i*spacing; })
-        .attr("y",function (d) {
-          return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)));
+        .attr("height", function (d) { return heightScaleDataChart((parseInt(d.COUNT))); });
+    bars.attr("cx",function (d,i) { return i*spacing; });
+    bars.attr("cy",function (d) { return (height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT))); });
+    bars.attr("r", function (d) { return radiusScale(d.COUNT); })
+        .style("fill", function (d){ return colors(d.COUNT); });
+    bars.attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ padding.top +")")
+        .on("mouseover", function (d,i) {
+          // variable declarations here
+          var count_text = d.COUNT;
+          d3.select(this)
+            .transition().ease("elastic").duration(500).delay(250)
+              .attr("r",7)
+              .attr("style","fill: red;");
+          d3.select("text.count_text")
+            .text(count_text)
+            .attr("x", (spacing*i))
+            .attr("y", function () {
+              return ((height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT)))) < 20 ? ((height-padding.top)-heightScaleDataChart((parseInt(d.COUNT)))) : ((height-padding.bottom)-heightScaleDataChart((parseInt(d.COUNT))));
+            });
         })
-        .style("fill", function (d){
-          return colors(d.COUNT);
-        })
-        .attr("transform","translate("+ widthDataTable +","+ padding.top +")");
+        .on("mouseout", function (d) {
+          d3.select(this)
+            .transition().ease("bounce").duration(1000).delay(500)
+            .attr("r", function (d) { return radiusScale(d.COUNT); })
+            .style("fill", function (d){ return colors(d.COUNT); });
+        });
 
+    
     canvas.append("g")
       .attr("transform","translate("+ (widthDataTable+(widthDataChart /data.length)-((widthDataChart /data.length)/2)) +","+ (height - padding.bottom + padding.top) +")")
       .attr("fill", "maroon")
@@ -117,8 +112,8 @@
       .call(xaxis);
 
     canvas.append("g")
-      .attr("transform","translate("+ (width - padding.left - padding.right) +","+ 10 +")")
-      .attr("class","x axis")
+      .attr("transform","translate("+ (width - padding.left/*- padding.right*/) +","+ 10 +")")
+      .attr("class","y axis")
       .call(yaxis);
   });        
 </script>

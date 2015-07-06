@@ -92,11 +92,11 @@ table, tr, .table, .table > tr {
   margin-top: 2.5em;
 }
 */
-@media (max-width: 696px) {
+/*@media (max-width: 696px) {
 	#insert-menu div>ul.navbar-nav {
 		display: none;
 	}
-}
+}*/
 
 /* custom buttons */
 @media (min-width: 768px) {
@@ -140,4 +140,8 @@ table, tr, .table, .table > tr {
 
 #summary-pie g.arc>path {
   stroke: rgb(186, 162, 189);
+}
+
+.offset-4em {
+	margin-top: 4em;
 }

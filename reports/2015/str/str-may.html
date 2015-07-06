@@ -1,9 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>PNG LOOP | Reporting App | Monthly Correspondent Report</title>
-        <script src="/jquery.js"></script>
-        <script src="/d3.min.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/style.css">
@@ -26,6 +24,9 @@
           </div>
           <div id="insert-menu-bottom"></div>
           <div id="insert-footer"></div>
+</body>
+          <script src="/jquery.js"></script>
+          <script src="/d3.min.js"></script>
           <script>
             d3.json("/data/2015/str/str-may.json", function (data) {
               
@@ -181,9 +182,5 @@ console.log(d3.min(data, function (d) { return +d.COUNT; }));
                 .call(yaxis);
             });        
           </script>
-          <script>
-            
-          </script>
           <script src="/script.js"></script>
-</body>
 </html>

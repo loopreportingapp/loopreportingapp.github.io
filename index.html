@@ -114,7 +114,20 @@
       .duration(750)
       .attr("d", arc)
       .style("fill", function(d) { return color(d.data.AUTHOR); })
-      .style("stroke","2px solid black");
+      .on("mouseover", function (d) {
+          d3.select(this)
+            .transition()
+            .ease("bounce")
+            .duration(750)
+            .style("fill","lavender")
+        })
+        .on("mouseout", function (d) {
+          d3.select(this)
+            .transition()
+            .ease("cubic")
+            .duration(450)
+            .style("fill", function (d) { return colors(d.COUNT); })
+        })
     var sum = d3.sum(data, function (d) { return d.COUNT; });
     g.append("text")
       .attr("transform", function (d) {
