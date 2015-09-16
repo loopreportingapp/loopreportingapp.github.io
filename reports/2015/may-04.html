@@ -23,7 +23,7 @@
         <p class="text-danger description">Below is a BAR chart showing the number of stories published for the week as contributed by each reporter.</p><hr />
       </div>
 <script>
-  d3.json("/data/2015/jun-daily.json", function (data) {
+  d3.json("/data/2015/jun-daily-pub.json", function (data) {
     
     var padding = {top: 10, right: 20, bottom: 40, left: 20};
     var width = 760, widthDataTable = 190;
@@ -134,6 +134,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
     <div id="insert-footer"></div>
     <script>

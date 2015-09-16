@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	$("#insert-menu").load("/menu.html");
-	$("#insert-footer").load("/footer.html");
+	$("#insert-footer").load("/footer.html").addClass("container-fluid");
 	$("#insert-menu-bottom").load("/menu-bottom.html");
 	var pageType = $("body").attr("data-page-type");
   var year = $("body").attr("data-year");
