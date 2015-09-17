@@ -57,62 +57,71 @@
 <script>
   d3.json("/data/tests/aug15-pageviews-sessions.json", function (data) {
   // variables
-    var h = 500, w = 500;
+    var h = 500, w = 500, zero = 0;
+    var padding = {"top":20,"right":10,"bottom":45,"left":5};
+    var rectDime = {
+      "rHeight" : 40
+    }
+
     var pvHigh = d3.max(data, function (d) { return +d.Pageviews; });
     var pvLow = d3.min(data, function (d) { return +d.Pageviews; });
     var sHigh = d3.max(data, function (d) { return +d.Sessions; });
     var sLow = d3.min(data, function (d) { return +d.Sessions; });
-    var padding = {"top":20,"right":10,"bottom":45,"left":5};
     
   // scales
     var sheightscale = d3.scale.linear()
-      .domain([0,sHigh])
-      .range([0,h-20]);
+      .domain([zero,sHigh])
+      .range([zero,h-padding.top]);
     var sColor = d3.scale.linear()
       .domain([sLow,sHigh])
       .range(['red','gold']);
 
-    var wScale = d3.scale.linear().domain([0,sHigh]).range([0,w-20]);
+    var swScale = d3.scale.linear().domain([zero,sHigh]).range([zero,w-padding.top]);
+    var pvwScale = d3.scale.linear().domain([zero,pvHigh]).range([zero,w-padding.top]);
     
     var pvheightscale = d3.scale.linear()
-      .domain([0,pvHigh])
-      .range([0,h-20]);
+      .domain([zero,pvHigh])
+      .range([zero,h-padding.top]);
     var pvColor = d3.scale.linear()
       .domain([pvLow,pvHigh])
       .range(['red','gold']);
-    var xaxis = d3.svg.axis().orient('top').scale(wScale);
+    var xaxis = d3.svg.axis().orient('top');
     
   // canvas
     var canvas = d3.select("#chart2").append('svg').attr({
-      width: w,
-      height: h,
-      fill: '#aaccee'
+      width: w+(padding.bottom*3),
+      height: h
     });
 
   // data rectangles
-    var bar = canvas.selectAll("rect").append('g').data(data)
+    var bar = canvas.append('g').attr("class","rectangles").selectAll("rect").data(data)
       .enter()
+        // .append('g')
         .append('rect')
         .attr({
-          'height' : function (d) { return 40; },
-          'width' : function (d) { return sheightscale(d.Sessions); },
+          'height' : function (d) { return rectDime.rHeight; },
+          'width' : function (d) { return swScale(d.Sessions); },
           'y' : function (d,i) { return i*padding.bottom; },
           'x' : padding.left,
-          'fill' : function (d) { return sColor(d.Sessions); },
-          'transform' : 'translate(' + padding.left + ',' + padding.bottom + ')'
+          'fill' : function (d) { return sColor(d.Sessions); }
         });
 
-    var texts = canvas.selectAll("text").append('g').data(data)
+
+    var texts = canvas.append('g').attr("class","text-label").selectAll("text").append('g').data(data)
       .enter()
         .append('text')
         .attr({
-          'y' : function (d,i) { return i*padding.bottom+padding.top*3.5; },
-          'x': padding.left*5,
-          'fill': 'black'
+          'y' : function (d,i) { return i*padding.bottom; },
+          'x': padding.left,
+          'fill': 'black',
+          'text-anchor': 'start'
         })
         .text(function (d) { return d.Sessions; });
 
-    canvas.append('g').call(xaxis).attr('class','xaxis').attr('transform', 'translate(' + padding.left + ',' + padding.top*2 + ')');
+    d3.selectAll('g').transition().attr('transform', 'translate(' + padding.left + ',' + padding.bottom + ')');
+    d3.selectAll('g.text-label').transition().attr('transform', 'translate(' + (padding.left+10) + ',' + (padding.bottom+25) + ')');
+
+    canvas.append('g').call(xaxis.scale(swScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.left + ',' + padding.top*2 + ')');
 
   // update view
     d3.select("#pageviews").on("click", function() {
@@ -120,8 +129,11 @@
         .attr('width',function (d) { return pvheightscale(d.Pageviews); })
         .attr('fill', function (d) { return pvColor(d.Pageviews); });
     
-    d3.selectAll("text").transition().text(function (d) { return d.Pageviews; });
-      });
+      d3.selectAll("text").transition().text(function (d) { return d.Pageviews; });
+      
+      d3.selectAll("g.xaxis").remove();
+      canvas.append('g').call(xaxis.scale(pvwScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.left + ',' + padding.top*2 + ')');
+    });
 
     d3.select("#sessions").on("click", function() {
       d3.selectAll("rect").transition().ease('bounce').duration(750)
@@ -129,6 +141,9 @@
         .attr('fill', function (d) { return sColor(d.Sessions); });
 
     d3.selectAll("text").transition().text(function (d) { return d.Sessions; });
+
+    d3.selectAll("g.xaxis").remove();
+    canvas.append('g').call(xaxis.scale(swScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.left + ',' + padding.top*2 + ')');
     });
   });        
 </script>
