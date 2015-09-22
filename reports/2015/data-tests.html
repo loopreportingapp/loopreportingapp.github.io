@@ -55,6 +55,15 @@
         <span id="chart2"></span>
       </div>
 <script>
+  // determining the width and the height of the screen before resizing everything
+  // var width=$(document).width(); 
+  //               if (width>=1180) { // width here is the document width
+  //                 width=750;
+  //               } else {
+  //                 width= $("#inner-width").width(); 
+  //               }
+  // margin dimensions taken from ==> https://gist.github.com/mbostock/3019563
+
   d3.json("/data/tests/aug15-pageviews-sessions.json", function (data) {
   // variables
     var h = 500, w = 500, zero = 0;
@@ -92,6 +101,16 @@
       width: w+(padding.bottom*3),
       height: h
     });
+
+  // lines
+
+    var lines = canvas.append('g').attr({'class': 'lines'}).selectAll('line').data(data).enter()
+      .append('line')
+      .attr('x1', 0)
+      .attr('y1', function (d,i) { return sheightscale(d.Sessions[i-1])})
+      .attr('x2', function (d,i) { return i*padding.bottom; })
+      .attr('y2', function (d) { return sheightscale(d.Sessions); })
+      .style('stroke', '#000');
 
   // data rectangles
     var bar = canvas.append('g').attr("class","rectangles").selectAll("rect").data(data)

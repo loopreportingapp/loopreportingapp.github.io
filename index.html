@@ -31,7 +31,8 @@
       #chart2 g.axis > .tick > text {
         font-family: Lobster;
         font-size: 12px;
-        stroke-opacity: 0;
+        stroke: none;
+        fill: black;
       }
       #chart2 path.domain {
         display: none;
@@ -68,8 +69,8 @@
         </span>
       <!-- bar graph -->
         <div class="col-md-12" id="chart2">
-          <span id="graph-title" class="chart-detail"></span>
-          <span id="graph-description" class="chart-detail"></span>
+          <span id="graph-title" class="col-xs-8 col-md-5 headline text-centre chart-detail"></span>
+          <!-- <span id="graph-description" class="chart-detail"></span> -->
         </div>
       </div>
 <div class="jumbotron" style="background-image:url(img/jumbotron-01.jpg);">
@@ -261,7 +262,7 @@
     d3.selectAll('g.text-label').transition().attr('transform', 'translate(' + (padding.left+10) + ',' + (padding.bottom+25)*2.3 + ')');
 
     canvas.append('g').call(xaxis.scale(swScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.right + ',' + padding.bottom*3 + ')');
-    d3.select("#graph-title").append("h1").html("<h1>SESSIONS DATA</h1>");
+    d3.select("#graph-title").append("h1").html("<h1>Sessions Data</h1>");
 
   // update view
     d3.select("#pageviews").on("click", function() {
@@ -272,7 +273,7 @@
         $("#pageviews").addClass('active')
 
       d3.selectAll("text").transition().text(function (d) { return d.Pageviews; });
-      d3.select("#graph-title").html("<h1>PAGEVIEWS DATA</h1>");
+      d3.select("#graph-title").html("<h1>Pageviews Data</h1>");
       
       d3.selectAll("g.xaxis").remove();
       canvas.append('g').call(xaxis.scale(pvwScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.right + ',' + padding.bottom*3 + ')');
@@ -286,7 +287,7 @@
         $("#sessions").addClass('active')
 
     d3.selectAll("text").transition().text(function (d) { return d.Sessions; });
-    d3.select("#graph-title").html("<h1>SESSIONS DATA</h1>");
+    d3.select("#graph-title").html("<h1>Sessions Data</h1>");
 
     d3.selectAll("g.xaxis").remove();
     canvas.append('g').call(xaxis.scale(swScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.right + ',' + padding.bottom*3 + ')');

@@ -1,0 +1,302 @@
+{
+    "fiji": [
+        {
+            "Week of Year": 201533,
+            "Pageviews": 209,
+            "Sessions": 99,
+            "Avg. Session Duration": "00:01:02",
+            "Pages / Session": 2.11,
+            "Users": 99
+        },
+        {
+            "Week of Year": 201535,
+            "Pageviews": 178,
+            "Sessions": 64,
+            "Avg. Session Duration": "00:00:54",
+            "Pages / Session": 2.78,
+            "Users": 76
+        },
+        {
+            "Week of Year": 201538,
+            "Pageviews": 165,
+            "Sessions": 80,
+            "Avg. Session Duration": "00:01:01",
+            "Pages / Session": 2.06,
+            "Users": 85
+        },
+        {
+            "Week of Year": 201536,
+            "Pageviews": 153,
+            "Sessions": 72,
+            "Avg. Session Duration": "00:00:35",
+            "Pages / Session": 2.12,
+            "Users": 84
+        },
+        {
+            "Week of Year": 201537,
+            "Pageviews": 141,
+            "Sessions": 62,
+            "Avg. Session Duration": "00:00:41",
+            "Pages / Session": 2.27,
+            "Users": 72
+        },
+        {
+            "Week of Year": 201534,
+            "Pageviews": 87,
+            "Sessions": 35,
+            "Avg. Session Duration": "00:00:46",
+            "Pages / Session": 2.49,
+            "Users": 51
+        }
+    ],
+    "tonga": [
+        {
+            "Week of Year": 201535,
+            "Pageviews": 158,
+            "Sessions": 76,
+            "Avg. Session Duration": "00:00:45",
+            "Pages / Session": 2.08,
+            "Users": 98
+        },
+        {
+            "Week of Year": 201534,
+            "Pageviews": 120,
+            "Sessions": 32,
+            "Avg. Session Duration": "00:01:11",
+            "Pages / Session": 3.75,
+            "Users": 42
+        },
+        {
+            "Week of Year": 201538,
+            "Pageviews": 108,
+            "Sessions": 60,
+            "Avg. Session Duration": "00:00:59",
+            "Pages / Session": 1.8,
+            "Users": 64
+        },
+        {
+            "Week of Year": 201537,
+            "Pageviews": 93,
+            "Sessions": 52,
+            "Avg. Session Duration": "00:01:02",
+            "Pages / Session": 1.79,
+            "Users": 61
+        },
+        {
+            "Week of Year": 201536,
+            "Pageviews": 80,
+            "Sessions": 39,
+            "Avg. Session Duration": "00:01:29",
+            "Pages / Session": 2.05,
+            "Users": 48
+        },
+        {
+            "Week of Year": 201533,
+            "Pageviews": 58,
+            "Sessions": 26,
+            "Avg. Session Duration": "00:00:29",
+            "Pages / Session": 2.23,
+            "Users": 36
+        }
+    ],
+    "samoa": [
+        {
+            "Week of Year": 201534,
+            "Pageviews": 130,
+            "Sessions": 45,
+            "Avg. Session Duration": "00:02:10",
+            "Pages / Session": 2.89,
+            "Users": 54
+        },
+        {
+            "Week of Year": 201538,
+            "Pageviews": 105,
+            "Sessions": 74,
+            "Avg. Session Duration": "00:00:23",
+            "Pages / Session": 1.42,
+            "Users": 84
+        },
+        {
+            "Week of Year": 201535,
+            "Pageviews": 90,
+            "Sessions": 49,
+            "Avg. Session Duration": "00:00:19",
+            "Pages / Session": 1.84,
+            "Users": 53
+        },
+        {
+            "Week of Year": 201533,
+            "Pageviews": 79,
+            "Sessions": 32,
+            "Avg. Session Duration": "00:03:20",
+            "Pages / Session": 2.47,
+            "Users": 42
+        },
+        {
+            "Week of Year": 201536,
+            "Pageviews": 75,
+            "Sessions": 48,
+            "Avg. Session Duration": "00:00:15",
+            "Pages / Session": 1.56,
+            "Users": 59
+        },
+        {
+            "Week of Year": 201537,
+            "Pageviews": 73,
+            "Sessions": 50,
+            "Avg. Session Duration": "00:00:43",
+            "Pages / Session": 1.46,
+            "Users": 59
+        }
+    ],
+    "nauru": [
+        {
+            "Week of Year": 201538,
+            "Pageviews": 94,
+            "Sessions": 47,
+            "Avg. Session Duration": "00:00:32",
+            "Pages / Session": 2,
+            "Users": 55
+        },
+        {
+            "Week of Year": 201536,
+            "Pageviews": 93,
+            "Sessions": 40,
+            "Avg. Session Duration": "00:01:16",
+            "Pages / Session": 2.32,
+            "Users": 48
+        },
+        {
+            "Week of Year": 201535,
+            "Pageviews": 81,
+            "Sessions": 33,
+            "Avg. Session Duration": "00:01:56",
+            "Pages / Session": 2.45,
+            "Users": 47
+        },
+        {
+            "Week of Year": 201537,
+            "Pageviews": 77,
+            "Sessions": 54,
+            "Avg. Session Duration": "00:00:54",
+            "Pages / Session": 1.43,
+            "Users": 47
+        },
+        {
+            "Week of Year": 201533,
+            "Pageviews": 61,
+            "Sessions": 35,
+            "Avg. Session Duration": "00:00:04",
+            "Pages / Session": 1.74,
+            "Users": 42
+        },
+        {
+            "Week of Year": 201534,
+            "Pageviews": 46,
+            "Sessions": 24,
+            "Avg. Session Duration": "00:00:54",
+            "Pages / Session": 1.92,
+            "Users": 30
+        }
+    ],
+    "vanuatu": [
+        {
+            "Week of Year": 201534,
+            "Pageviews": 455,
+            "Sessions": 344,
+            "Avg. Session Duration": "00:00:37",
+            "Pages / Session": 1.32,
+            "Users": 372
+        },
+        {
+            "Week of Year": 201535,
+            "Pageviews": 311,
+            "Sessions": 182,
+            "Avg. Session Duration": "00:00:23",
+            "Pages / Session": 1.71,
+            "Users": 208
+        },
+        {
+            "Week of Year": 201536,
+            "Pageviews": 290,
+            "Sessions": 148,
+            "Avg. Session Duration": "00:01:05",
+            "Pages / Session": 1.96,
+            "Users": 181
+        },
+        {
+            "Week of Year": 201537,
+            "Pageviews": 264,
+            "Sessions": 163,
+            "Avg. Session Duration": "00:00:51",
+            "Pages / Session": 1.62,
+            "Users": 197
+        },
+        {
+            "Week of Year": 201533,
+            "Pageviews": 257,
+            "Sessions": 140,
+            "Avg. Session Duration": "00:00:49",
+            "Pages / Session": 1.84,
+            "Users": 171
+        },
+        {
+            "Week of Year": 201538,
+            "Pageviews": 221,
+            "Sessions": 124,
+            "Avg. Session Duration": "00:00:18",
+            "Pages / Session": 1.78,
+            "Users": 129
+        }
+    ],
+    "png": [
+        {
+            "Week of Year": 201534,
+            "Pageviews": "94478",
+            "Sessions": "33134",
+            "Avg. Session Duration": "00:02:22",
+            "Pages / Session": 2.85,
+            "Users": "24715"
+        },
+        {
+            "Week of Year": 201536,
+            "Pageviews": "76269",
+            "Sessions": "21930",
+            "Avg. Session Duration": "00:02:42",
+            "Pages / Session": 3.48,
+            "Users": "17714"
+        },
+        {
+            "Week of Year": 201537,
+            "Pageviews": "73745",
+            "Sessions": "20197",
+            "Avg. Session Duration": "00:02:57",
+            "Pages / Session": 3.65,
+            "Users": "15965"
+        },
+        {
+            "Week of Year": 201533,
+            "Pageviews": "72898",
+            "Sessions": "21853",
+            "Avg. Session Duration": "00:02:37",
+            "Pages / Session": 3.34,
+            "Users": "18719"
+        },
+        {
+            "Week of Year": 201535,
+            "Pageviews": "70263",
+            "Sessions": "20277",
+            "Avg. Session Duration": "00:02:41",
+            "Pages / Session": 3.47,
+            "Users": "16558"
+        },
+        {
+            "Week of Year": 201538,
+            "Pageviews": "59665",
+            "Sessions": "16603",
+            "Avg. Session Duration": "00:02:44",
+            "Pages / Session": 3.59,
+            "Users": "14167"
+        }
+    ]
+}

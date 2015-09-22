@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>PNG LOOP | Reporting App | Monthly Report</title>
+    <script src="/jquery.js"></script>
+    <script src="/d3.min.js"></script>
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css">
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/united/bootstrap.min.css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    #chart2>svg {
+      border: 2px solid darkorange;
+      /*border-radius: 50%;*/
+    }
+    g.axis {
+      fill: dodgerblue;
+      font-family: Lobster;
+    }
+    g.axis > .tick {
+
+    }
+    g.axis > .tick > line {
+
+    }
+    g.axis > .tick > text {
+      font-family: Lobster;
+      font-size: 12px;
+      stroke-opacity: 0;
+    }
+    path.domain {
+      fill:coral;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper" class="container">
+    <div id="insert-menu"></div>
+<!-- nav ends -->
+    <div class="container">
+      <div id="inner-width" class="col-md-9 text-center"> <!-- copy this -->
+        <span class="options">
+          <ul class="panel list-unstyled list-inline">
+            <li><button id="sessions" class="btn btn-default active">Sessions</button></li>
+            <li><button id="pageviews" class="btn btn-default">Pageviews</button></li>
+          </ul>
+        </span>
+        <span id="chart2"></span>
+      </div>
+<script>
+  var dataset;
+  var width=$(document).width()*.8;
+  var height = $(document).height()*.8;
+  // margin dimensions taken from ==> https://gist.github.com/mbostock/3019563
+  d3.json("/data/tests/six-weekly.json", function (data) {
+  // variables
+    dataset = data;
+    var margin = { top: 20, right: 50, bottom: 40, left: 50 },
+        w = width - margin.left - margin.right,
+        h = height - margin.top - margin.bottom,
+        initData = data.fiji,
+        initMax = d3.max(initData, function (d) { return d.Users }),
+        initMin = d3.min(initData, function (d) { return d.Users });
+
+  // scales
+    var colors = d3.scale.linear().domain([d3.extent(initData, function (d) { return d.Users })]).range(['red','gold']);
+    var hScale = d3.scale.linear().domain([0,d3.max(initData, function (d) { return d.Sessions })]).range([0,h]);
+    var wScale = d3.scale.linear().domain([0,initMax]).range([0,w]);
+    var xAxis = d3.svg.axis(wScale).orient("bottom").scale(wScale).ticks(initData.length*2).tickSize(2);
+    var yAxis = d3.svg.axis(hScale).orient("left").scale(hScale).ticks(initData.length*2).tickSize(2);
+    
+    var canvas = d3.select('#chart2').append('svg')
+        .attr('width', w + margin.left + margin.right)
+        .attr('height', h + margin.top + margin.bottom)
+      .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    var circles = canvas.append('g').attr('class','circles')
+      .selectAll('circle').data(initData)
+      .enter().append('circle')
+      .attr('cx', function (d) {return wScale(d.Users)})
+      .attr('cy', function (d) {return hScale(d.Sessions)})
+      .attr('r', function (d) {return 5})
+      .style('fill', function (d) { return colors(d.Users) });
+
+    canvas.append('g').attr('class','xaxis').attr('transform', 'translate(' + 0 + ',' + h + ')').call(xAxis);
+    canvas.append('g').attr('class','yaxis').call(yAxis);
+  }); 
+</script>
+    </div>
+    </div>
+    <div id="insert-footer"></div>
+    <script>
+      $(document).ready( function() {
+        $("#insert-menu").load("/menu.html");
+        $("#insert-footer").load("/footer.html");
+      });
+    </script>
+  </body>
+</html>
+eR@2015lisVeref
