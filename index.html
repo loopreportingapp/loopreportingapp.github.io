@@ -300,11 +300,7 @@
   var invocation = new XMLHttpRequest(),
       method = 'GET',
       url = 'http://www.looppng.com/section/40068/rss';
-  function logresult () {
-    console.log(this.responseText);
-  };
-
-  invocation.addEventListener("load", logresult);
+  
   invocation.open(method, url, true);
   invocation.onreadystatechange = function () {
     if ( 4 != invocation.readyState ) {
@@ -316,6 +312,7 @@
     }
     console.log( invocation.responseText );
   };
+  invocation.addEventListener("load", logresult);
   invocation.send();
 </script>
     </body>
