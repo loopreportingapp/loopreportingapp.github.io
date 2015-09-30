@@ -300,19 +300,20 @@
   var invocation = new XMLHttpRequest(),
       method = 'GET',
       url = 'http://www.looppng.com/section/40068/rss';
-  
+ 
   invocation.open(method, url, true);
   invocation.onreadystatechange = function () {
-    if ( 4 != invocation.readyState ) {
-      return "!4";
+    if ( 404 != invocation.readyState ) {
+        alert("!4");
     }
     if ( 200 != invocation.status ) {
-      xmldata = 
-      return "!200";
+        alert("!200");
     }
     console.log( invocation.responseText );
   };
-  invocation.addEventListener("load", logresult);
+  invocation.response(function (responsedata){
+    console.log(responsedata);
+  });
   invocation.send();
 </script>
     </body>
