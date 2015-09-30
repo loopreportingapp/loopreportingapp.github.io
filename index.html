@@ -229,15 +229,16 @@
   });        
 </script>
 <script>
-    var invocation = new XMLHttpRequest(),
-        method = 'GET',
-        url = 'http://www.looppng.com/section/40068/rss';
-   
-    invocation.open(method, url, true);
-    invocation.onreadystatechange = function () {
-      console.log(invocation.statusCode() + "Error Code! Message: " + invocation.responseText );
-    };
-    invocation.send();
+    // tricking the web server into creating a new script without it knowing
+    var body = $("body").append("<script></script");
+    var scr = $("script:last").text(function () {
+        var str1 = "$(document).ready(function () {";
+        var str2 = "var xmlData = $.get('http://www.looppng.com/section/40068/rss', function (data) {";
+        var str3 = "console.log(data);";
+        var str4 = "}).done(function () { alert(1); }).fail(function () { alert(0) })";
+        var str5 = "})});";
+        return str1 + str2 + str3 + str4 + str5;
+    });
 </script>
     </body>
 </html>
