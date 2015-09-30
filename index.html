@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
       <title>PNG LOOP | Reporting App | Home Page</title>
-      <script src="/d3.min.js"></script>
+      <script src="d3.min.js"></script>
       <script src="jquery.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +11,7 @@
       <link href="http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Tangerine|Roboto:500|Droid+Serif|Lobster|Dancing+Script|Bangers" rel="stylesheet" type="text/css" />
 
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-      <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
+      <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
 
     <style type="text/css">
       body {
@@ -228,7 +228,6 @@
     });
   });        
 </script>
-<script src="/scripts/jquery-ui.js"></script>
 <script>
     var invocation = new XMLHttpRequest(),
         method = 'GET',
@@ -236,7 +235,7 @@
    
     invocation.open(method, url, true);
     invocation.onreadystatechange = function () {
-      console.log("this is the invocation message" + invocation.responseText );
+      console.log(invocation.statusCode() + "Error Code! Message: " + invocation.responseText );
     };
     invocation.send();
 </script>
