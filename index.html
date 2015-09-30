@@ -53,12 +53,12 @@
 
     <body class="front-page">
     <div id="wrapper" class="container">
-      <!-- <header class="container">
-          <span><a href="index.html" ><h3 id="site-title">png loop's reporting application</h3></a></span>
-      </header> -->
-      <div id="insert-menu"></div>
-      <!-- nav ends -->
-      <!-- jumbotron begins -->
+        <!-- <header class="container">
+            <span><a href="index.html" ><h3 id="site-title">png loop's reporting application</h3></a></span>
+        </header> -->
+        <div id="insert-menu"></div>
+<!-- nav ends -->
+<!-- jumbotron begins -->
       <div class="row">
       <!-- buttons -->
         <span class="options">
@@ -73,80 +73,250 @@
           <!-- <span id="graph-description" class="chart-detail"></span> -->
         </div>
       </div>
-      <div class="jumbotron" style="background-image:url(img/jumbotron-01.jpg);">
-        <h1 class="headline">Out of Date</h1>
-        <p class="text-warning description">Hi there! Please note that this version of the app is out of date. We are migrating to a new website application which will be hosted on Heroku. We will provide updates here. If you want to know where were at in terms of our new application, please do not hesitate to contact me here: <a href="https://www.slyvestery.wordpress.com" title="Sylver Yagi">slyvestery.wordpress.com</a><br /><br />Best Regards,<br />Sylver Yagi | <span class="text-muted">Lead Developer</span></p>
-        <hr />
-        <h2 class="headline">Application Brief</h2>
-        <div class="app-description">
-          <h5>This reporting application was developed to display data taken directly from the main <a href="http://www.pngloop.com">PNG LOOP</a> Website.<br /><br />To use this app, simply select a report from the main navigation menu above. There are 2014 Reports and 2015 Reports which can be located as sub menu items. I've tried to make accessibility to weekly reports easier by placing them on the right sidebar of monthly summary reports. Check them out now.<br /><br />For more information regarding this application, the tools used and the resources sought in building it, visit the <a href="about.html">About Page</a>.</h5>
-          </div>
-      </div>
-        <!-- jumbotron ends -->
-        <!-- Widget areas -->
-      <div id="insert-widget-01" class="container">
-        <div id="quick-links" class="col-md-3">
-          <h3 class="headline list-group-item"><i class="fa fa-search fa-x5"></i> Quick Links</h3>
-          <p>
-            <div class="list-group description">
-              <a class="list-group-item" href="/reports/2015/may-00.html" title="may summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>May Summary Report</strong></a></li>
-              <a class="list-group-item" href="/reports/2015/apr-00.html" title="april summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>April Summary Report</strong></a></li>
-              <a class="list-group-item" href="/reports/2015/mar-00.html" title="march summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>March Summary Report</strong></a></li>
-              <a class="list-group-item" href="/reports/2015/feb-00.html" title="february summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>February Summary Report</strong></a></li>
-              <a class="list-group-item" href="/reports/2015/jan-00.html" title="january summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>January Summary Report</strong></a></li>
-            </div>
-          </p>
-        </div>
-        <div class="col-md-4">
-          <h3 class="headline list-group-item"><i class="fa fa-pencil"></i> How to use</h3>
-          <ol class="modal-body description">
-            <li>Go to the <a href="#insert-menu">Main Navigation Menu</a> (above).</li>
-            <li>Click on the type of report you want to see: 2014 | 2015 | Stringer.</li>
-            <li>On the drop down menu, pick a date on the menu of which you would like to see the report of.</li>
-            <li>When you're there, at a report page, on the right hand side and at the bottom are links to other specific weekly reports. Click on any one of them to get there</li>
-            <li>notice that there is a pie chart on the right hand side, it displays the summary of March stories.</li>
-          </ol>
-        </div>
-        <div class="col-md-4">
-          <h3 class="headline list-group-item"><i class="fa fa-cloud"></i> May Progressive</h3>
-          <div class="description" id="summary-pie">
-          </div>
-        </div>
-      </div>
-      <!-- end of widget areas -->
-      <!-- footer  -->
+<div class="jumbotron" style="background-image:url(img/jumbotron-01.jpg);">
+  <h1 class="headline">Out of Date</h1>
+  <p class="text-warning description">Hi there! Please note that this version of the app is out of date. We are migrating to a new website application which will be hosted on Heroku. We will provide updates here. If you want to know where were at in terms of our new application, please do not hesitate to contact me here: <a href="https://www.slyvestery.wordpress.com" title="Sylver Yagi">slyvestery.wordpress.com</a><br /><br />Best Regards,<br />Sylver Yagi | <span class="text-muted">Lead Developer</span></p>
+  <hr />
+  <h2 class="headline">Application Brief</h2>
+  <div class="app-description">
+    <h5>This reporting application was developed to display data taken directly from the main <a href="http://www.pngloop.com">PNG LOOP</a> Website.<br /><br />To use this app, simply select a report from the main navigation menu above. There are 2014 Reports and 2015 Reports which can be located as sub menu items. I've tried to make accessibility to weekly reports easier by placing them on the right sidebar of monthly summary reports. Check them out now.<br /><br />For more information regarding this application, the tools used and the resources sought in building it, visit the <a href="about.html">About Page</a>.</h5>
     </div>
-    <hr /><div id="insert-footer" class="container-fluid"></div>
-    <!-- end of footer -->
-      <script>
-        $(document).ready(function(){
-          $("#insert-menu").load("menu.html");
-          $("#insert-footer").load("footer.html");
-          // $("#insert-widget-01").load("widget-01");
-        });
-      </script>
-      <script src="/scripts/jquery-ui.js"></script>
-      <script>
-        var invocation = new XMLHttpRequest(),
-            method = 'GET', xmldata,
-            url = 'http://www.looppng.com/section/40068/rss';
-        function logresult () {
-          console.log(this.responseText);
-        };
+</div>
+<!-- jumbotron ends -->
+<!-- Widget areas -->
+<div id="insert-widget-01" class="container">
+    <div id="quick-links" class="col-md-3">
+        <h3 class="headline list-group-item"><i class="fa fa-search fa-x5"></i> Quick Links</h3>
+        <p>
+            <div class="list-group description">
+                <a class="list-group-item" href="/reports/2015/may-00.html" title="may summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>May Summary Report</strong></a></li>
+                <a class="list-group-item" href="/reports/2015/apr-00.html" title="april summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>April Summary Report</strong></a></li>
+                <a class="list-group-item" href="/reports/2015/mar-00.html" title="march summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>March Summary Report</strong></a></li>
+                <a class="list-group-item" href="/reports/2015/feb-00.html" title="february summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>February Summary Report</strong></a></li>
+                <a class="list-group-item" href="/reports/2015/jan-00.html" title="january summary report"><i class="fa fa-check fa-fw"></i>&nbsp; <strong>January Summary Report</strong></a></li>
+            </div>
+        </p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="headline list-group-item"><i class="fa fa-pencil"></i> How to use</h3>
+      <ol class="modal-body description">
+        <li>Go to the <a href="#insert-menu">Main Navigation Menu</a> (above).</li>
+        <li>Click on the type of report you want to see: 2014 | 2015 | Stringer.</li>
+        <li>On the drop down menu, pick a date on the menu of which you would like to see the report of.</li>
+        <li>When you're there, at a report page, on the right hand side and at the bottom are links to other specific weekly reports. Click on any one of them to get there</li>
+        <li>notice that there is a pie chart on the right hand side, it displays the summary of March stories.</li>
+      </ol>
+    </div>
+    <div class="col-md-4">
+      <h3 class="headline list-group-item"><i class="fa fa-cloud"></i> May Progressive</h3>
+      <div class="description" id="summary-pie">
+      </div>
+    </div>
+</div>
+<!-- end of widget areas -->
+<!-- footer  -->
+</div>
+<hr /><div id="insert-footer" class="container-fluid"></div>
+<!-- end of footer -->
+<script>
+  $(document).ready(function(){
+    $("#insert-menu").load("menu.html");
+    $("#insert-footer").load("footer.html");
+    // $("#insert-widget-01").load("widget-01");
+  });
+</script>
+<script>
+  // determining the width and the height of the screen before resizing everything
+  // var width=$(document).width(); 
+  //               if (width>=1180) { // width here is the document width
+  //                 width=750;
+  //               } else {
+  //                 width= $("#inner-width").width(); 
+  //               }
+  // margin dimensions taken from ==> https://gist.github.com/mbostock/3019563
+  var margin = {top: 20, right: 10, bottom: 20, left: 10};
+  var width = 350 - margin.left - margin.right, height = 350 - margin.top - margin.bottom;
+  var color = d3.scale.ordinal()
+    .range(["#A901BB", "#410A71", "#FF43A6", "#A901BB", "#38003E", "#DB0073", "#FFA6CE"]);
+  var r = 125;
+  var arc = d3.svg.arc()
+    .outerRadius(r)
+    .innerRadius(r-(2*r/5));
+  var pie = d3.layout.pie()
+    .sort(null)
+    .value(function (d) { return d.COUNT; });
+  var svg = d3.select("#summary-pie").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
+    d3.json("data/2015/apr-00.json", function (error, data) {
+    data.forEach(function(d) {
+      d.COUNT = +d.COUNT;
+    });
+    var g = svg.selectAll(".arc")
+      .data(pie(data))
+      .enter().append("g")
+      .attr("class","arc");
+    g.append("path")
+      .attr("d",function (d) { return d.data.COUNT; })
+      .transition()
+      .ease("elastic")
+      .duration(750)
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.AUTHOR); })
+      .on("mouseover", function (d) {
+          d3.select(this)
+            .transition()
+            .ease("bounce")
+            .duration(750)
+            .style("fill","lavender")
+        })
+        .on("mouseout", function (d) {
+          d3.select(this)
+            .transition()
+            .ease("cubic")
+            .duration(450)
+            .style("fill", function (d) { return colors(d.COUNT); })
+        })
+    var sum = d3.sum(data, function (d) { return d.COUNT; });
+    g.append("text")
+      .attr("transform", function (d) {
+        return "translate(" + arc.centroid(d) + ")";
+      })
+      .style("text-anchor", "middle")
+      .style("fill","white")
+      .text(function (d) {
+        var fullName = d.data.AUTHOR;
+        var firstLetter = fullName.charAt(0);
+        var secLetter = fullName.charAt((fullName.indexOf(" ")+1));
+        return firstLetter + secLetter + " " + Math.round((d.data.COUNT / sum * 100),0) + "%";
+      });
+  }); 
+</script>
+<script>
+  d3.json("/data/tests/aug15-pageviews-sessions.json", function (data) {
+  // variables
+    var h = 500, w = 500, zero = 0;
+    var padding = {"top":20,"right":10,"bottom":45,"left":5};
+    var rectDime = {
+      "rHeight" : 40
+    }
 
-        invocation.addEventListener("load", logresult);
-        invocation.open(method, url, true);
-        invocation.onreadystatechange = function () {
-          if ( 4 != invocation.readyState ) {
-            return "!4";
-          }
-          if ( 200 != invocation.status ) {
-            xmldata = invocation.responseText;
-            return "!200";
-          }
-          console.log( invocation.responseText );
-        };
-        invocation.send();
-      </script>
+    var pvHigh = d3.max(data, function (d) { return +d.Pageviews; });
+    var pvLow = d3.min(data, function (d) { return +d.Pageviews; });
+    var sHigh = d3.max(data, function (d) { return +d.Sessions; });
+    var sLow = d3.min(data, function (d) { return +d.Sessions; });
+    
+  // scales
+    var sheightscale = d3.scale.linear()
+      .domain([zero,sHigh])
+      .range([zero,h-padding.top]);
+    var sColor = d3.scale.linear()
+      .domain([sLow,sHigh])
+      .range(['red','gold']);
+
+    var swScale = d3.scale.linear().domain([zero,sHigh]).range([zero,w-padding.top]);
+    var pvwScale = d3.scale.linear().domain([zero,pvHigh]).range([zero,w-padding.top]);
+    
+    var pvheightscale = d3.scale.linear()
+      .domain([zero,pvHigh])
+      .range([zero,h-padding.top]);
+    var pvColor = d3.scale.linear()
+      .domain([pvLow,pvHigh])
+      .range(['red','gold']);
+    var xaxis = d3.svg.axis().orient('top');
+    
+  // canvas
+    var canvas = d3.select("#chart2").append('svg').attr({
+      width: w,
+      height: h+(padding.bottom*3)
+    });
+
+  // data rectangles
+    var bar = canvas.append('g').attr("class","rectangles").selectAll("rect").data(data)
+      .enter()
+        // .append('g')
+        .append('rect')
+        .attr({
+          'height' : function (d) { return rectDime.rHeight; },
+          'width' : function (d) { return swScale(d.Sessions); },
+          'y' : function (d,i) { return i*padding.bottom; },
+          'x' : padding.left,
+          'fill' : function (d) { return sColor(d.Sessions); }
+        });
+
+
+    var texts = canvas.append('g').attr("class","text-label").selectAll("text").append('g').data(data)
+      .enter()
+        .append('text')
+        .attr({
+          'y' : function (d,i) { return i*padding.bottom; },
+          'x': padding.left,
+          'fill': 'black',
+          'text-anchor': 'start'
+        })
+        .text(function (d) { return d.Sessions; });
+
+    d3.selectAll('g').transition().attr('transform', 'translate(' + padding.left + ',' + padding.bottom*3 + ')');
+    d3.selectAll('g.text-label').transition().attr('transform', 'translate(' + (padding.left+10) + ',' + (padding.bottom+25)*2.3 + ')');
+
+    canvas.append('g').call(xaxis.scale(swScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.right + ',' + padding.bottom*3 + ')');
+    d3.select("#graph-title").append("h1").html("<h1>Sessions Data</h1>");
+
+  // update view
+    d3.select("#pageviews").on("click", function() {
+      d3.selectAll("rect").transition().ease('bounce').duration(750)
+        .attr('width',function (d) { return pvheightscale(d.Pageviews); })
+        .attr('fill', function (d) { return pvColor(d.Pageviews); });
+        $("#sessions").removeClass('active');
+        $("#pageviews").addClass('active')
+
+      d3.selectAll("text").transition().text(function (d) { return d.Pageviews; });
+      d3.select("#graph-title").html("<h1>Pageviews Data</h1>");
+      
+      d3.selectAll("g.xaxis").remove();
+      canvas.append('g').call(xaxis.scale(pvwScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.right + ',' + padding.bottom*3 + ')');
+    });
+
+    d3.select("#sessions").on("click", function() {
+      d3.selectAll("rect").transition().ease('bounce').duration(750)
+        .attr('width',function (d) { return sheightscale(d.Sessions); })
+        .attr('fill', function (d) { return sColor(d.Sessions); });
+        $("#pageviews").removeClass('active');
+        $("#sessions").addClass('active')
+
+    d3.selectAll("text").transition().text(function (d) { return d.Sessions; });
+    d3.select("#graph-title").html("<h1>Sessions Data</h1>");
+
+    d3.selectAll("g.xaxis").remove();
+    canvas.append('g').call(xaxis.scale(swScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.right + ',' + padding.bottom*3 + ')');
+    });
+  });        
+</script>
+<script src="/scripts/jquery-ui.js"></script>
+<script src="/script.js"></script>
+<script>
+  var invocation = new XMLHttpRequest(),
+      method = 'GET',
+      url = 'http://www.looppng.com/section/40068/rss';
+  function logresult () {
+    console.log(this.responseText);
+  };
+
+  invocation.addEventListener("load", logresult);
+  invocation.open(method, url, true);
+  invocation.onreadystatechange = function () {
+    if ( 4 != invocation.readyState ) {
+      return "!4";
+    }
+    if ( 200 != invocation.status ) {
+      xmldata = 
+      return "!200";
+    }
+    console.log( invocation.responseText );
+  };
+  invocation.send();
+</script>
     </body>
 </html>
