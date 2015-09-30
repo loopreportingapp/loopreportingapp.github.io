@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
     <head>
       <title>PNG LOOP | Reporting App | Home Page</title>
@@ -230,27 +230,15 @@
 </script>
 <script src="/scripts/jquery-ui.js"></script>
 <script>
-  var invocation = new XMLHttpRequest(),
-      method = 'GET',
-      url = 'http://www.looppng.com/section/40068/rss';
- 
-  invocation.open(method, url, true);
-  invocation.onreadystatechange = function () {
-    if (invocation.status===0) {
-      alert(invocation.status);
-    }
-    else if ( 404 != invocation.readyState ) {
-        alert("!4");
-    }
-    else if ( 200 != invocation.status ) {
-        alert("!200");
-    }
-    console.log("this is the invocation text" + invocation.responseText );
-  };
-  // invocation.response(xmlresponse, function (responsedata){
-    // console.log(responsedata);
-  // });
-  invocation.send();
+    var invocation = new XMLHttpRequest(),
+        method = 'GET',
+        url = 'http://www.looppng.com/section/40068/rss';
+   
+    invocation.open(method, url, true);
+    invocation.onreadystatechange = function () {
+      console.log("this is the invocation message" + invocation.responseText );
+    };
+    invocation.send();
 </script>
     </body>
 </html>
