@@ -1,0 +1,762 @@
+{
+  "nau": [
+    {
+      "Day Index":"11/1/15",
+      "Pageviews":199,
+      "Sessions":44
+    },
+    {
+      "Day Index":"11/2/15",
+      "Pageviews":152,
+      "Sessions":53
+    },
+    {
+      "Day Index":"11/3/15",
+      "Pageviews":123,
+      "Sessions":49
+    },
+    {
+      "Day Index":"11/4/15",
+      "Pageviews":206,
+      "Sessions":66
+    },
+    {
+      "Day Index":"11/5/15",
+      "Pageviews":215,
+      "Sessions":46
+    },
+    {
+      "Day Index":"11/6/15",
+      "Pageviews":159,
+      "Sessions":43
+    },
+    {
+      "Day Index":"11/7/15",
+      "Pageviews":53,
+      "Sessions":27
+    },
+    {
+      "Day Index":"11/8/15",
+      "Pageviews":53,
+      "Sessions":27
+    },
+    {
+      "Day Index":"11/9/15",
+      "Pageviews":211,
+      "Sessions":43
+    },
+    {
+      "Day Index":"11/10/15",
+      "Pageviews":114,
+      "Sessions":52
+    },
+    {
+      "Day Index":"11/11/15",
+      "Pageviews":55,
+      "Sessions":22
+    },
+    {
+      "Day Index":"11/12/15",
+      "Pageviews":51,
+      "Sessions":25
+    },
+    {
+      "Day Index":"11/13/15",
+      "Pageviews":33,
+      "Sessions":19
+    },
+    {
+      "Day Index":"11/14/15",
+      "Pageviews":73,
+      "Sessions":34
+    },
+    {
+      "Day Index":"11/15/15",
+      "Pageviews":47,
+      "Sessions":22
+    },
+    {
+      "Day Index":"11/16/15",
+      "Pageviews":96,
+      "Sessions":33
+    },
+    {
+      "Day Index":"11/17/15",
+      "Pageviews":54,
+      "Sessions":24
+    },
+    {
+      "Day Index":"11/18/15",
+      "Pageviews":98,
+      "Sessions":30
+    },
+    {
+      "Day Index":"11/19/15",
+      "Pageviews":109,
+      "Sessions":39
+    },
+    {
+      "Day Index":"11/20/15",
+      "Pageviews":67,
+      "Sessions":31
+    },
+    {
+      "Day Index":"11/21/15",
+      "Pageviews":59,
+      "Sessions":47
+    },
+    {
+      "Day Index":"11/22/15",
+      "Pageviews":44,
+      "Sessions":17
+    },
+    {
+      "Day Index":"11/23/15",
+      "Pageviews":104,
+      "Sessions":40
+    },
+    {
+      "Day Index":"11/24/15",
+      "Pageviews":235,
+      "Sessions":82
+    },
+    {
+      "Day Index":"11/25/15",
+      "Pageviews":145,
+      "Sessions":41
+    },
+    {
+      "Day Index":"11/26/15",
+      "Pageviews":200,
+      "Sessions":41
+    },
+    {
+      "Day Index":"11/27/15",
+      "Pageviews":131,
+      "Sessions":46
+    },
+    {
+      "Day Index":"11/28/15",
+      "Pageviews":45,
+      "Sessions":25
+    },
+    {
+      "Day Index":"11/29/15",
+      "Pageviews":78,
+      "Sessions":33
+    },
+    {
+      "Day Index":"11/30/15",
+      "Pageviews":135,
+      "Sessions":57
+    }
+  ],
+"png": [
+    {
+      "Day Index":"11/1/15",
+      "Pageviews":"15,951",
+      "Sessions":"5,727"
+    },
+    {
+      "Day Index":"11/2/15",
+      "Pageviews":"29,170",
+      "Sessions":"8,952"
+    },
+    {
+      "Day Index":"11/3/15",
+      "Pageviews":"35,644",
+      "Sessions":"10,584"
+    },
+    {
+      "Day Index":"11/4/15",
+      "Pageviews":"31,828",
+      "Sessions":"8,916"
+    },
+    {
+      "Day Index":"11/5/15",
+      "Pageviews":"27,966",
+      "Sessions":"7,762"
+    },
+    {
+      "Day Index":"11/6/15",
+      "Pageviews":"30,096",
+      "Sessions":"9,465"
+    },
+    {
+      "Day Index":"11/7/15",
+      "Pageviews":"19,340",
+      "Sessions":"7,074"
+    },
+    {
+      "Day Index":"11/8/15",
+      "Pageviews":"18,160",
+      "Sessions":"6,503"
+    },
+    {
+      "Day Index":"11/9/15",
+      "Pageviews":"34,033",
+      "Sessions":"10,200"
+    },
+    {
+      "Day Index":"11/10/15",
+      "Pageviews":"35,540",
+      "Sessions":"9,107"
+    },
+    {
+      "Day Index":"11/11/15",
+      "Pageviews":"29,866",
+      "Sessions":"8,672"
+    },
+    {
+      "Day Index":"11/12/15",
+      "Pageviews":"25,848",
+      "Sessions":"8,349"
+    },
+    {
+      "Day Index":"11/13/15",
+      "Pageviews":"24,957",
+      "Sessions":"8,183"
+    },
+    {
+      "Day Index":"11/14/15",
+      "Pageviews":"18,315",
+      "Sessions":"6,758"
+    },
+    {
+      "Day Index":"11/15/15",
+      "Pageviews":"18,561",
+      "Sessions":"6,300"
+    },
+    {
+      "Day Index":"11/16/15",
+      "Pageviews":"30,540",
+      "Sessions":"8,992"
+    },
+    {
+      "Day Index":"11/17/15",
+      "Pageviews":"26,447",
+      "Sessions":"7,394"
+    },
+    {
+      "Day Index":"11/18/15",
+      "Pageviews":"25,927",
+      "Sessions":"7,328"
+    },
+    {
+      "Day Index":"11/19/15",
+      "Pageviews":"26,409",
+      "Sessions":"7,555"
+    },
+    {
+      "Day Index":"11/20/15",
+      "Pageviews":"27,567",
+      "Sessions":"8,801"
+    },
+    {
+      "Day Index":"11/21/15",
+      "Pageviews":"15,018",
+      "Sessions":"5,072"
+    },
+    {
+      "Day Index":"11/22/15",
+      "Pageviews":"12,864",
+      "Sessions":"4,046"
+    },
+    {
+      "Day Index":"11/23/15",
+      "Pageviews":"23,753",
+      "Sessions":"6,675"
+    },
+    {
+      "Day Index":"11/24/15",
+      "Pageviews":"27,202",
+      "Sessions":"8,700"
+    },
+    {
+      "Day Index":"11/25/15",
+      "Pageviews":"28,137",
+      "Sessions":"9,879"
+    },
+    {
+      "Day Index":"11/26/15",
+      "Pageviews":"24,609",
+      "Sessions":"8,446"
+    },
+    {
+      "Day Index":"11/27/15",
+      "Pageviews":"41,287",
+      "Sessions":"15,160"
+    },
+    {
+      "Day Index":"11/28/15",
+      "Pageviews":"23,218",
+      "Sessions":"9,017"
+    },
+    {
+      "Day Index":"11/29/15",
+      "Pageviews":"26,533",
+      "Sessions":"11,337"
+    },
+    {
+      "Day Index":"11/30/15",
+      "Pageviews":"35,319",
+      "Sessions":"13,266"
+    }
+  ],
+"sam": [
+    {
+      "Day Index":"11/1/15",
+      "Pageviews":6,
+      "Sessions":5
+    },
+    {
+      "Day Index":"11/2/15",
+      "Pageviews":61,
+      "Sessions":22
+    },
+    {
+      "Day Index":"11/3/15",
+      "Pageviews":37,
+      "Sessions":17
+    },
+    {
+      "Day Index":"11/4/15",
+      "Pageviews":58,
+      "Sessions":26
+    },
+    {
+      "Day Index":"11/5/15",
+      "Pageviews":140,
+      "Sessions":45
+    },
+    {
+      "Day Index":"11/6/15",
+      "Pageviews":100,
+      "Sessions":33
+    },
+    {
+      "Day Index":"11/7/15",
+      "Pageviews":22,
+      "Sessions":7
+    },
+    {
+      "Day Index":"11/8/15",
+      "Pageviews":21,
+      "Sessions":12
+    },
+    {
+      "Day Index":"11/9/15",
+      "Pageviews":154,
+      "Sessions":47
+    },
+    {
+      "Day Index":"11/10/15",
+      "Pageviews":118,
+      "Sessions":46
+    },
+    {
+      "Day Index":"11/11/15",
+      "Pageviews":65,
+      "Sessions":23
+    },
+    {
+      "Day Index":"11/12/15",
+      "Pageviews":105,
+      "Sessions":31
+    },
+    {
+      "Day Index":"11/13/15",
+      "Pageviews":101,
+      "Sessions":40
+    },
+    {
+      "Day Index":"11/14/15",
+      "Pageviews":72,
+      "Sessions":34
+    },
+    {
+      "Day Index":"11/15/15",
+      "Pageviews":103,
+      "Sessions":24
+    },
+    {
+      "Day Index":"11/16/15",
+      "Pageviews":93,
+      "Sessions":43
+    },
+    {
+      "Day Index":"11/17/15",
+      "Pageviews":105,
+      "Sessions":37
+    },
+    {
+      "Day Index":"11/18/15",
+      "Pageviews":97,
+      "Sessions":41
+    },
+    {
+      "Day Index":"11/19/15",
+      "Pageviews":122,
+      "Sessions":58
+    },
+    {
+      "Day Index":"11/20/15",
+      "Pageviews":127,
+      "Sessions":56
+    },
+    {
+      "Day Index":"11/21/15",
+      "Pageviews":68,
+      "Sessions":33
+    },
+    {
+      "Day Index":"11/22/15",
+      "Pageviews":60,
+      "Sessions":15
+    },
+    {
+      "Day Index":"11/23/15",
+      "Pageviews":162,
+      "Sessions":37
+    },
+    {
+      "Day Index":"11/24/15",
+      "Pageviews":168,
+      "Sessions":49
+    },
+    {
+      "Day Index":"11/25/15",
+      "Pageviews":153,
+      "Sessions":97
+    },
+    {
+      "Day Index":"11/26/15",
+      "Pageviews":522,
+      "Sessions":345
+    },
+    {
+      "Day Index":"11/27/15",
+      "Pageviews":434,
+      "Sessions":268
+    },
+    {
+      "Day Index":"11/28/15",
+      "Pageviews":380,
+      "Sessions":299
+    },
+    {
+      "Day Index":"11/29/15",
+      "Pageviews":507,
+      "Sessions":418
+    },
+    {
+      "Day Index":"11/30/15",
+      "Pageviews":326,
+      "Sessions":230
+    }
+  ],
+"ton": [
+    {
+      "Day Index":"11/1/15",
+      "Pageviews":32,
+      "Sessions":13
+    },
+    {
+      "Day Index":"11/2/15",
+      "Pageviews":44,
+      "Sessions":26
+    },
+    {
+      "Day Index":"11/3/15",
+      "Pageviews":27,
+      "Sessions":17
+    },
+    {
+      "Day Index":"11/4/15",
+      "Pageviews":43,
+      "Sessions":20
+    },
+    {
+      "Day Index":"11/5/15",
+      "Pageviews":75,
+      "Sessions":34
+    },
+    {
+      "Day Index":"11/6/15",
+      "Pageviews":80,
+      "Sessions":27
+    },
+    {
+      "Day Index":"11/7/15",
+      "Pageviews":47,
+      "Sessions":16
+    },
+    {
+      "Day Index":"11/8/15",
+      "Pageviews":15,
+      "Sessions":8
+    },
+    {
+      "Day Index":"11/9/15",
+      "Pageviews":148,
+      "Sessions":99
+    },
+    {
+      "Day Index":"11/10/15",
+      "Pageviews":147,
+      "Sessions":94
+    },
+    {
+      "Day Index":"11/11/15",
+      "Pageviews":100,
+      "Sessions":55
+    },
+    {
+      "Day Index":"11/12/15",
+      "Pageviews":81,
+      "Sessions":37
+    },
+    {
+      "Day Index":"11/13/15",
+      "Pageviews":54,
+      "Sessions":29
+    },
+    {
+      "Day Index":"11/14/15",
+      "Pageviews":25,
+      "Sessions":17
+    },
+    {
+      "Day Index":"11/15/15",
+      "Pageviews":42,
+      "Sessions":23
+    },
+    {
+      "Day Index":"11/16/15",
+      "Pageviews":65,
+      "Sessions":30
+    },
+    {
+      "Day Index":"11/17/15",
+      "Pageviews":52,
+      "Sessions":26
+    },
+    {
+      "Day Index":"11/18/15",
+      "Pageviews":46,
+      "Sessions":23
+    },
+    {
+      "Day Index":"11/19/15",
+      "Pageviews":85,
+      "Sessions":46
+    },
+    {
+      "Day Index":"11/20/15",
+      "Pageviews":91,
+      "Sessions":40
+    },
+    {
+      "Day Index":"11/21/15",
+      "Pageviews":60,
+      "Sessions":40
+    },
+    {
+      "Day Index":"11/22/15",
+      "Pageviews":43,
+      "Sessions":21
+    },
+    {
+      "Day Index":"11/23/15",
+      "Pageviews":103,
+      "Sessions":40
+    },
+    {
+      "Day Index":"11/24/15",
+      "Pageviews":75,
+      "Sessions":39
+    },
+    {
+      "Day Index":"11/25/15",
+      "Pageviews":77,
+      "Sessions":40
+    },
+    {
+      "Day Index":"11/26/15",
+      "Pageviews":118,
+      "Sessions":51
+    },
+    {
+      "Day Index":"11/27/15",
+      "Pageviews":110,
+      "Sessions":35
+    },
+    {
+      "Day Index":"11/28/15",
+      "Pageviews":41,
+      "Sessions":21
+    },
+    {
+      "Day Index":"11/29/15",
+      "Pageviews":64,
+      "Sessions":35
+    },
+    {
+      "Day Index":"11/30/15",
+      "Pageviews":118,
+      "Sessions":57
+    }
+  ],
+  "van" : [
+    {
+      "Day Index":"11/1/15",
+      "Pageviews":60,
+      "Sessions":16
+    },
+    {
+      "Day Index":"11/2/15",
+      "Pageviews":75,
+      "Sessions":43
+    },
+    {
+      "Day Index":"11/3/15",
+      "Pageviews":66,
+      "Sessions":43
+    },
+    {
+      "Day Index":"11/4/15",
+      "Pageviews":218,
+      "Sessions":69
+    },
+    {
+      "Day Index":"11/5/15",
+      "Pageviews":145,
+      "Sessions":63
+    },
+    {
+      "Day Index":"11/6/15",
+      "Pageviews":186,
+      "Sessions":80
+    },
+    {
+      "Day Index":"11/7/15",
+      "Pageviews":108,
+      "Sessions":74
+    },
+    {
+      "Day Index":"11/8/15",
+      "Pageviews":44,
+      "Sessions":40
+    },
+    {
+      "Day Index":"11/9/15",
+      "Pageviews":180,
+      "Sessions":56
+    },
+    {
+      "Day Index":"11/10/15",
+      "Pageviews":138,
+      "Sessions":45
+    },
+    {
+      "Day Index":"11/11/15",
+      "Pageviews":144,
+      "Sessions":45
+    },
+    {
+      "Day Index":"11/12/15",
+      "Pageviews":120,
+      "Sessions":54
+    },
+    {
+      "Day Index":"11/13/15",
+      "Pageviews":119,
+      "Sessions":46
+    },
+    {
+      "Day Index":"11/14/15",
+      "Pageviews":49,
+      "Sessions":31
+    },
+    {
+      "Day Index":"11/15/15",
+      "Pageviews":75,
+      "Sessions":25
+    },
+    {
+      "Day Index":"11/16/15",
+      "Pageviews":244,
+      "Sessions":60
+    },
+    {
+      "Day Index":"11/17/15",
+      "Pageviews":98,
+      "Sessions":44
+    },
+    {
+      "Day Index":"11/18/15",
+      "Pageviews":119,
+      "Sessions":51
+    },
+    {
+      "Day Index":"11/19/15",
+      "Pageviews":98,
+      "Sessions":48
+    },
+    {
+      "Day Index":"11/20/15",
+      "Pageviews":156,
+      "Sessions":66
+    },
+    {
+      "Day Index":"11/21/15",
+      "Pageviews":73,
+      "Sessions":49
+    },
+    {
+      "Day Index":"11/22/15",
+      "Pageviews":39,
+      "Sessions":25
+    },
+    {
+      "Day Index":"11/23/15",
+      "Pageviews":187,
+      "Sessions":71
+    },
+    {
+      "Day Index":"11/24/15",
+      "Pageviews":194,
+      "Sessions":91
+    },
+    {
+      "Day Index":"11/25/15",
+      "Pageviews":156,
+      "Sessions":93
+    },
+    {
+      "Day Index":"11/26/15",
+      "Pageviews":194,
+      "Sessions":91
+    },
+    {
+      "Day Index":"11/27/15",
+      "Pageviews":232,
+      "Sessions":105
+    },
+    {
+      "Day Index":"11/28/15",
+      "Pageviews":80,
+      "Sessions":48
+    },
+    {
+      "Day Index":"11/29/15",
+      "Pageviews":80,
+      "Sessions":41
+    },
+    {
+      "Day Index":"11/30/15",
+      "Pageviews":277,
+      "Sessions":135
+    }
+  ]
+}

@@ -44,7 +44,7 @@
         float: left;
         display: block;
         position: absolute;
-        border: 2px solid black;
+        /*border: 2px solid black;*/
       }
     </style>
 
@@ -59,23 +59,10 @@
         <!-- <header class="container">
             <span><a href="index.html" ><h3 id="site-title">png loop's reporting application</h3></a></span>
         </header> -->
-        <div id="insert-menu"></div>
+      <div id="insert-menu"></div>
+      <div id="timeline"></div>
 <!-- nav ends -->
 <!-- jumbotron begins -->
-      <div class="row">
-      <!-- buttons -->
-        <span class="options">
-          <ul class="panel list-unstyled list-inline">
-            <li><button id="sessions" class="btn btn-default active">Sessions</button></li>
-            <li><button id="pageviews" class="btn btn-default">Pageviews</button></li>
-          </ul>
-        </span>
-      <!-- bar graph -->
-        <div class="col-md-12" id="chart2">
-          <span id="graph-title" class="col-xs-8 col-md-5 headline text-centre chart-detail"></span>
-          <!-- <span id="graph-description" class="chart-detail"></span> -->
-        </div>
-      </div>
 <div class="jumbotron" style="background-image:url(img/jumbotron-01.jpg);">
   <h1 class="headline">Out of Date</h1>
   <p class="text-warning description">Hi there! Please note that this version of the app is out of date. We are migrating to a new website application which will be hosted on Heroku. We will provide updates here. If you want to know where were at in terms of our new application, please do not hesitate to contact me here: <a href="https://www.slyvestery.wordpress.com" title="Sylver Yagi">slyvestery.wordpress.com</a><br /><br />Best Regards,<br />Sylver Yagi | <span class="text-muted">Lead Developer</span></p>
@@ -88,7 +75,8 @@
 <!-- jumbotron ends -->
 <!-- Widget areas -->
 <div id="insert-widget-01" class="container">
-    <div id="quick-links" class="col-md-3">
+  <div class="row">
+    <div id="quick-links" class="col-md-4">
         <h3 class="headline list-group-item"><i class="fa fa-search fa-x5"></i> Quick Links</h3>
         <p>
             <div class="list-group description">
@@ -115,6 +103,23 @@
       <div class="description" id="summary-pie">
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+  <!-- buttons -->
+      <span class="options">
+        <ul class="well panel list-unstyled list-inline">
+          <li><button id="sessions" class="btn btn-primary active">Sessions</button></li>
+          <li><button id="pageviews" class="btn btn-danger">Pageviews</button></li>
+        </ul>
+      </span>
+    <!-- bar graph -->
+      <div class="col-md-12" id="chart2">
+        <span id="graph-title" class="headline text-centre chart-detail"></span>
+        <!-- <span id="graph-description" class="chart-detail"></span> -->
+      </div>
+    </div>
+  </div>
 </div>
 <!-- end of widget areas -->
 <!-- footer  -->
@@ -226,19 +231,46 @@
     d3.selectAll("g.xaxis").remove();
     canvas.append('g').call(xaxis.scale(swScale)).attr('class','xaxis').attr('transform', 'translate(' + padding.right + ',' + padding.bottom*3 + ')');
     });
-  });        
+  });
+  var data;
+  d3.json("/data/tests/loopnov2015.json", function (d) {
+    // data = d;
+    // variables
+    var padding = {"top":20,"right":10,"bottom":45,"left":5};
+    var nau = d.nau, png = d.png, sam = d.sam, ton = d.ton, van = d.van;
+    var w = jQuery("#timeline").width(), h = 11*w/12;
+    data = nau;
+  // scales
+    var hscale = d3.scale.linear().domain([0,h]).range([0, h]);
+    var wscale = d3.scale.linear().domain([0,w-0.35*w]).range([0, w-padding.left]);
+    var cscale = d3.scale.linear().domain([0,d3.max(nau, function (d) { return d.Sessions; })]).range(["azure","dodgerblue"]);
+    
+  // canvas
+    var canvas = d3.select("#timeline").append('svg').attr({
+      width: w,
+      height: h
+    });
+
+  // data rectangles
+    var circles = canvas.append('g').attr('transform', 'translate(' + 0 + ',' + padding.top + ')').selectAll('circ').data(nau)
+    .enter().append('rect')
+        .attr('x', function (d,i) { return wscale(i*w/25); }) // must always be less than 'width'
+        .attr('y', 10) // where the bar starts to get drawn, y axis
+        .attr('width', function (d) { return wscale(w/30); }) // >= w/#ofSessions
+        .attr('height', function (d) { return hscale(d.Sessions); }) // height of bars
+        .style('fill', function (d) { return cscale(d.Sessions); }); // fill color of bars
+  })
 </script>
 <script>
     // tricking the web server into creating a new script without it knowing
-    var body = $("body").append("<script></script");
-    var scr = $("script:last").text(function () {
-        var str1 = "$(document).ready(function () {";
-        var str2 = "var xmlData = $.get('http://www.looppng.com/section/40068/rss', function (data) {";
-        var str3 = "console.log(data);";
-        var str4 = "}).done(function () { alert(1); }).fail(function () { alert(0) })";
-        var str5 = "})});";
-        return str1 + str2 + str3 + str4 + str5;
-    });
+    // var body = $("body").append("<script><\/script>");
+    var str1 = "$(document).ready(function () {";
+    var str2 = "var xmlData = $.get('http://www.looppng.com/section/40068/rss', function (data) {";
+    var str3 = "console.log(data);";
+    var str4 = "}).done(function () { alert(1); }).fail(function () { alert(0) });";
+    var str5 = "";
+    var str6 = "});";
+    var scr = $("script:last").text(str1+str2+str3+str4+str5);
 </script>
     </body>
 </html>
